@@ -1,0 +1,9 @@
+.sonar
+.DS_Store
+.project
+*.esproj
+*.sublime-workspace
+*.sublime-project
+.idea
+dist
+node_modules
