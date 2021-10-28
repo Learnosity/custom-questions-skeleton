@@ -1,0 +1,23 @@
+language: php
+php:
+  - '7.0'
+  - '7.1'
+  - '7.2'
+  - '7.3'
+  - '7.4'
+  - '8.0'
+
+env:
+  - COMPOSER_COMMAND=install
+  - COMPOSER_COMMAND=update
+
+install:
+  - composer ${COMPOSER_COMMAND}
+
+script: "./vendor/bin/phpunit"
+
+notifications:
+  slack:
+    rooms:
+      secure: eiVeU19rufgjfsbnuj4J/5Dz3XukHG+OUsUerLXxVsKSUPmiM2XVZ53RurE+TerSYv3LtYSIcEp5F3pU8yO8k0UzTLUCVpFDMfD1j6a9zlwuKHMnceOLSm2867aq8lUKcJHAwg20SfcMnOYZc4XKd7octeg7sZZYNFKdjn11dzs=
+    on_success: change
