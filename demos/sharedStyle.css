@@ -1,0 +1,38 @@
+body {
+    background: #fff;
+}
+
+.client-question-info {
+    margin: 10px 0 20px 0;
+    padding-bottom: 20px;
+    color: #666;
+    font-size: 1.2em;
+    border-bottom: 1px dashed #ccc;
+}
+
+.client-question-info code {
+    padding: 4px 8px;
+    color: #b20822;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+}
+
+.client-save-wrapper {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+
+.client-hidden {
+    display: none;
+}
+
+.client-btn {
+    padding: 10px 15px;
+}
+
+#redirect_response {
+    margin-top: 20px;
+    padding: 10px;
+    background: #bcdce8;
+}
