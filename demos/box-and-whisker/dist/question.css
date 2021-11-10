@@ -1,0 +1,59 @@
+/*!************************************************************************************************************!*\
+  !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/sass-loader/dist/cjs.js!../scss/main.scss ***!
+  \************************************************************************************************************/
+.lrn-bnw .lrn-bnw-boxes .lrn-bnw-box {
+  stroke-width: 2;
+  stroke: #ffc800;
+}
+.lrn-bnw .lrn-bnw-boxes .lrn-bnw-box-q1 {
+  fill: #bbb;
+}
+.lrn-bnw .lrn-bnw-boxes .lrn-bnw-box-q3 {
+  fill: #999;
+}
+.lrn-bnw .lrn-bnw-handler-line {
+  stroke-width: 2;
+  stroke: #ffc800;
+}
+.lrn-bnw .lrn-bnw-handler-point {
+  fill: #646464;
+}
+.lrn-bnw .lrn-bnw-handler-point.lrn-bnw-handler-dragging {
+  fill: skyblue;
+}
+.lrn-bnw .lrn-bnw-correct {
+  fill: #4a700a;
+}
+.lrn-bnw .lrn-bnw-correct.lrn-bnw-handler-line {
+  stroke: #4a700a;
+}
+.lrn-bnw .lrn-bnw-incorrect {
+  fill: #dd002f;
+}
+.lrn-bnw .lrn-bnw-incorrect.lrn-bnw-handler-line {
+  stroke: #dd002f;
+}
+.lrn-bnw .lrn-bnw-suggested {
+  fill: #e9e99a;
+}
+.lrn-bnw .lrn-bnw-suggested.lrn-bnw-handler-line {
+  stroke: #e9e99a;
+}
+.lrn-bnw .lrn-bnw-suggested.lrn-bnw-handler-text {
+  fill: #333;
+}
+.lrn-bnw .lrn_response_input {
+  width: 600px;
+}
+.lrn-bnw .lrn_response_input > svg {
+  width: 100%;
+}
+.lrn-bnw .lrn-bnw-checkAnswer-wrapper {
+  max-width: 600px;
+}
+.lrn-bnw .lrn-bnw-checkAnswer-wrapper > .lrn_btn {
+  margin-bottom: 1em;
+}
+.lrn-bnw .lrn-bnw-suggestedAnswers-wrapper {
+  margin-bottom: 1em;
+}

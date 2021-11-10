@@ -1,0 +1,6 @@
+{
+    "require": {
+        "learnosity/learnosity-sdk-php": "^1.0",
+        "ext-json": "*"
+    }
+}

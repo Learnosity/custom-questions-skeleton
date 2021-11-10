@@ -1,0 +1,55 @@
+.#{$prefix}boxes {
+    .#{$prefix}box {
+        stroke-width: $stroke-width;
+        stroke: $stroke-primary-color;
+
+        &-q1 {
+            fill: #bbb;
+        }
+
+        &-q3 {
+            fill: #999;
+        }
+    }
+}
+
+.#{$prefix}handler-line {
+    stroke-width: $stroke-width;
+    stroke: $stroke-primary-color;
+}
+
+.#{$prefix}handler-point {
+    fill: $secondary-color;
+
+    &.#{$prefix}handler-dragging {
+        fill: $info-color;
+    }
+}
+
+.#{$prefix} {
+    &correct {
+        fill: $correct-color;
+
+        &.#{$prefix}handler-line {
+            stroke: $correct-color;
+        }
+    }
+    &incorrect {
+        fill: $incorrect-color;
+
+        &.#{$prefix}handler-line {
+            stroke: $incorrect-color;
+        }
+    }
+    &suggested {
+        fill: $suggested-color;
+
+        &.#{$prefix}handler-line {
+            stroke: $suggested-color;
+        }
+
+        &.#{$prefix}handler-text {
+            fill: $suggested-text-color;
+        }
+    }
+}

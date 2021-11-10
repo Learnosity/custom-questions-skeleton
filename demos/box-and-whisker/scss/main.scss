@@ -1,0 +1,25 @@
+@import "variables";
+
+.lrn-bnw {
+    @import "boxAndWhisker";
+
+    .lrn_response_input {
+        width: $width;
+
+        > svg {
+            width: 100%;
+        }
+    }
+
+    .#{$prefix}checkAnswer-wrapper {
+        max-width: $width;
+
+        > .lrn_btn {
+            margin-bottom: 1em;
+        }
+    }
+
+    .#{$prefix}suggestedAnswers-wrapper {
+        margin-bottom: 1em;
+    }
+}

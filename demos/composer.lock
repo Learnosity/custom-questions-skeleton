@@ -1,0 +1,68 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "da33abf997b67c9b1a3fc9a2f7279af3",
+    "packages": [
+        {
+            "name": "learnosity/learnosity-sdk-php",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Learnosity/learnosity-sdk-php.git",
+                "reference": "08ba12cc969255ed6108ec9fdba253d1e6460611"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Learnosity/learnosity-sdk-php/zipball/08ba12cc969255ed6108ec9fdba253d1e6460611",
+                "reference": "08ba12cc969255ed6108ec9fdba253d1e6460611",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": "^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0 || ^7.0 || ^8.0 || ^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "LearnositySdk\\": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Include this package into your own codebase to ease integration with any of the Learnosity APIs",
+            "homepage": "https://github.com/Learnosity/learnosity-sdk-php",
+            "keywords": [
+                "PHP7",
+                "learnosity",
+                "php8",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/Learnosity/learnosity-sdk-php/issues",
+                "source": "https://github.com/Learnosity/learnosity-sdk-php/tree/v1.0.0"
+            },
+            "time": "2021-06-01T07:08:26+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}
