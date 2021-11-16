@@ -48,7 +48,7 @@ $signedRequest = signAssessmentRequest($requestData);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Client-side Box & Whisker</title>
+    <title>Questions API - Box & Whisker</title>
     <script src="//questions.learnosity.com"></script>
     <style>
         <?php echo(file_get_contents('../sharedStyle.css')); ?>
@@ -67,6 +67,11 @@ $signedRequest = signAssessmentRequest($requestData);
     <button type="button" class="client-btn" data-action="resume">Resume</button> or
     <button type="button" class="client-btn" data-action="review">Review</button> mode ?
 </div>
+<div class="client-request-json">
+    <div><b>Request init options</b></div>
+    <textarea readonly></textarea>
+</div>
+
 <script>
     window.activity = <?php echo $signedRequest; ?>;
 

@@ -5,6 +5,9 @@
 
         window.location.href = `?state=${state}&session_id=${sessionId}`;
     };
+    const requestJsonTextarea = document.querySelector('.client-request-json > textarea');
+
+    requestJsonTextarea.value = `${JSON.stringify(window.activity, null, 2)}`;
 
     redirectSection
         .querySelector('button[data-action="resume"]')
