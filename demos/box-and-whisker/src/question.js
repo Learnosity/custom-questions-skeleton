@@ -1,4 +1,4 @@
-import BoxAndWhiskerQuestion from './views';
+import BoxAndWhiskerQuestion from './question/index';
 import '../scss/main.scss';
 
 /*global LearnosityAmd*/
