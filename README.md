@@ -23,6 +23,7 @@ built by Learnosity engineers which you can use as a base of your custom questio
 
 Following demos have been included in this repository:
 * Box and whisker
+* Custom question skeleton
 
 Each demo will have the following structure:
 * `package.json`: contains the information about your custom question/feature project.
@@ -42,7 +43,12 @@ Each demo will have the following structure:
 ## Available Demo Scripts
 **1. Box and Whisker Demo**
 * Project Location: `demos/box-and-whisker`
-* Scripts:
+
+**2. Custom Question Skeleton Demo**
+* A clean custom question skeleton you can leverage to start working on your custom question 
+* Project Location: `demos/custom-question-skeleton`
+
+**Scripts**
 ```
 # Start the localhost server to start developing your custom question
 yarn dev
@@ -50,6 +56,19 @@ yarn dev
 yarn prod
 # Test your scorer's behavior in the server side. Update question/response in debugeServerScorer.js to test
 yarn debug-server-scorer
+```
+
+## Publish your custom question
+* Once your custom question is ready, run `yarn prod` to generate the production ready build then
+copy the content of the `dist` folder and your `authoring_custom_layout.html` to your server and
+make sure those files are accessible on the web.
+* To test your production build, in your `assessment.php` file, point the `js` and `css` files to the location of your files
+```
+"js": {
+  "question": "YOUR-SERVER-URL/question.js",
+  "scorer": "YOUR-SERVER-URL/scorer.js"
+},
+"css": "YOUR-SERVER-URL/question.css"
 ```
 
 ## Development Recommendation
