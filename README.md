@@ -1,5 +1,5 @@
 <p align="center"><img width="50%" height="50%" src="images/image-logo-graphic.png"></p>
-<h1 align="center">Learnosity Custom Question/Feature Guideline</h1>
+<h1 align="center">Guidelines for Learnosity Custom Questions and Features</h1>
 <p align="center">The guideline you need to start building your custom question/feature with Learnosity APIs using your preferred toolkit and languages.<br> 
 <br>
 An official Learnosity open-source project.</p>
@@ -71,7 +71,7 @@ make sure those files are accessible on the web.
 "css": "YOUR-SERVER-URL/question.css"
 ```
 
-## Development Recommendation
+## Development Recommendations
 **1. Leverage predefined Learnosity components**
 
 Avoid building the following default components to keep the consistent look-and-feel with Learnosity UI 
