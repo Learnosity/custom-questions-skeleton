@@ -64,7 +64,7 @@ $signedRequest = signAuthoringRequest(json_decode($request, true));
 <head>
     <meta charset="UTF-8">
     <title>Author API - Skeleton</title>
-    <script src="//authorapi.learnosity.com"></script>
+    <script src="//authorapi.staging.learnosity.com"></script>
     <style>
         <?php echo(file_get_contents('../sharedStyle.css')); ?>
     </style>
