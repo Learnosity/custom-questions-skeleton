@@ -30,7 +30,7 @@ $signedRequest = signAssessmentRequest($requestData);
 <head>
     <meta charset="UTF-8">
     <title>Questions API - Skeleton</title>
-    <script src="//questions.learnosity.com"></script>
+    <script src="//questions.staging.learnosity.com"></script>
     <style>
         <?php echo(file_get_contents('../sharedStyle.css')); ?>
     </style>
