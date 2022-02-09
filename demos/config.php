@@ -53,7 +53,7 @@ function signAuthoringRequest($request)
 
     $request = array_merge_recursive([
         'mode' => 'item_edit',
-        'reference' => 'box-and-whisker-item-reference',
+        'reference' => Uuid::generate(),
         'user' => [
             'id' => 'demos@learnosity.com',
             'firstname' =>  'Demo',
