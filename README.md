@@ -52,11 +52,20 @@ Each demo will have the following structure:
 ```
 # Start the localhost server to start developing your custom question
 yarn dev
+
 # Build the production ready code of your custom question
 yarn prod
+
 # Test your scorer's behavior in the server side. Update question/response in debugeServerScorer.js to test
 yarn debug-server-scorer
 ```
+
+## Test your custom question
+Assessment demo using Questions API: 
+http://localhost:12345/assessment.php
+
+Authoring demo using Author API: 
+http://localhost:12345/authoring.php
 
 ## Publish your custom question
 * Once your custom question is ready, run `yarn prod` to generate the production ready build then
