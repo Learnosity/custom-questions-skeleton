@@ -1,8 +1,10 @@
 <p align="center"><img width="50%" height="50%" src="images/image-logo-graphic.png"></p>
 <h1 align="center">Guidelines for Learnosity Custom Questions and Features</h1>
 <p align="center">The guideline you need to start building your custom question/feature with Learnosity APIs using your preferred toolkit and languages.<br> 
-<br>
-An official Learnosity open-source project.</p>
+</p>
+<p align="center">More Custom Questions documentation is available at the <a href="https://help.learnosity.com/hc/en-us/sections/4412969135761-Creating-Custom-Questions-and-Features">Learnosity Help Site</a><br>
+  An official Learnosity open-source project.</p>
+  
 ---
 
 ## Table of Contents
