@@ -11,13 +11,12 @@
 
 * [Overview: what does it contain?](#overview-what-does-it-contain)
 * [Available Demo Scripts](#available-demo-scripts)
-* [Development Recommendation](#development-recommendation)
+* [Test your Custom Question](#test-your-custom-question)
+* [Publish your custom question](#publish-your-custom-question)
+* [Development Recommendations](#development-recommendations)
 * [Next steps: additional documentation](#next-steps-additional-documentation)
 * [Contributing to this project](#contributing-to-this-project)
 * [License](#license)
-* [Usage tracking](#usage-tracking)
-* [Further reading](#further-reading)
-
 
 ## Overview: what does it contain?
 The Learnosity Custom Question/Feature Guideline provides the complete demos of some custom questions/features
@@ -156,3 +155,19 @@ under the DOM structure below
 
 Adding `lrn_correct` (when all correct answers are provided) or `lrn_incorrect` (when the provided answer is not correct)
 to `lrn_response_input` will render the proper validation UI state to your custom question/feature.
+
+## Next steps: additional documentation
+You can find more detailed documentation in the [Learnosity Help site](https://help.learnosity.com/hc/en-us/sections/4412969135761-Creating-Custom-Questions-and-Features).
+If you are new to Learnosity Custom Questions we highly recommend starting [here](https://help.learnosity.com/hc/en-us/articles/4414363148561-Getting-Started-with-Custom-Questions-and-Features).
+
+## Contributing to this project
+
+### Adding new features or fixing bugs
+Contribution in the form of [Issues] and [PRs] are welcome.
+
+[(Back to top)](#table-of-contents)
+
+## License
+This project is licensed under MIT License. [Read more](LICENSE.md).
+
+[(Back to top)](#table-of-contents)
