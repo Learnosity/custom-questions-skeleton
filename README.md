@@ -59,6 +59,12 @@ yarn prod
 
 # Test your scorer's behavior in the server side. Update question/response in debugeServerScorer.js to test
 yarn debug-server-scorer
+
+# Run Jest unit-tests
+yarn unit-tests
+
+# Run Jest unit-tests in watch mode
+yarn unit-tests-watch
 ```
 
 ## Test your custom question
