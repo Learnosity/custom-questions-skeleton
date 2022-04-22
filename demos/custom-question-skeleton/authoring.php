@@ -31,7 +31,7 @@ $request = '
               "custom_type": "custom_question_skeleton",
               "type": "custom",
               "name": "Custom Question - Skeleton",
-              "editor_layout": "/authoring_custom_layout.html",
+              "editor_layout": "/dist/authoring_custom_layout.html",
               "js": {
                 "question": "/dist/question.js",
                 "scorer": "/dist/scorer.js"
@@ -96,7 +96,7 @@ $signedRequest = signAuthoringRequest(json_decode($request, true));
 
     // Display the current request init options & html layout
     document.querySelector('[data-type="initOptions"] > textarea').value = `${JSON.stringify(window.activity, null, 2)}`;
-    document.querySelector('[data-type="htmlLayout"] > textarea').value = `<?php echo (file_get_contents('authoring_custom_layout.html')) ?>`;
+    document.querySelector('[data-type="htmlLayout"] > textarea').value = `<?php echo (file_get_contents('dist/authoring_custom_layout.html')) ?>`;
 </script>
 </body>
 </html>
