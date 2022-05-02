@@ -59,6 +59,17 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.(html|png|jpg)$/i,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]'
+                    }
+                  },
+                ],
             }
         ]
     }
