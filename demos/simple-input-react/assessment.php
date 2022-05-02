@@ -10,13 +10,17 @@ $request = '{
         {
           "response_id": "' . $responseId . '",
           "type": "custom",
-          "stimulus": "What is the capital of Australia?",
-          "valid_response": "Canberra",
-          "score": 1,
+          "stimulus": "Simple Input React Example: What is the capital of New South Wales",
+          "max_length": 10,
+          "valid_response": {
+            "value": "Sydney",
+            "score": 3
+           },
           "js": {
             "question": "/dist/question.js",
             "scorer": "/dist/scorer.js"
           },
+          "css": "/dist/question.css",
           "instant_feedback": true
         }
     ]
@@ -31,7 +35,7 @@ $signedRequest = signAssessmentRequest($requestData);
 <head>
     <meta charset="UTF-8">
     <title>Questions API - Skeleton</title>
-    <script src="//questions.learnosity.com"></script>
+    <script src="//questions.staging.learnosity.com"></script>
     <style>
         <?php echo(file_get_contents('../sharedStyle.css')); ?>
     </style>

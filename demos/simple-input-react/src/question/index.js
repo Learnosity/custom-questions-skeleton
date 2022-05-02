@@ -1,6 +1,8 @@
-import { PREFIX } from "./constants";
-import $ from "jquery";
-import { CLASS_NAMES } from "./constants";
+import { PREFIX } from './constants';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import SimpleInput from './components/simpleInput';
+import { get } from 'lodash';
 
 export default class Question {
     constructor(init, lrnUtils) {
@@ -8,90 +10,125 @@ export default class Question {
         this.events = init.events;
         this.lrnUtils = lrnUtils;
         this.el = init.$el.get(0);
+        // object to store React component states
+        this.componentStates = {};
 
-        this.render().then(() => {
+        this.render().then(() =>{
             this.registerPublicMethods();
-            this.handleEvents();
+            this.registerEventsListener();
 
-            if (init.state === "review") {
+            if (init.state === 'review') {
                 init.getFacade().disable();
             }
 
-            init.events.trigger("ready");
+            init.events.trigger('ready');
         });
     }
 
     render() {
-        const { el, init, lrnUtils } = this;
-        const { question, response } = init;
+        const { el, lrnUtils } = this;
 
-        // TODO: Requires implementation
+        // Render default layout for the question
         el.innerHTML = `
             <div class="${PREFIX} lrn-response-validation-wrapper">
-                <div class="lrn_response_input">
-                    <input type="text" maxLength="10"/>
-                </div>            
+                <div class="lrn_response_input"></div>            
                 <div class="${PREFIX}-checkAnswer-wrapper"></div>
                 <div class="${PREFIX}-suggestedAnswers-wrapper"></div>
             </div>
         `;
 
         // Optional - Render optional Learnosity components like Check Answer Button, Suggested Answers List
-        // first before rendering your question"s components
+        // first before rendering your question's components
         return Promise.all([
-            lrnUtils.renderComponent("SuggestedAnswersList", el.querySelector(`.${PREFIX}-suggestedAnswers-wrapper`)),
-            lrnUtils.renderComponent("CheckAnswerButton", el.querySelector(`.${PREFIX}-checkAnswer-wrapper`))
+            lrnUtils.renderComponent('SuggestedAnswersList', el.querySelector(`.${PREFIX}-suggestedAnswers-wrapper`)),
+            lrnUtils.renderComponent('CheckAnswerButton', el.querySelector(`.${PREFIX}-checkAnswer-wrapper`))
         ]).then(([suggestedAnswersList]) => {
-            this.suggestedAnswersList = suggestedAnswersList;
+            // suggestedAnswersList is a wrapped function to render suggested answer
+            this.lrnComponents = {
+                suggestedAnswersList
+            };
 
-            // TODO - Requires implementation
+            const reactDomContainer = el.querySelector('.lrn_response_input');
+
+            this.reactRoot = ReactDOM.createRoot(reactDomContainer);
+            this.renderComponent();
+        });
+    }
+
+    renderComponent( options = {}) {
+        const { reactRoot, init } = this;
+        const { state, question, response } = init;
+
+        // manage React component states
+        Object.assign(this.componentStates, options);
+
+        reactRoot.render(
+            <SimpleInput
+                state={state}
+                maxLength={question.max_length}
+                responseValue={response || ''}
+                disabled={!!this.componentStates.disabled}
+                onChange={this.onValueChange}
+                requestToResetValidationUIState={this.resetValidationUIState}
+                validationUIState={this.componentStates.validationUIState}
+            />
+        );
+    }
+
+    onValueChange = (value) => {
+        this.events.trigger('changed', value);
+    };
+
+    resetValidationUIState = () => {
+        this.lrnComponents.suggestedAnswersList.reset();
+        this.renderComponent({
+            validationUIState: ''
         });
     }
 
     /**
      * Add public methods to the created question instance that is accessible during runtime
      *
-     * Example: questionsApp.question("my-custom-question-response-id").myNewMethod();
+     * Example: questionsApp.question('my-custom-question-response-id').myNewMethod();
      */
     registerPublicMethods() {
         const { init } = this;
-        // Attach the methods you want on this object
         const facade = init.getFacade();
 
+        // Attach the methods you want on this object
         facade.disable = () => {
-            // TODO: Requires implementation
+            this.renderComponent({ disabled: true });
         };
         facade.enable = () => {
-            // TODO: Requires implementation
+            this.renderComponent({ disabled: false });
         };
     }
 
-    handleEvents() {
-        const { events, init, el } = this;
-        const responseInputElement = el.querySelector(".lrn_response_input");
+    /**
+     * add any events listener
+     *
+     * Example: onValidateHandler() to listen to events.on('validate')
+     */
+    registerEventsListener() {
+        this.onValidateListener();
+    }
 
-        // TODO: Requires implementation - Make sure you trigger "changed" event after users changes their responses
-        let $response = $("input", init.$el);
+    onValidateListener() {
+        const { init } = this;
+        const facade = init.getFacade();
+        const events = init.events;
 
-        $response.change(function (event) {
-            init.events.trigger("changed", event.currentTarget.value);
-        });
+        events.on('validate', options => {
+            const { showCorrectAnswers } = options || {};
+            const isValid = facade.isValid(); // true is correct, false incorrect
 
-        // "validate" event can be triggered when Check Answer button is clicked or when public method .validate() is called
-        // so developer needs to listen to this event to decide if he wants to display the correct answers to user or not
-        // options.showCorrectAnswers will tell if correct answers for this question should be display or not.
-        // The value showCorrectAnswers by default is the value of showCorrectAnswers inside initOptions object that is used
-        // to initialize question app or the value of the options that is passed into public method validate (like question.validate({showCorrectAnswers: false}))
-        events.on("validate", options => {
-            // TODO: Requires implementation
-            const detailedValidatedResult = init.getFacade().isValid(true);
+            this.renderComponent({
+                validationUIState: isValid ? 'correct' : 'incorrect'
+            });
 
-            if (detailedValidatedResult.correct) {
-                responseInputElement.classList.remove(CLASS_NAMES.INCORRECT);
-                responseInputElement.classList.add(CLASS_NAMES.CORRECT);
-            } else {
-                responseInputElement.classList.remove(CLASS_NAMES.CORRECT);
-                responseInputElement.classList.add(CLASS_NAMES.INCORRECT);
+            if (showCorrectAnswers) {
+                const correctAnswer = get(init.question, 'valid_response.value');
+                this.lrnComponents.suggestedAnswersList.setAnswers(correctAnswer);
             }
         });
     }
