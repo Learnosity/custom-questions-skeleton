@@ -1,4 +1,3 @@
-import sinon from 'sinon';
 import { noop } from 'lodash';
 import ee from 'event-emitter';
 import CustomQuestion from 'question/index';
@@ -23,22 +22,22 @@ let question;
 describe('CustomQuestion', () => {
     describe('during initialization', () => {
         it('should call render', () => {
-            const spy = sinon.spy(CustomQuestion.prototype, 'render');
+            const spy = jest.spyOn(CustomQuestion.prototype, 'render');
 
             setup();
 
-            expect(spy.calledOnce).toEqual(true);
+            expect(spy).toHaveBeenCalled();
         });
 
         describe('once render is resolved', () => {
             it('should call registerPublicMethods', (done) => {
-                const spy = sinon.spy(CustomQuestion.prototype, 'registerPublicMethods');
+                const spy = jest.spyOn(CustomQuestion.prototype, 'registerPublicMethods');
 
                 setup();
 
                 // Wait for render() promise to resolve
                 setTimeout(() => {
-                    expect(spy.calledOnce).toEqual(true);
+                    expect(spy).toHaveBeenCalled();
                     done();
                 }, 1);
             });
@@ -101,6 +100,5 @@ function setup(options = {}) {
 }
 
 function teardown() {
-    sinon.restore();
     question = null;
 }
