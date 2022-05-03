@@ -17,7 +17,6 @@ const dataProvider = {
         value: null
     }
 };
-let question;
 
 describe('CustomQuestion', () => {
     describe('during initialization', () => {
@@ -45,12 +44,10 @@ describe('CustomQuestion', () => {
     });
 
     describe('has render method', () => {
-        beforeEach(() => {
-            setup();
-        });
-
         it('should append a div.lrn-response-validation-wrapper to the main element el of the question instance', () => {
-            expect(question.el.querySelectorAll('.lrn-response-validation-wrapper').length).toEqual(1);
+            const sut = setup()
+
+            expect(sut.el.querySelectorAll('.lrn-response-validation-wrapper').length).toEqual(1);
         });
     });
 });
@@ -96,9 +93,5 @@ function setup(options = {}) {
         }
     };
 
-    question = new CustomQuestion(init, lrnUtils);
-}
-
-function teardown() {
-    question = null;
+    return new CustomQuestion(init, lrnUtils);
 }
