@@ -1,4 +1,3 @@
-import sinon from 'sinon';
 import { noop } from 'lodash';
 import ee from 'event-emitter';
 import CustomQuestion from 'question/index';
@@ -18,27 +17,26 @@ const dataProvider = {
         value: null
     }
 };
-let question;
 
 describe('CustomQuestion', () => {
     describe('during initialization', () => {
         it('should call render', () => {
-            const spy = sinon.spy(CustomQuestion.prototype, 'render');
+            const spy = jest.spyOn(CustomQuestion.prototype, 'render');
 
             setup();
 
-            expect(spy.calledOnce).toEqual(true);
+            expect(spy).toHaveBeenCalled();
         });
 
         describe('once render is resolved', () => {
             it('should call registerPublicMethods', (done) => {
-                const spy = sinon.spy(CustomQuestion.prototype, 'registerPublicMethods');
+                const spy = jest.spyOn(CustomQuestion.prototype, 'registerPublicMethods');
 
                 setup();
 
                 // Wait for render() promise to resolve
                 setTimeout(() => {
-                    expect(spy.calledOnce).toEqual(true);
+                    expect(spy).toHaveBeenCalled();
                     done();
                 }, 1);
             });
@@ -46,12 +44,10 @@ describe('CustomQuestion', () => {
     });
 
     describe('has render method', () => {
-        beforeEach(() => {
-            setup();
-        });
-
         it('should append a div.lrn-response-validation-wrapper to the main element el of the question instance', () => {
-            expect(question.el.querySelectorAll('.lrn-response-validation-wrapper').length).toEqual(1);
+            const sut = setup()
+
+            expect(sut.el.querySelectorAll('.lrn-response-validation-wrapper').length).toEqual(1);
         });
     });
 });
@@ -97,10 +93,5 @@ function setup(options = {}) {
         }
     };
 
-    question = new CustomQuestion(init, lrnUtils);
-}
-
-function teardown() {
-    sinon.restore();
-    question = null;
+    return new CustomQuestion(init, lrnUtils);
 }

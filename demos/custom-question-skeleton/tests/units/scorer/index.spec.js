@@ -15,16 +15,13 @@ const dataProvider = {
         value: null
     }
 };
-let scorer;
 
 describe('CustomQuestionScorer', () => {
-    afterEach(teardown);
-
     describe('has isValid method', () => {
         it('should return false', () => {
-            setup();
+            const sut = setup();
 
-            expect(scorer.isValid()).toEqual(false);
+            expect(sut.isValid()).toEqual(false);
         });
     });
 });
@@ -39,11 +36,5 @@ function setup(options = {}) {
         ...options.response
     };
 
-    scorer = new CustomQuestionScorer(question, response);
-
-    return scorer;
-}
-
-function teardown() {
-    scorer = null;
+    return new CustomQuestionScorer(question, response);
 }
