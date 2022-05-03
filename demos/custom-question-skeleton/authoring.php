@@ -12,6 +12,7 @@ $request = '
               {
                 "name": "Custom Question - Skeleton",
                 "description": "A clean custom question - Skeleton",
+                "image": "/dist/custom.png",
                 "group_reference": "other",
                 "defaults": {
                   "type": "custom",
