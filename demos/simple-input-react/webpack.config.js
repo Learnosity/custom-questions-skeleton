@@ -1,18 +1,18 @@
 /*globals require, __dirname*/
-const path = require("path");
-const appDir = path.resolve(__dirname, "src/");
-const distDir = path.resolve(__dirname, "dist/");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const appDir = path.resolve(__dirname, 'src/');
+const distDir = path.resolve(__dirname, 'dist/');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     context: appDir,
     entry: {
-        question: "./question.js",
-        scorer: "./scorer.js",
+        question: './question.js',
+        scorer: './scorer.js',
     },
     output: {
         path: distDir,
-        filename: "[name].js"
+        filename: '[name].js'
     },
     plugins: [
         new MiniCssExtractPlugin({
@@ -24,7 +24,7 @@ module.exports = {
     ],
     resolve: {
         modules: [
-            "node_modules"
+            'node_modules'
         ],
         fallback: {
             os: false,
@@ -37,8 +37,8 @@ module.exports = {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    "css-loader",
-                    "sass-loader"
+                    'css-loader',
+                    'sass-loader'
                 ]
             },
             {
@@ -46,15 +46,15 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: "babel-loader",
+                        loader: 'babel-loader',
                         options: {
                             presets: [
-                                "@babel/preset-env"
+                                '@babel/preset-env', '@babel/preset-react'
                             ],
                             plugins: [
-                                "@babel/plugin-proposal-class-properties",
-                                "@babel/plugin-proposal-object-rest-spread",
-                                "@babel/plugin-syntax-dynamic-import"
+                                '@babel/plugin-proposal-class-properties',
+                                '@babel/plugin-proposal-object-rest-spread',
+                                '@babel/plugin-syntax-dynamic-import'
                             ]
                         }
                     }

@@ -1,9 +1,10 @@
-import { get, isEqual } from "lodash";
+import { get, isEqual } from 'lodash';
+
 export default class Scorer {
-    constructor(question, response) {
+    constructor(question, responseValue) {
         this.question = question;
-        this.response = response;
-        this.validResponse = get(question, "valid_response");
+        this.responseValue = responseValue;
+        this.validResponse = get(question, 'valid_response');
     }
 
     /**
@@ -12,11 +13,11 @@ export default class Scorer {
      * @returns {boolean}
      */
     isValid() {
-        const { response, validResponse } = this;
+        const { responseValue, validResponse } = this;
 
-        return response
+        return responseValue
             && validResponse
-            && isEqual(response, validResponse);
+            && isEqual(responseValue, validResponse.value);
     }
 
     /**
@@ -28,8 +29,7 @@ export default class Scorer {
      * @returns {{}|null}
      */
     validateIndividualResponses() {
-        // TODO: Requires implementation
-        return null;
+        return this.isValid();
     }
 
     /**
@@ -45,7 +45,7 @@ export default class Scorer {
      * @returns {number}
      */
     maxScore() {
-        return this.question.score || 0;
+        return (this.validResponse && this.validResponse.score) || 0;
     }
 
     /**
@@ -56,6 +56,6 @@ export default class Scorer {
      * @returns {boolean}
      */
     canValidateResponse() {
-        return true;
+        return !!this.validResponse;
     }
 }
