@@ -3,6 +3,7 @@ const path = require('path');
 const appDir = path.resolve(__dirname, 'src/');
 const distDir = path.resolve(__dirname, 'dist/');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     context: appDir,
@@ -20,6 +21,14 @@ module.exports = {
             // both options are optional
             filename: "[name].css",
             chunkFilename: "[id].css"
+        }),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'authoring_custom_layout.html'),
+                    to: distDir
+                }
+            ]
         })
     ],
     resolve: {
