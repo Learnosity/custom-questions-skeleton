@@ -9,7 +9,7 @@
 
 ## Table of Contents
 
-* [Overview: what does it contain?](#overview-what-does-it-contain)
+* [Overview: what's in the guideline?](#overview-what-does-it-contain)
 * [Available Demo Scripts](#available-demo-scripts)
 * [Test your Custom Question](#test-your-custom-question)
 * [Publish your custom question](#publish-your-custom-question)
@@ -18,15 +18,15 @@
 * [Contributing to this project](#contributing-to-this-project)
 * [License](#license)
 
-## Overview: what does it contain?
+## Overview: what's in the guideline?
 The Learnosity Custom Question/Feature Guideline provides the complete demos of some custom questions/features
 built by Learnosity engineers which you can use as a base of your custom question/feature project.
 
-Following demos have been included in this repository:
+The following demos have been included in this repository:
 * Box and whisker
 * Custom question skeleton
 
-Each demo will have the following structure:
+Each demo has the following structure:
 * `package.json`: contains the information about your custom question/feature project.
   This file also contains some handy `scripts` that you can execute to quickly develop your custom question/feature.
 * `webpack.config.js`: is used to transpile and bundle your custom question/feature code.
@@ -161,6 +161,9 @@ under the DOM structure below
 
 Adding `lrn_correct` (when all correct answers are provided) or `lrn_incorrect` (when the provided answer is not correct)
 to `lrn_response_input` will render the proper validation UI state to your custom question/feature.
+
+**3. Best practises: using a prefix for CSS class names**
+When creating a Learnosity Custom Question, it’s important to prefix the CSS class names being used inside your custom Question UI. You should avoid using a generic class name like '.btn'. Instead, you should add a prefix to it like '.lrn-my-custom-question-btn' to avoid CSS conflict with the host page and the CSS used by the Learnosity API.
 
 ## Next steps: additional documentation
 You can find more detailed documentation in the [Learnosity Help site](https://help.learnosity.com/hc/en-us/sections/4412969135761-Creating-Custom-Questions-and-Features).
