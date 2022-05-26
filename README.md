@@ -164,7 +164,7 @@ to `lrn_response_input` will render the proper validation UI state to your custo
 
 **3. Best practices: using a prefix for CSS class names**
 
-When creating a Learnosity Custom Question, it’s important to prefix the CSS class names being used inside your custom Question UI. You should avoid using a generic class name like `.btn`. Instead, you should add a prefix to it like `.lrn-my-custom-question-btn` to avoid CSS conflict with the host page and the CSS used by the Learnosity API.
+When creating a Learnosity Custom Question, it’s important to prefix the CSS class names being used inside your custom Question UI. You should avoid using a generic class name like `.btn`. Instead, you should add a prefix to it like `.company-name-my-custom-question-btn` to avoid CSS conflict with the host page and the CSS used by the Learnosity API.
 
 ## Next steps: additional documentation
 You can find more detailed documentation in the [Learnosity Help site](https://help.learnosity.com/hc/en-us/sections/4412969135761-Creating-Custom-Questions-and-Features).
