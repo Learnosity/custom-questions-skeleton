@@ -32,7 +32,7 @@ Each demo has the following structure:
 * `webpack.config.js`: is used to transpile and bundle your custom question/feature code.
 * `assessment.php`: a local Assessment demo page to help you to develop your custom question/feature quickly.
 * `authoring.php`: a local Assessment demo page to help you to develop the Schemas and Authoring layout for your custom question/feature.
-* `authoring_custom_layout.html`: the Authoring HTML layout of your custom question/feature. Note: you may need to set CORS privileges for this file. See more information in this article: <a href="https://help.learnosity.com/hc/en-us/articles/360000757877" target="_new">Working with Firewalls & Domain Whitelisting</a>.
+* `authoring_custom_layout.html`: the Authoring HTML layout of your custom question/feature. 
 * `debugServerScorer.js`: a local Assessment server side demo page to help you to test the behavior of your custom question's scorer in the server side locally.
 * `src`: the source code folder
   * `src/question.js`: the frontend entry point of your custom question/feature.
@@ -40,6 +40,8 @@ Each demo has the following structure:
   * `src/scorer.js`: the server side entry point of your custom question/feature.
     This file is responsible to score the stored response of your custom question/feature and should not contain any UI related or any DOM manipulation libraries.
 * `scss`: the SASS source code folder
+
+*Note*: Note: for any files hosted outside Learnosity, you may need to set CORS privileges for such files. See more information in this article: <a href="https://help.learnosity.com/hc/en-us/articles/360000757877" target="_new">Working with Firewalls & Domain Whitelisting</a>.
 
 ## Available Demo Scripts
 **1. Box and Whisker Demo**
