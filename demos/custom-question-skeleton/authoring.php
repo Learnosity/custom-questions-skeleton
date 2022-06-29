@@ -40,12 +40,14 @@ $request = '
               "version": "v1.0.0",
               "editor_schema": {
                 "hidden_question": false,
-                "instant_feedback": {
-                  "name": "Check answer button",
-                  "description": "Enables the Check Answer button underneath the question, which will provide the student with instant feedback on their response(s).",
-                  "type": "boolean",
-                  "required": false,
-                  "default": false
+                "properties": {
+                    "instant_feedback": {
+                      "name": "Check answer button",
+                      "description": "Enables the Check Answer button underneath the question, which will provide the student with instant feedback on their response(s).",
+                      "type": "boolean",
+                      "required": false,
+                      "default": false
+                    }
                 }
               }
             }
