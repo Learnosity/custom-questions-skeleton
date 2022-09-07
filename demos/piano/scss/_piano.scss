@@ -1,0 +1,73 @@
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+.keyboard {
+  width: 100%;
+  /* allows for scrolling on overflow */
+  overflow: scroll;
+  white-space: nowrap;
+  height: 200px;
+  transition: ease all 0.2s;
+}
+
+.key {
+  display: inline-block;
+  /* allows for scrolling on overflow */
+  vertical-align: top;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 0 0 5px 5px;
+  transition: ease all 0.2s;
+  position: relative;
+}
+
+.key:not(.no-offset) {
+  margin-left: -1rem;
+}
+
+.key:not(.disabled):hover {
+  background-color: royalblue;
+}
+
+.whiteKey {
+  height: 100%;
+  width: 40px;
+  z-index: 1;
+}
+
+.blackKey {
+  height: 60%;
+  width: 30px;
+  z-index: 2;
+  background-color: black;
+}
+
+.key.selected {
+  background-color: #3276b1;
+}
+/* use lrn validation colors on the selected keys ?*/
+/* .key.selected.lrn_incorrect {
+  background-color: #fbe3e3;
+}
+.key.selected.lrn_correct {
+  background-color: #f0f8ed;
+} */
+
+.piano-widget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.disabled {
+  cursor: not-allowed;
+}
