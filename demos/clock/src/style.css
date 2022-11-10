@@ -1,0 +1,76 @@
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.face {
+    fill: none;
+    stroke: black;
+    stroke-width: 3;
+    transition: ease all 0.3s;
+}
+.face.correct {
+    stroke: lightgreen;
+    stroke-width: 15;
+
+}
+.face.incorrect {
+    stroke: red;
+    stroke-width: 15;
+
+}
+.hand {
+    fill: black;
+    stroke: black;
+    stroke-width: 10;
+    cursor: move;
+}
+.tick {
+    fill: black;
+    stroke: black;
+    stroke-width: 6;
+}
+.hour {
+    fill: black;
+    font-size: 2em;
+}
+.arrow {
+    fill: #777;
+}
+.anchor {
+    fill: #777;
+}
+.big-hand-circle, .small-hand-circle {
+    stroke: royalblue;
+    fill: none;
+}
+.feedback {
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: ease all 0.2s;
+  }
+  
+  .feedback.correct {
+    background-color: lightgreen;
+  }
+  
+  .feedback.correct::after {
+    content: url('./correct.svg');
+  }
+  
+  .feedback.incorrect::after {
+    content: url('./incorrect.svg');
+  }
+  
+  .feedback.incorrect {
+    background-color: red;
+  }
+  svg.disabled, .hand.disabled {
+      cursor: not-allowed;
+  }
+
+
