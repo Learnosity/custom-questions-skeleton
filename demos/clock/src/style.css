@@ -10,14 +10,14 @@
     stroke-width: 3;
     transition: ease all 0.3s;
 }
-.face.correct {
+.face.lrn_correct {
     stroke: lightgreen;
-    stroke-width: 15;
+    stroke-width: 7;
 
 }
-.face.incorrect {
-    stroke: red;
-    stroke-width: 15;
+.face.lrn_incorrect {
+    stroke: tomato;
+    stroke-width: 7;
 
 }
 .hand {
@@ -54,7 +54,7 @@
     transition: ease all 0.2s;
   }
   
-  .feedback.correct {
+  /* .feedback.correct {
     background-color: lightgreen;
   }
   
@@ -68,7 +68,7 @@
   
   .feedback.incorrect {
     background-color: red;
-  }
+  } */
   svg.disabled, .hand.disabled {
       cursor: not-allowed;
   }
