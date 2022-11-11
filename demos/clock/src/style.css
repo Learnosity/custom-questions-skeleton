@@ -10,16 +10,18 @@
     stroke-width: 3;
     transition: ease all 0.3s;
 }
+/* add standard lrn validation colors to the face as well */
 .face.lrn_correct {
-    stroke: lightgreen;
+    stroke: #4a700a;
     stroke-width: 7;
 
 }
 .face.lrn_incorrect {
-    stroke: tomato;
+    stroke: #dd002f;
     stroke-width: 7;
 
 }
+/*****************************************************************/
 .hand {
     fill: black;
     stroke: black;
@@ -45,32 +47,9 @@
     stroke: royalblue;
     fill: none;
 }
-.feedback {
-    height: 60px;
-    width: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: ease all 0.2s;
-  }
-  
-  /* .feedback.correct {
-    background-color: lightgreen;
-  }
-  
-  .feedback.correct::after {
-    content: url('./correct.svg');
-  }
-  
-  .feedback.incorrect::after {
-    content: url('./incorrect.svg');
-  }
-  
-  .feedback.incorrect {
-    background-color: red;
-  } */
-  svg.disabled, .hand.disabled {
-      cursor: not-allowed;
-  }
+
+svg.disabled, .hand.disabled {
+    cursor: not-allowed;
+}
 
 

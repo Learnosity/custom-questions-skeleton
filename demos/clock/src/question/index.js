@@ -43,7 +43,6 @@ export default class ClockQuestion {
             <div class="${PREFIX} lrn-response-validation-wrapper">
                 <div class="lrn_response_input">
                     <div class="main-container">
-                        <span class="lrn_validation_icon feedback"></span>
                         <svg></svg>
                     </div>
                 </div>            
@@ -139,7 +138,7 @@ export default class ClockQuestion {
 
                 events.trigger('changed', responseObject);
 
-                clearValidationUI([el.querySelector('.lrn-response-validation-wrapper'), face]);
+                clearValidationUI([el.querySelector('.lrn_response_input'), face]);
             });
 
         if (state !== 'review') {
@@ -160,7 +159,7 @@ export default class ClockQuestion {
 
             // this targets the actual clock
 
-            showValidationUI(result, [el.querySelector('.lrn-response-validation-wrapper'), face]);
+            showValidationUI(result, [el.querySelector('.lrn_response_input'), face]);
         });
     }
 }
