@@ -6,20 +6,20 @@
 export const showValidationUI = (correctAnswer, elements) => {
     elements.forEach((element) => {
         correctAnswer
-            ? element.classList.add('lrn_correct')
-            : element.classList.add('lrn_incorrect');
+            ? element.classList.add("lrn_correct")
+            : element.classList.add("lrn_incorrect");
     });
 };
 
 export const clearValidationUI = (elements) => {
     elements.forEach((element) => {
-        element.classList.remove('lrn_correct');
-        element.classList.remove('lrn_incorrect');
+        element.classList.remove("lrn_correct");
+        element.classList.remove("lrn_incorrect");
     });
 };
 
 export const disable = (elements) => {
     elements.forEach((element) => {
-        element.classList.add('disabled');
+        element.classList.add("disabled");
     });
 };

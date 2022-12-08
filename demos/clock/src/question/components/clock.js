@@ -1,12 +1,12 @@
-import * as d3 from 'd3';
+import * as d3 from "d3";
 import {
     drawCircle,
     drawTick,
     drawText,
     drawArrow,
     drawHand,
-} from './utils/shapeDrawers.js';
-import { numberPoints } from './utils/pointFinders.js';
+} from "./utils/shapeDrawers.js";
+import { numberPoints } from "./utils/pointFinders.js";
 import {
     VIEW_BOX_SQUARE,
     CLOCK_CENTER,
@@ -16,7 +16,7 @@ import {
     Y1_OFFSET,
     Y2_OFFSET,
     NUMBER_Y_OFFSET,
-} from '../constants.js';
+} from "../constants.js";
 
 export default class Clock {
     constructor(svg, { question, response }) {
@@ -36,15 +36,15 @@ export default class Clock {
 
     setupClock() {
         d3.select(this.svg)
-            .attr('viewBox', [0, 0, VIEW_BOX_SQUARE, VIEW_BOX_SQUARE])
-            .attr('width', VIEW_BOX_SQUARE)
-            .attr('height', VIEW_BOX_SQUARE);
+            .attr("viewBox", [0, 0, VIEW_BOX_SQUARE, VIEW_BOX_SQUARE])
+            .attr("width", VIEW_BOX_SQUARE)
+            .attr("height", VIEW_BOX_SQUARE);
     }
     drawFace() {
-        drawCircle(this.svg, CLOCK_RADIUS, 'face');
+        drawCircle(this.svg, CLOCK_RADIUS, "face");
     }
     drawAnchor() {
-        drawCircle(this.svg, 10, 'anchor');
+        drawCircle(this.svg, 10, "anchor");
     }
     drawText() {
         // loop so we can:
@@ -58,7 +58,7 @@ export default class Clock {
                 Y2_OFFSET,
                 `tick tick-${i === 0 ? 12 : i}`
             ).attr(
-                'transform',
+                "transform",
                 `rotate(${i * 30},${CLOCK_CENTER},${CLOCK_CENTER})`
             );
             // draw the numbers
@@ -70,10 +70,10 @@ export default class Clock {
                 `hour hour-${i === 0 ? 12 : i}`
             )
                 .attr(
-                    'transform',
+                    "transform",
                     `translate(${numberPoints(i).x}, ${numberPoints(i).y})`
                 )
-                .attr('text-anchor', 'middle');
+                .attr("text-anchor", "middle");
         }
     }
     initHands() {
@@ -82,11 +82,11 @@ export default class Clock {
             this.svg,
             SMALL_HAND_RADIUS,
             210,
-            'hand'
-        ).attr('data-angle', 210);
+            "hand"
+        ).attr("data-angle", 210);
 
-        const minHand = drawHand(this.svg, BIG_HAND_RADIUS, 330, 'hand').attr(
-            'data-angle',
+        const minHand = drawHand(this.svg, BIG_HAND_RADIUS, 330, "hand").attr(
+            "data-angle",
             330
         );
 

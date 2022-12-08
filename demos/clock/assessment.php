@@ -2,7 +2,7 @@
 include_once '../config.php';
 
 $responseId = "custom-clock-$sessionId";
-$responseId_2 = "custom-clock-2-$sessionId";
+
 $request = '{
     "state": "' . $state . '",
     "session_id": "' . $sessionId . '",
@@ -23,23 +23,7 @@ $request = '{
             "hourHandAngle": 45, 
             "minHandAngle": 90
           }
-     },
-     {
-        "response_id": "' . $responseId_2 . '",
-        "type": "custom",
-        "stimulus": "<strong>Now drag the hands to show 7:45 on the clock.</strong>",
-        "js": {
-          "question": "/dist/question.js",
-          "scorer": "/dist/scorer.js"
-        },
-        "css": "/dist/question.css",
-        "instant_feedback": true,
-        "max_score" : 1,
-        "valid_response": {
-            "minHandAngle": 179,
-            "hourHandAngle": 137
-        }
-   }
+     }
    
     ]
 }';
@@ -52,7 +36,7 @@ $signedRequest = signAssessmentRequest($requestData);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Questions API - Skeleton</title>
+    <title>Questions API - Clock</title>
     <script src="//questions.learnosity.com"></script>
     <style>
         <?php echo(file_get_contents('../sharedStyle.css')); ?>
@@ -63,7 +47,7 @@ $signedRequest = signAssessmentRequest($requestData);
     Response ID: <code><?php echo $responseId; ?></code>
 </div>
 <span class="learnosity-response question-<?php echo $responseId; ?>"></span>
-<span class="learnosity-response question-<?php echo $responseId_2; ?>"></span>
+
 
 
 

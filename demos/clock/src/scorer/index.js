@@ -1,4 +1,4 @@
-import { TOLERANCE } from '../question/constants';
+import { TOLERANCE } from "../question/constants";
 export default class ClockScorer {
     constructor(question, response) {
         this.question = question;
@@ -54,8 +54,6 @@ export default class ClockScorer {
                 if (hourHandAngle <= 0 + TOLERANCE) hourHandInRange = true;
             }
 
-            // console.log("hourHandInRange", hourHandInRange);
-            // console.log("minHandInRange", minHandInRange);
             // the return statement will evaluate to true if both are in range, otherwise false
             return hourHandInRange && minHandInRange;
         }
@@ -81,8 +79,7 @@ export default class ClockScorer {
      * @returns {number|null}
      */
     score() {
-        if (this.isValid()) return this.question.max_score;
-        return 0;
+        return this.isValid() ? this.question.max_score : 0;
     }
 
     /**
@@ -105,7 +102,6 @@ export default class ClockScorer {
         // this function seems to have no bearing on preventing "check answer"
         // getting it to return false will hide check answer button even if there is
         // a repsonse made after
-
         return true;
     }
 }

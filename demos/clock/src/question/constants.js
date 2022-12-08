@@ -5,7 +5,7 @@
  * Instead, you should add a prefix to it like `.company-name-my-custom-question-btn`
  * to avoid CSS conflict with the host page and the CSS used by the Learnosity API.
  */
-export const PREFIX = 'lrn-custom-question';
+export const PREFIX = "lrn-custom-question";
 /* dimensions of the svg viewbox*/
 export const VIEW_BOX_SQUARE = 500;
 /** the center point of the clock cx,cy */

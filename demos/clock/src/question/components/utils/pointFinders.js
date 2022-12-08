@@ -2,7 +2,7 @@ import {
     NUMBER_RADIUS,
     CLOCK_CENTER,
     TRANSLATION_OFFSET,
-} from '../../constants';
+} from "../../constants";
 
 /**
  * find a point on a circle given the radius and the clockwise rotation angle
