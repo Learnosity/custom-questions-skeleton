@@ -11,7 +11,7 @@ import { updateHand } from "./components/utils/shapeDrawers";
 import { roundAngle } from "./components/utils/roundAngle";
 import { getPointOnCircle } from "./components/utils/pointFinders";
 import { CLOCK_CENTER } from "./constants";
-import "../style.css";
+
 
 export default class ClockQuestion {
     constructor(init, lrnUtils) {
