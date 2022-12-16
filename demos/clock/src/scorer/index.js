@@ -100,8 +100,7 @@ export default class ClockScorer {
      */
     canValidateResponse() {
         // this function seems to have no bearing on preventing "check answer"
-        // getting it to return false will hide check answer button even if there is
-        // a repsonse made after
+        // if the clock hands have not been moved, then check answer will do nothing
         return true;
     }
 }
