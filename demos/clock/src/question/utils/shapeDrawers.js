@@ -1,12 +1,13 @@
 import * as d3 from "d3";
-import { CLOCK_CENTER } from "../../constants";
+import { CLOCK_CENTER } from "../constants";
 import { getPointOnCircle } from "./pointFinders";
 
-/* CLOCK_CENTER is the default value 
-for cx,cy in a circle, and x1, y1 in a hand
-(the place from which circles will originate
-and to which the clock hands will be anchored)
-*/
+/**
+ * CLOCK_CENTER is the default value
+ * for cx,cy in a circle, and x1, y1 in a hand
+ * (the place from which circles will originate
+ * and to which the clock hands will be anchored)
+ */
 
 export const drawCircle = (parent, r, classname) => {
     return d3

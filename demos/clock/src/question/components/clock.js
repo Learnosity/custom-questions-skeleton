@@ -5,8 +5,8 @@ import {
     drawText,
     drawArrow,
     drawHand,
-} from "./utils/shapeDrawers.js";
-import { numberPoints } from "./utils/pointFinders.js";
+} from "../utils/shapeDrawers.js";
+import { numberPoints } from "../utils/pointFinders.js";
 import {
     VIEW_BOX_SQUARE,
     CLOCK_CENTER,

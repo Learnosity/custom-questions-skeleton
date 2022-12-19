@@ -6,10 +6,10 @@ import {
     showValidationUI,
     clearValidationUI,
     disable,
-} from "./components/utils/handleClasses";
-import { updateHand } from "./components/utils/shapeDrawers";
-import { roundAngle } from "./components/utils/roundAngle";
-import { getPointOnCircle } from "./components/utils/pointFinders";
+} from "./utils/handleClasses";
+import { updateHand } from "./utils/shapeDrawers";
+import { roundAngle } from "./utils/roundAngle";
+import { getPointOnCircle } from "./utils/pointFinders";
 import { CLOCK_CENTER } from "./constants";
 
 
@@ -99,7 +99,6 @@ export default class ClockQuestion {
     handleEvents() {
         const { events, init, el, clock } = this;
         const facade = init.getFacade();
-        const feedback = el.querySelector(".feedback");
         const face = el.querySelector(".face");
         const { state } = init;
 
@@ -153,6 +152,10 @@ export default class ClockQuestion {
         // to initialize question app or the value of the options that is passed into public method validate (like question.validate({showCorrectAnswers: false}))
 
         events.on("validate", (options) => {
+            clearValidationUI([
+                el.querySelector(".lrn_response_input"),
+                face,
+            ]);
             const result = facade.isValid();
 
             // this targets the actual clock

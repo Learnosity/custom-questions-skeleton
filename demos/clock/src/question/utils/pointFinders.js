@@ -2,16 +2,17 @@ import {
     NUMBER_RADIUS,
     CLOCK_CENTER,
     TRANSLATION_OFFSET,
-} from "../../constants";
+} from "../constants";
 
 /**
+/**
  * find a point on a circle given the radius and the clockwise rotation angle
-@param {number} r the radius of the circle
-@param {number} angle = the angle in degrees but will be converted to radians in the function, which is needed for the formula:
-x = cx + r * cos(angle)
-y = cy + r * sin(angle)
-@constant CLOCK_CENTER the point used by default for both cx and cy
-@returns {object} and object containing the x,y coords on the circle
+ * @param {number} r the radius of the circle
+ * @param {number} angle = the angle in degrees but will be converted to radians in the function, which is needed for the formula:
+ * x = cx + r * cos(angle)
+ * y = cy + r * sin(angle)
+ * @constant CLOCK_CENTER the point used by default for both cx and cy
+ * @returns {object} and object containing the x,y coords on the circle
  */
 
 export const getPointOnCircle = (r, angleInDegrees) => {
