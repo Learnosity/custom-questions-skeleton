@@ -49,7 +49,7 @@ export default class PianoScorer {
      * @returns {number|null}
      */
     score() {
-        return this.isValid() ? this.question.max_score : 0;
+        return this.isValid() ? this.maxScore() : 0;
     }
 
     /**
@@ -57,7 +57,7 @@ export default class PianoScorer {
      * @returns {number}
      */
     maxScore() {
-        return this.question.max_score;
+        return this.question.score || 0;
     }
 
     /**

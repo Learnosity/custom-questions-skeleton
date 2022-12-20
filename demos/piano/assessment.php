@@ -21,7 +21,7 @@ $request = '{
             "notes": ["C", "E", "G"],
             "indecies": [0, 4, 7]
         },
-          "max_score":1
+          "score":1
         }
     ]
 }';

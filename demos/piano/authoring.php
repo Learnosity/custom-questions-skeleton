@@ -30,8 +30,8 @@ $request = '
                   "notes" : ["C", "E", "G"],
                   "indecies" : [0,4,7]
                 },
-                "score": 1,
-                "max_score" : 1
+                "instant_feedback" : true,
+                "score": 1
               }
             }
           },
@@ -55,7 +55,7 @@ $request = '
                       "description": "Enables the Check Answer button underneath the question, which will provide the student with instant feedback on their response(s).",
                       "type": "boolean",
                       "required": false,
-                      "default": true
+                      "default": false
                     },
                     "valid_response" : {
                       "type" : "question",
