@@ -1,0 +1,51 @@
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.face {
+  fill: none;
+  stroke: black;
+  stroke-width: 3;
+  transition: ease all 0.3s;
+}
+/* add standard lrn validation colors to the face as well */
+.face.lrn_correct {
+  stroke: #4a700a;
+  stroke-width: 7;
+}
+.face.lrn_incorrect {
+  stroke: #dd002f;
+  stroke-width: 7;
+}
+.hand {
+  fill: black;
+  stroke: black;
+  stroke-width: 10;
+  cursor: move;
+}
+.tick {
+  fill: black;
+  stroke: black;
+  stroke-width: 6;
+}
+.hour {
+  fill: black;
+  font-size: 2em;
+}
+.arrow {
+  fill: #777;
+}
+.anchor {
+  fill: #777;
+}
+.big-hand-circle, .small-hand-circle {
+  stroke: royalblue;
+  fill: none;
+}
+svg.disabled, .hand.disabled {
+  cursor: not-allowed;
+}
+
+
