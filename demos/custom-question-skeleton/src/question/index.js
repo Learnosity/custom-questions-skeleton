@@ -62,6 +62,16 @@ export default class Question {
         facade.enable = () => {
             // TODO: Requires implementation
         };
+        facade.resetResponse = () => {
+            // TODO: Requires implementation, you could use the following steps
+
+            // trigger a 'resetResponse' event to reset the value of response
+            // this.events.trigger('resetResponse');
+
+            // reset other states if you need
+
+            // re-render the component, manage the 'reset' state by yourself
+        };
     }
 
     handleEvents() {

@@ -62,6 +62,8 @@ export default class Question {
         // manage React component states
         Object.assign(this.componentStates, options);
 
+        const resetState = this.componentStates.resetState || null;
+
         reactRoot.render(
             <SimpleInput
                 state={state}
@@ -71,11 +73,16 @@ export default class Question {
                 onChange={this.onValueChange}
                 requestToResetValidationUIState={this.resetValidationUIState}
                 validationUIState={this.componentStates.validationUIState}
+                resetState={resetState}
             />
         );
     }
 
     onValueChange = (value) => {
+        // manage the state when question is reset
+        if(this.componentStates.resetState) {
+            this.renderComponent({ resetState: 'attemptedAfterReset' });
+        }
         this.events.trigger('changed', value);
     };
 
@@ -102,6 +109,17 @@ export default class Question {
         facade.enable = () => {
             this.renderComponent({ disabled: false });
         };
+
+        facade.resetResponse = () => {
+            // reset the value of response
+            this.events.trigger('resetResponse');
+
+            // reset other states if you need
+            // ...
+
+            // re-render the component, manage the 'reset' state by yourself
+            this.renderComponent({ resetState: 'reset' });
+        }
     }
 
     /**

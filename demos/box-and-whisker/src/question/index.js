@@ -64,6 +64,15 @@ export default class BoxAndWhiskerQuestion {
                 bnw.enable();
             }
         };
+
+        facade.resetResponse = () => {
+            // reset the value of response
+            this.events.trigger("resetResponse");
+            // reset other states
+            bnw.resetBoard();
+            // re-render component
+            bnw.render();
+        };
     }
 
     handleEvents() {
