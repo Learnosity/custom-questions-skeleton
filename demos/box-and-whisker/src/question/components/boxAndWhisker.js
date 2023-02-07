@@ -24,6 +24,16 @@ export default class BoxAndWhisker {
         };
     }
 
+    resetBoard() {
+        delete this.response;
+        d3.select(this.board).selectAll("*").remove();
+        this.components = {
+            svg: d3.select(this.board),
+            handlers: {},
+            boxes: {}
+        };
+    }
+
     enable() {
         this.disabled = false;
     }

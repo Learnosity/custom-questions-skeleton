@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 
 export default function SimpleInput(props){
@@ -9,10 +9,19 @@ export default function SimpleInput(props){
         responseValue,
         validationUIState,
         requestToResetValidationUIState,
-        onChange
+        onChange,
+        resetState
     } = props;
     const isReviewState = state === 'review';
     const [inputValue, setInputValue] = useState(responseValue);
+
+    useEffect(() => {
+        // reset input value when resetState is 'reset'
+        if (resetState === 'reset') {
+            setInputValue('');
+        }
+
+    }, [resetState]);
 
     const onInputChange = (e) => {
         if (!isReviewState) {
