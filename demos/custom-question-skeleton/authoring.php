@@ -1,58 +1,14 @@
 <?php
 include_once '../config.php';
 
+$init_options = file_get_contents('./question_editor_init_options.json');
+
 $request = '
 {
   "config": {
     "dependencies": {
       "question_editor_api": {
-        "init_options": {
-          "question_type_templates": {
-            "custom_question_skeleton": [
-              {
-                "name": "Custom Question - Skeleton",
-                "description": "A clean custom question - Skeleton",
-                "group_reference": "other",
-                "defaults": {
-                  "type": "custom",
-                  "stimulus": "This is stimulus",
-                  "js": {
-                    "question": "/dist/question.js",
-                    "scorer": "/dist/scorer.js"
-                  },
-                  "css": "/dist/question.css",
-                  "instant_feedback": true
-                }
-              }
-            ]
-          },
-          "custom_question_types": [
-            {
-              "custom_type": "custom_question_skeleton",
-              "type": "custom",
-              "name": "Custom Question - Skeleton",
-              "editor_layout": "/dist/authoring_custom_layout.html",
-              "js": {
-                "question": "/dist/question.js",
-                "scorer": "/dist/scorer.js"
-              },
-              "css": "/dist/question.css",
-              "version": "v1.0.0",
-              "editor_schema": {
-                "hidden_question": false,
-                "properties": {
-                    "instant_feedback": {
-                      "name": "Check answer button",
-                      "description": "Enables the Check Answer button underneath the question, which will provide the student with instant feedback on their response(s).",
-                      "type": "boolean",
-                      "required": false,
-                      "default": false
-                    }
-                }
-              }
-            }
-          ]
-        }
+        "init_options": '.$init_options.'
       }
     }
   }
@@ -66,7 +22,7 @@ $signedRequest = signAuthoringRequest(json_decode($request, true));
 <head>
     <meta charset="UTF-8">
     <title>Author API - Skeleton</title>
-    <script src="//authorapi.staging.learnosity.com"></script>
+    <script src="//authorapi.learnosity.com"></script>
     <style>
         <?php echo(file_get_contents('../sharedStyle.css')); ?>
     </style>
