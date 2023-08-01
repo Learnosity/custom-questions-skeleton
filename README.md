@@ -44,12 +44,25 @@ Each demo has the following structure:
 *Note*: Note: for any files hosted outside Learnosity, you may need to set CORS privileges for such files. See more information in this article: <a href="https://help.learnosity.com/hc/en-us/articles/360000757877" target="_new">Working with Firewalls & Domain Whitelisting</a>.
 
 ## Available Demo Scripts
-**1. Box and Whisker Demo**
+**1. Box and Whisker Question Demo**
 * Project Location: `demos/box-and-whisker`
 
 **2. Custom Question Skeleton Demo**
 * A clean custom question skeleton you can leverage to start working on your custom question 
 * Project Location: `demos/custom-question-skeleton`
+
+**3. Custom Feature Skeleton Demo**
+* A clean custom feature skeleton you can leverage to start working on your custom feature 
+* Project Location: `demos/custom-feature-skeleton`
+
+**4. Simple Text Input Question Demo**
+* Project Location: `demos/simple-input-react`
+
+**5. Piano Question Demo**
+* Project Location: `demos/piano`
+
+**6. Clock Question Demo**
+* Project Location: `demos/clock`
 
 **Scripts**
 ```
