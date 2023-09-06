@@ -7,22 +7,21 @@ export default class Feature {
         this.lrnUtils = lrnUtils;
         this.el = init.$el.get(0);
 
-        this.render().then(() =>{
+        this.render().then(() => {
             this.registerPublicMethods();
-
+        
             if (init.state === 'review') {
-
-             /**
-              * below, we call the disable public method on the custom feature to display it in a read-only mode
-              * to learners and/or instructors viewing their completed assessment results (via Reports API or Items API in "review" mode).
-              * (Please see this.registerPublicMethods below for more detials about the .disable() method, including an example implementation)
-              */
-             init.getFacade().disable();
-         }
-
-
+        
+                /**
+                 * below, we call the disable public method on the custom feature to display it in a read-only mode
+                 * to learners and/or instructors viewing their completed assessment results (via Reports API or Items API in "review" mode).
+                 * (Please see this.registerPublicMethods below for more detials about the .disable() method, including an example implementation)
+                 */
+                init.getFacade().disable();
+            }
+        
             init.events.trigger('ready');
-        });
+        });        
     }
 
     render() {
