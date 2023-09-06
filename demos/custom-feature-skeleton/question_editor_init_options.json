@@ -1,0 +1,24 @@
+{
+    "custom_feature_types": [
+       {
+          "custom_type": "custom-feature-skeleton",
+          "name": "Custom Feature Skeleton - Example",
+          "js": "/dist/feature.js",
+          "css": "/dist/feature.css",
+          "version": "v0.0.1",
+          "editor_layout": "/dist/authoring_custom_layout.html",
+          "editor_schema": {
+             "hidden_question": false,
+             "properties": {
+                "example_custom_property": {
+                   "name": "Text to be displayed:",
+                   "description": "The text to appear on the custom feature",
+                   "type": "string",
+                   "required": true,
+                   "default": "Hi there! I am a basic custom feature! You can change my text by editing to the right!"
+                }
+             }
+          }
+       }
+    ]
+ }
