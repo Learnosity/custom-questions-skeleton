@@ -1,0 +1,9 @@
+{
+    "type": "customfeature",
+    "name": "globe",
+    "land_texture": true,
+    "show_countries": true,
+    "show_lines": true,
+    "js": "/dist/feature.js",
+    "css": "/dist/feature.css"
+}

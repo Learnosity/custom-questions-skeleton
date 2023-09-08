@@ -1,0 +1,42 @@
+/*********************************************************
+Write any CSS styling rules for your custom question HERE. 
+There is no need to create your own file called question.css 
+Based on the CSS you write here, the question.css file will be generated 
+automatically for you by webpack when you build the production version of your question by running yarn-prod. 
+************************************************************/
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.globe-wrapper  {
+    canvas {
+        cursor: grab; 
+    }
+    .country-tooltip {
+        background-color: black;
+        padding: 1rem;
+        border-radius: 1rem;
+    }
+}
+
+.globe-toggle-btn {
+    outline: none;
+    border: none;
+    padding: .6em 1.2em;
+    background-color: #eaeaea;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+.globe-toggle-btn::before {
+    content: "\1F310";
+    font-size: 2em;
+}
+
+
