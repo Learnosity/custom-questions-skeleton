@@ -83,7 +83,7 @@ export default class Feature {
              * Render the globe based on the settings provided in the feature JSON
              */
             const globe = Globe({
-                rendererConfig: { antialias: true, alpha: false },
+                rendererConfig: { antialias: false, alpha: false },
                 animateIn: false,
             });
             globe(globeWrapper)
