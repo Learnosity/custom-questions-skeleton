@@ -47,5 +47,8 @@
 svg.disabled, .hand.disabled {
   cursor: not-allowed;
 }
+svg text {
+  user-select: none;
+}
 
 
