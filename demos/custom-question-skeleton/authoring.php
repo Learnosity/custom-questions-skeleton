@@ -43,7 +43,7 @@ $signedRequest = signAuthoringRequest(json_decode($request, true));
 <script>
     window.activity = <?php echo $signedRequest; ?>;
 
-    window.questionEditorApp = LearnosityAuthor.init(activity, {
+    window.authorApp = LearnosityAuthor.init(activity, {
         readyListener() {
             console.log('ready');
         },
