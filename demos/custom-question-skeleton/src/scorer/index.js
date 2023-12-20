@@ -2,6 +2,8 @@ export default class Scorer {
     constructor(question, response) {
         this.question = question;
         this.response = response;
+        //console.log("scorer constructor response", this.response);
+        //console.log("scorer constructor question", this.question);
     }
 
     /**
@@ -12,7 +14,8 @@ export default class Scorer {
     isValid() {
         // TODO: Requires implementation
 
-        return false;
+        //console.log('Scorer.isValid', typeof this.response==="object")
+        return typeof this.response === "object";
     }
 
     /**
@@ -25,6 +28,7 @@ export default class Scorer {
      */
     validateIndividualResponses() {
         // TODO: Requires implementation
+        //console.log('Scorer.validateIndivid')
         return null;
     }
 
@@ -34,7 +38,12 @@ export default class Scorer {
      */
     score() {
         // TODO: Requires implementation
-        return 0;
+        //console.log('Scorer.score', this.response)
+        const totalTests = this.response.result.passed +
+          this.response.result.failed;
+        return this.isValid() && this.response.result
+          ? (this.response.result.passed * this.maxScore()) / totalTests
+          : 0;
     }
 
     /**
@@ -43,7 +52,8 @@ export default class Scorer {
      */
     maxScore() {
         // TODO: Requires implementation
-        return 0;
+        //console.log('Scorer.maxScore')
+        return parseFloat(this.question.max_score) || 1;
     }
 
     /**
@@ -54,6 +64,7 @@ export default class Scorer {
      * @returns {boolean}
      */
     canValidateResponse() {
-        return true;
+        //console.log('Scorer.canvalidaterespo', !!this.response)
+        return false;
     }
 }

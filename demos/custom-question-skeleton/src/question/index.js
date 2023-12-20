@@ -19,7 +19,9 @@ export default class Question {
              * "review" for showing the completed assessment and results to the learner or teacher
              */
              
-             if (init.state === 'resume') {
+            if (init.state === 'initial') {
+            }
+            else if (init.state === 'resume') {
                 /**
                  * If you want your custom question to support resume state
                  * (For a learner to be able to come back to your question in a future sitting after having previously started and saved the assessment),
@@ -32,8 +34,7 @@ export default class Question {
                 //     document.getElementById('my-input').value = init.response.value;
                 // }
             }
-
-            if (init.state === 'review') {
+            else if (init.state === 'review') {
                    /**
                  * If you want your custom question to support review state
                  * (For a learner or instructor to be able to view their results in a read-only mode after having completed and submitted the assessment),
@@ -54,24 +55,71 @@ export default class Question {
                  */
                 init.getFacade().disable();
             }
-
             
 
-            init.events.trigger('ready');
         });
     }
 
     render() {
-        const { el, init, lrnUtils } = this;
+        const { el, events, init, lrnUtils } = this;
         const { question, response } = init;
+
+        const {
+          challengeId,
+          embedClientKey,
+          language,
+        } = question;
+
+        if (!challengeId) {
+          throw Error("No `challengeId` was provided in the question");
+        }
+        else if (!embedClientKey) {
+          throw Error("No `embedClientKey` was provided in the question");
+        }
+        else if (!language) {
+          throw Error("No `language` was provided in the question");
+        }
+
+        const managerConfig = {
+          options: {
+            embedClientKey,
+            language,
+            mode: init.state === "review" ? "readonly" : null,
+          },
+          onLoaded({manager, editor, challengeId, data}) {
+            init.events.trigger("ready");
+          },
+          onChange({manager, editor, challengeId, data}) {
+            // TODO
+            //init.events.trigger("changed", data);
+          },
+          onRun({manager, editor, challengeId, data}) {
+            if (data.type === "attempt") {
+              events.trigger("changed", data);
+            }
+          }
+        };
+        const script = document.createElement("script");
+        script.addEventListener("load", () => {
+          const manager = window.QualifiedEmbed.init(managerConfig);
+          const node = document.querySelector("#qualified-embed");
+          this.editor = manager.createEditor({
+            node,
+            challengeId,
+          });
+          const frame = node.querySelector("iframe");
+          frame.style.width = "100%";
+          frame.style.height = "300px";
+        });
+        script.src = "//www.qualified.io/embed.js";
+        document.body.append(script);
 
         // TODO: Requires implementation
         el.innerHTML = `
             <div class="${PREFIX} lrn-response-validation-wrapper">
                 <div class="lrn_response_input">
-                    Requires implementation - YOUR CONTENT GOES IN HERE
-                    This element is the hook into which your custom question's UI should be rendered.
-                </div>            
+                  <div id="qualified-embed"></div>
+                </div>
                 <div class="${PREFIX}-checkAnswer-wrapper"></div>
                 <div class="${PREFIX}-suggestedAnswers-wrapper"></div>
             </div>
@@ -247,8 +295,6 @@ export default class Question {
          * 
          */
 
-             
-
 
         // "validate" event can be triggered when Check Answer button is clicked or when public method .validate() is called
         // so developer needs to listen to this event to decide if he wants to display the correct answers to user or not
@@ -259,7 +305,9 @@ export default class Question {
             // OPTIONAL Step 1: 
             //If you want to show changes to the UI for a correct or incorrect answer when the learner presses check answer
             // then make sure you have also implemented facade.showValidationUI(), and that you call it here:
+            console.log('check answer')
             facade.showValidationUI()
+            this.editor.attempt();
 
             // OPTIONAL Step 2: 
             // If you want to display the correct answer to the learner when they press the Check Answer button,
