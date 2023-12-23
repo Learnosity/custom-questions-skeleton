@@ -39,6 +39,10 @@ export default class Scorer {
     score() {
         // TODO: Requires implementation
         //console.log('Scorer.score', this.response)
+        if (!this.response) {
+          return 0;
+        }
+
         const totalTests = this.response.result.passed +
           this.response.result.failed;
         return this.isValid() && this.response.result
