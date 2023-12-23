@@ -38,13 +38,6 @@
             "required": false,
             "default": ""
           },
-          "embedClientKey": {
-            "name": "Embed Client Key",
-            "description": "The Qualified Embed client key",
-            "type": "string",
-            "required": true,
-            "default": ""
-          },
           "challengeId": {
             "name": "Challenge ID",
             "description": "The Qualified challenge id of the challenge",

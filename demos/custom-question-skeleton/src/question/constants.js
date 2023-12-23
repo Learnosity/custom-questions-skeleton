@@ -6,3 +6,4 @@
  * to avoid CSS conflict with the host page and the CSS used by the Learnosity API.
  */
 export const PREFIX = 'lrn-custom-question';
+export const EMBED_CLIENT_KEY = 'g39RsSfAYEkyRG8ZYjxrpT9c/XqnfQpN';

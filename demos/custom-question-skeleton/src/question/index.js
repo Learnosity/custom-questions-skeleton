@@ -1,4 +1,4 @@
-import { PREFIX } from './constants';
+import { EMBED_CLIENT_KEY, PREFIX } from './constants';
 
 export default class Question {
     constructor(init, lrnUtils) {
@@ -63,18 +63,13 @@ export default class Question {
     render() {
         const { el, events, init, lrnUtils } = this;
         const { question, response } = init;
+        const { challengeId, language } = question;
 
-        const {
-          challengeId,
-          embedClientKey,
-          language,
-        } = question;
-
-        if (!challengeId) {
-          throw Error("No `challengeId` was provided in the question");
+        if (!EMBED_CLIENT_KEY) {
+          throw Error("No `EMBED_CLIENT_KEY` was provided in the question");
         }
-        else if (!embedClientKey) {
-          throw Error("No `embedClientKey` was provided in the question");
+        else if (!challengeId) {
+          throw Error("No `challengeId` was provided in the question");
         }
         else if (!language) {
           throw Error("No `language` was provided in the question");
@@ -82,8 +77,8 @@ export default class Question {
 
         const managerConfig = {
           options: {
-            embedClientKey,
             language,
+            embedClientKey: EMBED_CLIENT_KEY,
             mode: init.state === "review" ? "readonly" : null,
           },
           onLoaded({manager, editor, challengeId, data}) {
