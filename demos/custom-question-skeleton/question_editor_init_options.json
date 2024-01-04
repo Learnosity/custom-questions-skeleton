@@ -50,7 +50,7 @@
             "description": "The language to be used for this challenge",
             "type": "select",
             "required": true,
-            "selected": {"value": "python"},
+            "default": "python",
             "options": [
 {"value":"c","label":"c"},{"value":"clojure","label":"clojure"},{"value":"coffeescript","label":"coffeescript"},{"value":"cpp","label":"cpp"},{"value":"csharp","label":"csharp"},{"value":"dart","label":"dart"},{"value":"elixir","label":"elixir"},{"value":"erlang","label":"erlang"},{"value":"fsharp","label":"fsharp"},{"value":"go","label":"go"},{"value":"groovy","label":"groovy"},{"value":"haskell","label":"haskell"},{"value":"java","label":"java"},{"value":"javascript","label":"javascript"},{"value":"kotlin","label":"kotlin"},{"value":"lua","label":"lua"},{"value":"objc","label":"objc"},{"value":"ocaml","label":"ocaml"},{"value":"php","label":"php"},{"value":"powershell","label":"powershell"},{"value":"python","label":"python"},{"value":"r","label":"r"},{"value":"ruby","label":"ruby"},{"value":"rust","label":"rust"},{"value":"scala","label":"scala"},{"value":"shell","label":"shell"},{"value":"solidity","label":"solidity"},{"value":"sql","label":"sql"},{"value":"swift","label":"swift"},{"value":"typescript","label":"typescript"}
             ]
