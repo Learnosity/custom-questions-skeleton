@@ -65,14 +65,23 @@ export default class Question {
         const { question, response } = init;
         const { challengeId, language } = question;
 
+        const renderError = s => {
+          el.innerHTML = `
+            <div class="alert alert-warning" role="alert">${s}</div>`;
+          events.trigger("ready");
+          return Promise.resolve([]);
+        };
+
         if (!EMBED_CLIENT_KEY) {
-          throw Error("No `EMBED_CLIENT_KEY` was provided in the question");
+          return renderError("Configuration issue: Missing EMBED_CLIENT_KEY");
         }
         else if (!challengeId) {
-          throw Error("No `challengeId` was provided in the question");
+          return renderError(`
+            Please provide a Qualified Challenge ID (from its URL)
+          `);
         }
-        else if (!language) {
-          throw Error("No `language` was provided in the question");
+        else if (!language || !language.trim()) {
+          return renderError("Please provide a language");
         }
 
         const managerConfig = {
@@ -82,14 +91,16 @@ export default class Question {
             mode: init.state === "review" ? "readonly" : null,
           },
           onLoaded({manager, editor, challengeId, data}) {
-            init.events.trigger("ready");
+            events.trigger("ready");
           },
           onChange({manager, editor, challengeId, data}) {
             // TODO
-            //init.events.trigger("changed", data);
+            //events.trigger("changed", data);
+            console.log(data);
           },
           onRun({manager, editor, challengeId, data}) {
             if (data.type === "attempt") {
+              console.log(data);
               events.trigger("changed", data);
             }
           }
