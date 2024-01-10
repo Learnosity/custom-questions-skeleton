@@ -2,150 +2,150 @@ import { EMBED_CLIENT_KEY, PREFIX } from './constants';
 
 export default class Question {
     constructor(init, lrnUtils) {
-        this.init = init;
-        this.events = init.events;
-        this.lrnUtils = lrnUtils;
-        this.el = init.$el.get(0);
+      this.init = init;
+      this.events = init.events;
+      this.lrnUtils = lrnUtils;
+      this.el = init.$el.get(0);
 
-        this.render().then(() =>{
-            this.registerPublicMethods();
-            this.handleEvents();
+      this.runResult = init.response?.runResult;
+      this.latestCode = init.response?.latestCode;
 
-            /**
-             * @param { String } init.state - the state of Questions API.
-             * state can be any of the following 3 strings
-             * "initial" for first starting the assessment,
-             * "resume" for coming back to a previously started assessment,
-             * "review" for showing the completed assessment and results to the learner or teacher
-             */
-             
-            if (init.state === 'initial') {
-            }
-            else if (init.state === 'resume') {
-                /**
-                 * If you want your custom question to support resume state
-                 * (For a learner to be able to come back to your question in a future sitting after having previously started and saved the assessment),
-                 * then make make sure to update your question's UI to display the previously saved response Questions API has stored in the back end.
-                 */
+      this.render().then(() => {
+        this.events.trigger("ready");
+        this.registerPublicMethods();
+        this.handleEvents();
 
-                // EXAMPLE implementation:
-                // if(init.response) {
-                //     // This example assumes a simple DOM input for the custom question's UI, and updates its value to the value of the saved response upon resume. 
-                //     document.getElementById('my-input').value = init.response.value;
-                // }
-            }
-            else if (init.state === 'review') {
-                   /**
-                 * If you want your custom question to support review state
-                 * (For a learner or instructor to be able to view their results in a read-only mode after having completed and submitted the assessment),
-                 * then make make sure to update your question's UI to display the previously submitted response Questions API has stored in the back end.
-                 * NOTE: this is required if you intend to use Reports API with your custom question (for example the session-detail-by-item report).
-                 */
+        /**
+         * @param { String } init.state - the state of Questions API.
+         * state can be any of the following 3 strings
+         * "initial" for first starting the assessment,
+         * "resume" for coming back to a previously started assessment,
+         * "review" for showing the completed assessment and results to the learner or teacher
+         */
 
-                // EXAMPLE implementation:
-                // if(init.response) {
-                //     // This example assumes a simple DOM input for the custom questions UI, and updates its value to the value of the submitted response upon review. 
-                //     document.getElementById('my-input').value = init.response.value;
-                // }
+        if (init.state === "initial") {
+        }
+        else if (init.state === "resume") {
+          if (this.latestCode && this.editor) {
+            this.editor.setFileContents(this.latestCode.files);
+          }
+        }
+        else if (init.state === "review") {
+          if (this.runResult && this.editor) {
+            this.editor.setFileContents(this.runResult.fileData.files);
+          }
 
-                /**
-                 * below, we call the disable public method on the custom question to display it in a read-only mode
-                 * to learners and/or instructors viewing the completed results.
-                 * (Please see this.registerPublicMethods below for more detials about the .disable() method, including an example implementation)
-                 */
-                init.getFacade().disable();
-            }
-            
-
-        });
+          init.getFacade().disable();
+        }
+      })
+      .catch(err => {
+        console.error("Embed failed to load:", err);
+        this.events.trigger("ready");
+      });
     }
 
     render() {
-        const { el, events, init, lrnUtils } = this;
-        const { question, response } = init;
-        const { challengeId, language } = question;
+      const {init: {question: {challengeId, language}}} = this;
+      const scriptSrc = "//www.qualified.io/embed.js";
 
-        const renderError = s => {
-          el.innerHTML = `
-            <div class="alert alert-warning" role="alert">${s}</div>`;
-          events.trigger("ready");
-          return Promise.resolve([]);
-        };
+      const renderError = s => {
+        this.el.innerHTML = `
+          <div class="alert alert-warning" role="alert">${s}</div>`;
+        return Promise.resolve();
+      };
 
-        if (!EMBED_CLIENT_KEY) {
-          return renderError("Configuration issue: Missing EMBED_CLIENT_KEY");
-        }
-        else if (!challengeId) {
-          return renderError(`
-            Please provide a Qualified Challenge ID (from its URL)
-          `);
-        }
-        else if (!language || !language.trim()) {
-          return renderError("Please provide a language");
-        }
+      if (!EMBED_CLIENT_KEY) {
+        return renderError("Configuration issue: Missing EMBED_CLIENT_KEY");
+      }
+      else if (!challengeId) {
+        return renderError(`
+          Please provide a Qualified Challenge ID (from the challenge's URL)
+        `);
+      }
+      else if (!language || !language.trim()) {
+        return renderError("Please provide a language");
+      }
 
-        const managerConfig = {
-          options: {
-            language,
-            embedClientKey: EMBED_CLIENT_KEY,
-            mode: init.state === "review" ? "readonly" : null,
-          },
-          onLoaded({manager, editor, challengeId, data}) {
-            events.trigger("ready");
-          },
-          onChange({manager, editor, challengeId, data}) {
-            // TODO
-            //events.trigger("changed", data);
-            console.log(data);
-          },
-          onRun({manager, editor, challengeId, data}) {
-            if (data.type === "attempt") {
-              console.log(data);
-              events.trigger("changed", data);
-            }
+      let resolve;
+      let reject;
+      const embedLoaded = new Promise((resolve_, reject_) => {
+        resolve = resolve_;
+        reject = reject_;
+      });
+      const question = this;
+      let firstOnChange = true;
+      const timeout = setTimeout(() => {
+        reject("Embed failed to load in 6 seconds");
+      }, 6_000);
+      const managerConfig = {
+        options: {
+          language,
+          embedClientKey: EMBED_CLIENT_KEY,
+          mode: this.init.state === "review" ? "readonly" : null,
+        },
+        onLoaded({manager, editor, challengeId, data}) {
+          clearTimeout(timeout);
+          resolve();
+        },
+        onChange({manager, editor, challengeId, data}) {
+          if (firstOnChange) {
+            firstOnChange = false;
+            return;
           }
-        };
-        const script = document.createElement("script");
-        script.addEventListener("load", () => {
-          const manager = window.QualifiedEmbed.init(managerConfig);
-          const node = document.querySelector("#qualified-embed");
-          this.editor = manager.createEditor({
-            node,
-            challengeId,
-          });
-          const frame = node.querySelector("iframe");
-          frame.style.width = "100%";
-          frame.style.height = "300px";
-        });
-        script.src = "//www.qualified.io/embed.js";
-        document.body.append(script);
 
-        // TODO: Requires implementation
-        el.innerHTML = `
-            <div class="${PREFIX} lrn-response-validation-wrapper">
-                <div class="lrn_response_input">
-                  <div id="qualified-embed"></div>
-                </div>
-                <div class="${PREFIX}-checkAnswer-wrapper"></div>
-                <div class="${PREFIX}-suggestedAnswers-wrapper"></div>
-            </div>
-        `;
+          question.latestCode = data;
+          question.saveToLearnosity();
+        },
+        onRun({manager, editor, challengeId, data}) {
+          if (
+            data.type === "attempt" &&
+            question.init.state !== "review"
+          ) {
+            question.runResult = data;
+            question.saveToLearnosity();
+          }
+        }
+      };
 
-        // Optional - Render optional Learnosity components like Check Answer Button, Suggested Answers List
-        // first before rendering your question's components
-        return Promise.all([
-            lrnUtils.renderComponent('SuggestedAnswersList', el.querySelector(`.${PREFIX}-suggestedAnswers-wrapper`)),
-            lrnUtils.renderComponent('CheckAnswerButton', el.querySelector(`.${PREFIX}-checkAnswer-wrapper`))
-        ]).then(([suggestedAnswersList]) => {
-            this.suggestedAnswersList = suggestedAnswersList;
+      if (document.querySelector(`script[src="${scriptSrc}"]`)) {
+        this.createEmbedEditor(managerConfig, challengeId);
+        return embedLoaded;
+      }
 
-            // TODO - Requires implementation
-            /**  The logic to render the UI of your custom question should go here. 
-             * 
-             * For example this might be a call to a function or instantiation of a class to render your UI component(s).
-             * 
-             */ 
-        });
+      const script = document.createElement("script");
+      script.addEventListener("load", () => {
+        this.createEmbedEditor(managerConfig, challengeId);
+      });
+      script.src = scriptSrc;
+      document.body.append(script);
+      return embedLoaded;
+    }
+
+    createEmbedEditor(managerConfig, challengeId) {
+      this.el.innerHTML = `
+        <div class="${PREFIX} lrn-response-validation-wrapper">
+          <div class="lrn_response_input">
+            <div id="qualified-embed"></div>
+          </div>
+          <div class="${PREFIX}-checkAnswer-wrapper"></div>
+          <div class="${PREFIX}-suggestedAnswers-wrapper"></div>
+        </div>`;
+      const manager = window.QualifiedEmbed.init(managerConfig);
+      const node = document.querySelector("#qualified-embed");
+      this.editor = manager.createEditor({
+        node,
+        challengeId,
+      });
+      const frame = node.querySelector("iframe");
+      frame.style.width = "100%";
+      frame.style.height = "400px";
+    }
+
+    saveToLearnosity() {
+      this.events.trigger("changed", {
+        runResult: this.runResult,
+        latestCode: this.latestCode,
+      });
     }
 
     /**
@@ -313,6 +313,7 @@ export default class Question {
             // then make sure you have also implemented facade.showValidationUI(), and that you call it here:
             console.log('check answer')
             facade.showValidationUI()
+            //console.log('isValid', facade.isValid())
             this.editor.attempt();
 
             // OPTIONAL Step 2: 

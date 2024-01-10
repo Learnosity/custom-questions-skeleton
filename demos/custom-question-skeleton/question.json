@@ -5,9 +5,9 @@
     "scorer": "/dist/scorer.js"
   },
   "css": "/dist/question.css",
-  "stimulus": "asdf",
+  "stimulus": "sample stimulus",
   "custom_type": "qualified_challenge",
   "version": "v1.0.0",
   "challengeId": "5f029b271dbad30012978cd5",
-  "language": "javascript"
+  "language": "python"
 }
