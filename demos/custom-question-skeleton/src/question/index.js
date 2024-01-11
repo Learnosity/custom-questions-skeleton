@@ -82,6 +82,8 @@ export default class Question {
           language,
           embedClientKey: EMBED_CLIENT_KEY,
           mode: this.init.state === "review" ? "readonly" : null,
+          hideActions: this.init.state === "review",
+          hideTabs: [],
         },
         onLoaded({manager, editor, challengeId, data}) {
           clearTimeout(timeout);
