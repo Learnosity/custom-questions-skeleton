@@ -314,6 +314,14 @@ export default class Question {
             //If you want to show changes to the UI for a correct or incorrect answer when the learner presses check answer
             // then make sure you have also implemented facade.showValidationUI(), and that you call it here:
             facade.showValidationUI()
+            const score = facade.getScore()
+            const el = this.el.querySelector(".lrn_response_input");
+            el.classList.remove("lrn_incorrect", "lrn_correct");
+            el.classList.add(
+              score.score < score.max_score
+              ? "lrn_incorrect"
+              : "lrn_correct"
+            );
 
             // OPTIONAL Step 2: 
             // If you want to display the correct answer to the learner when they press the Check Answer button,
