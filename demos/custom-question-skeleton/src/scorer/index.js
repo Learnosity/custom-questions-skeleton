@@ -69,6 +69,6 @@ export default class Scorer {
      */
     canValidateResponse() {
         console.log('Scorer.canvalidaterespo', !!this.response)
-        return false;
+        return true;
     }
 }

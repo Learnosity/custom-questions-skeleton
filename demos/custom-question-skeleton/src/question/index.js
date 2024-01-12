@@ -313,10 +313,7 @@ export default class Question {
             // OPTIONAL Step 1: 
             //If you want to show changes to the UI for a correct or incorrect answer when the learner presses check answer
             // then make sure you have also implemented facade.showValidationUI(), and that you call it here:
-            console.log('check answer')
             facade.showValidationUI()
-            //console.log('isValid', facade.isValid())
-            this.editor.attempt();
 
             // OPTIONAL Step 2: 
             // If you want to display the correct answer to the learner when they press the Check Answer button,
