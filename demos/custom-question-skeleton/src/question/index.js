@@ -129,8 +129,6 @@ export default class Question {
           <div class="lrn_response_input">
             <div id="qualified-embed"></div>
           </div>
-          <div class="${PREFIX}-checkAnswer-wrapper"></div>
-          <div class="${PREFIX}-suggestedAnswers-wrapper"></div>
         </div>`;
       const manager = window.QualifiedEmbed.init(managerConfig);
       const node = document.querySelector("#qualified-embed");
