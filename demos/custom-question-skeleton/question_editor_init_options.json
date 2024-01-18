@@ -12,7 +12,8 @@
             "scorer": "/dist/scorer.js"
           },
           "css": "/dist/question.css"
-        }
+        },
+        "image": "https://www.qualified.io/shared/images/qualified-51ef277f.svg"
       }
     ]
   },
