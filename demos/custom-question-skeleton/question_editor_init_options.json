@@ -14,7 +14,7 @@
           "css": "/dist/question.css",
           "embedClientKey": "g39RsSfAYEkyRG8ZYjxrpT9c/XqnfQpN"
         },
-        "image": "https://www.qualified.io/shared/images/qualified-51ef277f.svg",
+        "image": "https://raw.githubusercontent.com/andela-technology/custom-questions-skeleton/qualified-custom-question/demos/custom-question-skeleton/dist/qualified-logo.svg",
         "valid_response": ""
       }
     ]
