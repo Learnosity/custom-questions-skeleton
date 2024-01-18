@@ -11,9 +11,11 @@
             "question": "/dist/question.js",
             "scorer": "/dist/scorer.js"
           },
-          "css": "/dist/question.css"
+          "css": "/dist/question.css",
+          "embedClientKey": "g39RsSfAYEkyRG8ZYjxrpT9c/XqnfQpN"
         },
-        "image": "https://www.qualified.io/shared/images/qualified-51ef277f.svg"
+        "image": "https://www.qualified.io/shared/images/qualified-51ef277f.svg",
+        "valid_response": ""
       }
     ]
   },

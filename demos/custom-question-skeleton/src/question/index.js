@@ -1,4 +1,4 @@
-import { EMBED_CLIENT_KEY, PREFIX } from './constants';
+import { PREFIX } from './constants';
 
 export default class Question {
     constructor(init, lrnUtils) {
@@ -11,7 +11,6 @@ export default class Question {
       this.latestCode = init.response?.latestCode;
 
       this.render().then(() => {
-        this.events.trigger("ready");
         this.registerPublicMethods();
         this.handleEvents();
 
@@ -33,6 +32,7 @@ export default class Question {
         else if (init.state === "review") {
           if (this.runResult && this.editor) {
             this.editor.setFileContents(this.runResult.fileData.files);
+            this.attemptSubmission();
           }
 
           init.getFacade().disable();
@@ -40,12 +40,14 @@ export default class Question {
       })
       .catch(err => {
         console.error("Embed failed to load:", err);
+      })
+      .finally(() => {
         this.events.trigger("ready");
       });
     }
 
     render() {
-      const {init: {question: {challengeId, language}}} = this;
+      const {init: {question: {challengeId, embedClientKey, language}}} = this;
       const scriptSrc = "//www.qualified.io/embed.js";
 
       const renderError = s => {
@@ -54,8 +56,8 @@ export default class Question {
         return Promise.resolve();
       };
 
-      if (!EMBED_CLIENT_KEY) {
-        return renderError("Configuration issue: Missing EMBED_CLIENT_KEY");
+      if (!embedClientKey) {
+        return renderError("Configuration issue: Missing embedClientKey");
       }
       else if (!challengeId) {
         return renderError(`
@@ -80,8 +82,8 @@ export default class Question {
       const managerConfig = {
         options: {
           language,
-          embedClientKey: EMBED_CLIENT_KEY,
-          mode: this.init.state === "review" ? "readonly" : null,
+          embedClientKey,
+          mode: this.init.state === "review" ? "runonly" : null,
           hideActions: this.init.state === "review",
           hideTabs: [],
         },
@@ -132,13 +134,35 @@ export default class Question {
         </div>`;
       const manager = window.QualifiedEmbed.init(managerConfig);
       const node = document.querySelector("#qualified-embed");
-      this.editor = manager.createEditor({
-        node,
-        challengeId,
-      });
+      this.editor = manager.createEditor({node, challengeId});
       const frame = node.querySelector("iframe");
       frame.style.width = "100%";
       frame.style.height = "400px";
+    }
+
+    attemptSubmission({tries, delayMs} = {tries: 10, delayMs: 1000}) {
+      const sleep = ms => new Promise(r => setTimeout(r, ms));
+      let done = false;
+      let promise = Promise.resolve();
+
+      for (let i = 0; i < tries; i++) {
+        promise = promise
+          .then(() => {
+            if (!done) {
+              return sleep(delayMs).then(() => this.editor.attempt());
+            }
+          })
+          .then(() => {
+            done = true;
+          })
+          .catch(() => {
+            if (i >= tries - 1) {
+              throw Error(`Runs failed on all of ${tries} tries`);
+            }
+          });
+      }
+
+      return promise;
     }
 
     saveToLearnosity() {
