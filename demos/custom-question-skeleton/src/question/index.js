@@ -105,7 +105,7 @@ export default class Question {
       },
     };
 
-    if (document.querySelector(`script[src="${scriptSrc}"]`)) {
+    if (window.QualifiedEmbed) {
       this.createEmbedEditor(managerConfig, challengeId);
       return embedLoaded;
     }
