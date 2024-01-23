@@ -30,7 +30,8 @@ export default class Question {
         } else if (init.state === "review") {
           if (this.latestCode && this.editor) {
             this.editor.setFileContents(this.latestCode.files);
-            this.attemptSubmission();
+            this.attemptSubmission()
+              .then(() => this.updateValidationUI());
           }
 
           init.getFacade().disable();
@@ -97,7 +98,7 @@ export default class Question {
         question.saveToLearnosity();
       },
       onRun({ manager, editor, challengeId, data }) {
-        if (data.type === "attempt" && question.init.state !== "review") {
+        if (data.type === "attempt") {
           question.runResult = data;
           question.saveToLearnosity();
         }
@@ -165,14 +166,20 @@ export default class Question {
     });
   }
 
+  updateValidationUI() {
+    const score = this.init.getFacade().getScore();
+    const el = this.el.querySelector(".lrn_response_input");
+    el.classList.remove("lrn_incorrect", "lrn_correct");
+    el.classList.add(
+      score.score < score.max_score ? "lrn_incorrect" : "lrn_correct",
+    );
+  }
+
   handleEvents() {
     this.events.on("validate", (options) => {
-      const score = this.init.getFacade().getScore();
-      const el = this.el.querySelector(".lrn_response_input");
-      el.classList.remove("lrn_incorrect", "lrn_correct");
-      el.classList.add(
-        score.score < score.max_score ? "lrn_incorrect" : "lrn_correct",
-      );
+      if (this.init.state !== "review") {
+        this.updateValidationUI();
+      }
     });
   }
 }
