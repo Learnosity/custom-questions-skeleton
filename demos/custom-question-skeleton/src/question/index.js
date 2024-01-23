@@ -110,12 +110,22 @@ export default class Question {
       return embedLoaded;
     }
 
-    const script = document.createElement("script");
-    script.addEventListener("load", () => {
-      this.createEmbedEditor(managerConfig, challengeId);
-    });
-    script.src = scriptSrc;
-    document.body.append(script);
+    const existingScript = document
+      .querySelector(`script[src="${scriptSrc}"]`);
+
+    if (existingScript) {
+      existingScript.addEventListener("load", () => {
+        this.createEmbedEditor(managerConfig, challengeId);
+      });
+    } else {
+      const script = document.createElement("script");
+      script.addEventListener("load", () => {
+        this.createEmbedEditor(managerConfig, challengeId);
+      });
+      script.src = scriptSrc;
+      document.body.append(script);
+    }
+
     return embedLoaded;
   }
 
