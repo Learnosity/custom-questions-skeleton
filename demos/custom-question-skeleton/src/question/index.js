@@ -122,11 +122,11 @@ export default class Question {
     this.el.innerHTML = `
       <div class="${PREFIX} lrn-response-validation-wrapper">
         <div class="lrn_response_input">
-          <div id="qualified-embed"></div>
+          <div class="qualified-embed"></div>
         </div>
       </div>`;
     const manager = window.QualifiedEmbed.init(managerConfig);
-    const node = document.querySelector("#qualified-embed");
+    const node = this.el.querySelector(".qualified-embed");
     this.editor = manager.createEditor({ node, challengeId });
     const frame = node.querySelector("iframe");
     frame.style.width = "100%";
