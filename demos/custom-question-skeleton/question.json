@@ -9,6 +9,5 @@
   "custom_type": "qualified_challenge",
   "version": "v1.0.0",
   "challengeId": "5f029b271dbad30012978cd5",
-  "language": "python",
-  "embedClientKey": "g39RsSfAYEkyRG8ZYjxrpT9c/XqnfQpN"
+  "language": "python"
 }

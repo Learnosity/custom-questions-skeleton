@@ -1,4 +1,13 @@
 {
+  "dependencies": {
+    "questions_api": {
+      "init_options": {
+        "custom_widget_options": {
+          "embedClientKey": "g39RsSfAYEkyRG8ZYjxrpT9c/XqnfQpN"
+        }
+      }
+    }
+  },
   "question_type_templates": {
     "qualified_challenge": [
       {
@@ -11,8 +20,7 @@
             "question": "/dist/question.js",
             "scorer": "/dist/scorer.js"
           },
-          "css": "/dist/question.css",
-          "embedClientKey": "g39RsSfAYEkyRG8ZYjxrpT9c/XqnfQpN"
+          "css": "/dist/question.css"
         },
         "image": "https://raw.githubusercontent.com/andela-technology/custom-questions-skeleton/qualified-custom-question/demos/custom-question-skeleton/dist/qualified-logo.svg",
         "valid_response": ""
@@ -36,21 +44,21 @@
         "properties": {
           "stimulus": {
             "name": "Question prompt",
-            "description": "Prompt to present to the student to provide guidance, instructions or context",
+            "description": "Prompt shown to the student, to provide guidance, instructions or context.",
             "type": "string",
             "required": false,
             "default": ""
           },
           "challengeId": {
             "name": "Challenge ID",
-            "description": "The Qualified challenge id of the challenge",
+            "description": "The ID of the challenge, which can be found in the URL of the challenge on the Qualified website",
             "type": "string",
             "required": true,
             "default": ""
           },
           "language": {
             "name": "Language",
-            "description": "The language to be used for this challenge",
+            "description": "The programming language to be used for this challenge.",
             "type": "select",
             "required": true,
             "default": "python",

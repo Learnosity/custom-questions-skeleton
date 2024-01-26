@@ -20,6 +20,13 @@ $requestData['questions'][0]['response_id'] = $responseId;
 
 $signedRequest = signAssessmentRequest($requestData);
 
+$init_opts = file_get_contents('question_editor_init_options.json');
+$init_opts = json_decode($init_opts, true);
+$custom_widget_options = $init_opts
+    ['dependencies']
+    ['questions_api']
+    ['init_options']
+    ['custom_widget_options'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +59,10 @@ $signedRequest = signAssessmentRequest($requestData);
 <script>
     window.activity = <?php echo $signedRequest; ?>;
 
-    window.questionsApp = LearnosityApp.init(activity, {
+    window.questionsApp = LearnosityApp.init({
+        ...activity,
+        custom_widget_options: <?= json_encode($custom_widget_options) ?>
+    }, {
         readyListener() {
             console.log('ready');
         },

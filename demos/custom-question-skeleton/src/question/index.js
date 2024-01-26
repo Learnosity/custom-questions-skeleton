@@ -30,8 +30,7 @@ export default class Question {
         } else if (init.state === "review") {
           if (this.latestCode && this.editor) {
             this.editor.setFileContents(this.latestCode.files);
-            this.attemptSubmission()
-              .then(() => this.updateValidationUI());
+            this.attemptSubmission().then(() => this.updateValidationUI());
           }
 
           init.getFacade().disable();
@@ -46,7 +45,8 @@ export default class Question {
   }
 
   render() {
-    const { challengeId, embedClientKey, language } = this.init.question;
+    const { challengeId, language } = this.init.question;
+    const embedClientKey = this.init.getCustomWidgetOptions("embedClientKey");
     const scriptSrc = "//www.qualified.io/embed.js";
 
     const renderError = (s) => {
@@ -110,8 +110,7 @@ export default class Question {
       return embedLoaded;
     }
 
-    const existingScript = document
-      .querySelector(`script[src="${scriptSrc}"]`);
+    const existingScript = document.querySelector(`script[src="${scriptSrc}"]`);
 
     if (existingScript) {
       existingScript.addEventListener("load", () => {
