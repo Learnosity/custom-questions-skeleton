@@ -46,7 +46,9 @@ export default class Question {
 
   render() {
     const { challengeId, language } = this.init.question;
-    const embedClientKey = this.init.getCustomWidgetOptions("embedClientKey");
+    const embedClientKey =
+      this.init.getCustomWidgetOptions("embedClientKey") ||
+      this.init.question.embedClientKey;
     const scriptSrc = "//www.qualified.io/embed.js";
 
     const renderError = (s) => {

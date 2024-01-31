@@ -51,7 +51,7 @@
           },
           "challengeId": {
             "name": "Challenge ID",
-            "description": "The ID of the challenge, which can be found in the URL of the challenge on the Qualified website",
+            "description": "The ID of the challenge, which is in the challenge's URL on the Qualified website.",
             "type": "string",
             "required": true,
             "default": ""
