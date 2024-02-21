@@ -75,23 +75,6 @@ function signAuthoringRequest($request)
                         'status' => false,
                         'dynamic_content' => true,
                         'shared_passage' => true
-                    ],
-                    'widget' => [
-                        'delete' => false,
-                        'edit' => false
-                    ]
-                ],
-            ],
-            'dependencies' => [
-                'question_editor_api' => [
-                    'init_options' => [
-                        'ui' => [
-                            'search_field' => true,
-                            'layout' => [
-                                'global_template' => 'edit_preview',
-                                'mode' => 'advanced'
-                            ]
-                        ]
                     ]
                 ]
             ]
