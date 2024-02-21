@@ -1,2 +1,1 @@
-demos/* linguist-documentation=false
-demos/* linguist-vendored
+demos/** linguist-documentation=false
