@@ -142,7 +142,8 @@ export default class Question {
     this.editor = manager.createEditor({ node, challengeId });
     const frame = node.querySelector("iframe");
     frame.style.width = "100%";
-    frame.style.height = "400px";
+    frame.style.height = "60vh";
+    frame.style.minHeight = "450px";
   }
 
   attemptSubmission({ tries, delayMs } = { tries: 10, delayMs: 1000 }) {
