@@ -50,6 +50,7 @@ export default class Question {
       this.init.getCustomWidgetOptions("embedClientKey") ||
       this.init.question.embedClientKey;
     const scriptSrc = "//www.qualified.io/embed.js";
+    // const scriptSrc = "http://localhost:3001/embed.js"; // for testing
 
     const renderError = (s) => {
       this.el.innerHTML = `
@@ -83,6 +84,7 @@ export default class Question {
         language,
         embedClientKey,
         mode: this.init.state === "review" ? "runonly" : null,
+        // baseURL: "http://localhost:3001", // for testing
         hideActions: this.init.state === "review",
         hideTabs: [],
       },
@@ -140,10 +142,6 @@ export default class Question {
     const manager = window.QualifiedEmbed.init(managerConfig);
     const node = this.el.querySelector(".qualified-embed");
     this.editor = manager.createEditor({ node, challengeId });
-    const frame = node.querySelector("iframe");
-    frame.style.width = "100%";
-    frame.style.height = "60vh";
-    frame.style.minHeight = "450px";
   }
 
   attemptSubmission({ tries, delayMs } = { tries: 10, delayMs: 1000 }) {
