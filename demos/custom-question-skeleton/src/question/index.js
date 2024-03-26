@@ -30,7 +30,12 @@ export default class Question {
         } else if (init.state === "review") {
           if (this.latestCode && this.editor) {
             this.editor.setFileContents(this.latestCode.files);
-            this.attemptSubmission().then(() => this.updateValidationUI());
+
+            if (this.runResult) {
+              this.editor.setRunResult(this.runResult);
+            } else {
+              this.attemptSubmission().then(() => this.updateValidationUI());
+            }
           }
 
           init.getFacade().disable();
