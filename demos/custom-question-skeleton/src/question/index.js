@@ -91,6 +91,7 @@ export default class Question {
         mode: this.init.state === "review" ? "runonly" : null,
         // baseURL: "http://localhost:3001", // for testing
         hideActions: this.init.state === "review",
+        disableBottomTabs: true,
         hideTabs: [],
       },
       onLoaded({ manager, editor, challengeId, data }) {
