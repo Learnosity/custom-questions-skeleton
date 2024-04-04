@@ -33,8 +33,6 @@ export default class Question {
 
             if (this.runResult) {
               this.editor.setRunResult(this.runResult);
-            } else {
-              this.attemptSubmission().then(() => this.updateValidationUI());
             }
           }
 
@@ -88,9 +86,8 @@ export default class Question {
       options: {
         language,
         embedClientKey,
-        mode: this.init.state === "review" ? "runonly" : null,
+        mode: this.init.state === "review" ? "readonly" : null,
         // baseURL: "http://localhost:3001", // for testing
-        hideActions: this.init.state === "review",
         disableBottomTabs: true,
         hideTabs: [],
       },
@@ -148,31 +145,6 @@ export default class Question {
     const manager = window.QualifiedEmbed.init(managerConfig);
     const node = this.el.querySelector(".qualified-embed");
     this.editor = manager.createEditor({ node, challengeId });
-  }
-
-  attemptSubmission({ tries, delayMs } = { tries: 10, delayMs: 1000 }) {
-    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-    let done = false;
-    let promise = Promise.resolve();
-
-    for (let i = 0; i < tries; i++) {
-      promise = promise
-        .then(() => {
-          if (!done) {
-            return sleep(delayMs).then(() => this.editor.attempt());
-          }
-        })
-        .then(() => {
-          done = true;
-        })
-        .catch(() => {
-          if (i >= tries - 1) {
-            throw Error(`Runs failed on all of ${tries} tries`);
-          }
-        });
-    }
-
-    return promise;
   }
 
   saveToLearnosity() {
