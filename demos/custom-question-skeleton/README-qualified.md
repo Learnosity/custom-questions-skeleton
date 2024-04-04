@@ -36,7 +36,7 @@ For Qualified's use case, question.js is the bulk of the integration. It contain
 
 Learnosity has a few modes: "initial", "resume" and "review". `Question` is instantiated once per mode. In all cases, `Question` initializes an Embed instance.
 
-In "initial" mode, nothing extra happens. In "resume" mode, modified files are injected into Embed to restore it to its last-saved state. In "review" mode, files are injected as in "resume". Additionally, the code is run so the reviewer can see the submission results.
+In "initial" mode, nothing extra happens. In "resume" mode, modified solution files are injected into Embed to restore it to its last-saved state. In "review" mode, final solution files and a run result (if it exists) are injected into the editor.
 
 Note that Learnosity doesn't save the score when a "changed" event is emitted in review mode, only when the question is live in front of the student. This means that, at present, the only way to save a submission attempt is for the student to click the Embed Submit button before leaving the question page.
 
@@ -46,7 +46,7 @@ When a student submits their code, Embed makes a call to the Qualified Code Runn
 
 When it's time to score the solution, Learnosity invokes the [scorer.js](src/question/index.js) file and passes the latest CR result to it, which the scorer analyzes to determine the student's score for the submission. [debugServerScorer.js](debugServerScorer.js) has a sample CR response structure and can be used to run the scorer for testing.
 
-Later, when one of Learnosity's customers wishes to review their student's scores, the results saved to Learnosity from the student's latest submission are used. To facilitate review, Embed added a `runonly` mode which lets us re-run the CR using the solution code so that the scoring results can be visualized by the reviewer.
+Later, when one of Learnosity's customers wishes to review their student's scores, the results saved to Learnosity from the student's latest submission are used.
 
 Whenever the student modifies their code, `Question` also triggers a "changed" event to store the latest code in Learnosity.
 
