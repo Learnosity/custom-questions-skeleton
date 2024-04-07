@@ -56,17 +56,16 @@ export default class Question {
     // const scriptSrc = "http://localhost:3001/embed.js"; // for testing
 
     const renderError = (s) => {
-      this.el.innerHTML = `
-          <div class="alert alert-warning" role="alert">${s}</div>`;
+      this.el.innerHTML = `<div class="alert alert-warning" role="alert">${s}</div>`;
       return Promise.resolve();
     };
 
     if (!embedClientKey?.trim()) {
       return renderError("Configuration issue: Missing embedClientKey");
     } else if (!challengeId?.trim()) {
-      return renderError(`
-          Please provide a Qualified Challenge ID (from the challenge's URL)
-        `);
+      return renderError(
+        "Please provide a Qualified Challenge ID (from the challenge's URL)",
+      );
     } else if (!language?.trim()) {
       return renderError("Please provide a language");
     }
