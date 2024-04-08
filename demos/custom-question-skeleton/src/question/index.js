@@ -28,8 +28,10 @@ export default class Question {
             this.editor.setFileContents(this.latestCode.files);
           }
         } else if (init.state === "review") {
-          if (this.latestCode && this.editor) {
-            this.editor.setFileContents(this.latestCode.files);
+          if (this.editor) {
+            if (this.latestCode) {
+              this.editor.setFileContents(this.latestCode.files);
+            }
 
             if (this.runResult) {
               this.editor.setRunResult(this.runResult);
