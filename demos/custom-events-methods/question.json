@@ -1,0 +1,8 @@
+
+{
+    "type": "custom",
+    "stimulus": "A demo to demonstrate how to setup custom pub/sub events and custom public methods for custom question type",
+    "js": {
+        "question": "/dist/question.js"
+    }
+}
