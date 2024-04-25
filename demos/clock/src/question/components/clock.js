@@ -27,7 +27,6 @@ export default class Clock {
     }
 
     render() {
-        console.log("this.question at clock class",this.question)
         this.setupClock();
         this.drawFace();
         this.drawText();
