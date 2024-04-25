@@ -30,12 +30,12 @@ export const drawTick = (parent, x1, y1, x2, y2, classname) => {
         .attr("class", classname);
 };
 
-export const drawArrow = (parent) => {
+export const drawArrow = (parent, response_id) => {
     return d3
         .select(parent)
         .append("defs")
         .append("marker")
-        .attr("id", "arrow")
+        .attr("id", `arrow-${response_id}`)
         .attr("viewBox", "0 0 10 10")
         .attr("refX", 2.5)
         .attr("refY", 2.5)
@@ -43,11 +43,11 @@ export const drawArrow = (parent) => {
         .attr("markerHeight", 6)
         .attr("orient", "auto-start-reverse")
         .append("path")
-        .attr("class", "arrow")
+        .attr("fill", "#777")
         .attr("d", "M 0 0 L 5 2.5 L 0 5 z");
 };
 
-export const drawHand = (parent, radius, angle, classname) => {
+export const drawHand = (parent, radius, angle, classname, response_id) => {
     return (
         d3
             .select(parent)
@@ -63,7 +63,7 @@ export const drawHand = (parent, radius, angle, classname) => {
             .attr("y2", (d) => getPointOnCircle(d.radius, angle).y)
             .attr("class", classname)
             // add the arrow defined by drawArrow()
-            .attr("marker-end", "url(#arrow)")
+            .attr("marker-end", `url(#arrow-${response_id})`)
     );
 };
 

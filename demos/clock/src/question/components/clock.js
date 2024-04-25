@@ -27,6 +27,7 @@ export default class Clock {
     }
 
     render() {
+        console.log("this.question at clock class",this.question)
         this.setupClock();
         this.drawFace();
         this.drawText();
@@ -83,10 +84,11 @@ export default class Clock {
             this.svg,
             SMALL_HAND_RADIUS,
             210,
-            "hand"
+            "hand",
+            this.question.response_id
         ).attr("data-angle", 210);
 
-        const minHand = drawHand(this.svg, BIG_HAND_RADIUS, 330, "hand").attr(
+        const minHand = drawHand(this.svg, BIG_HAND_RADIUS, 330, "hand", this.question.response_id).attr(
             "data-angle",
             330
         );
@@ -95,6 +97,6 @@ export default class Clock {
         this.minHand = minHand;
     }
     drawArrows() {
-        drawArrow(this.svg);
+        drawArrow(this.svg, this.question.response_id);
     }
 }

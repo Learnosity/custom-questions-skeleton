@@ -16,6 +16,7 @@ import { CLOCK_CENTER } from "./constants";
 export default class ClockQuestion {
     constructor(init, lrnUtils) {
         this.init = init;
+        console.log("this.init", this.init.question.response_id)
         this.events = init.events;
         this.lrnUtils = lrnUtils;
         this.el = init.$el.get(0);
