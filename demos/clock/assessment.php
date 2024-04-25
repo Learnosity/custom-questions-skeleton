@@ -1,6 +1,7 @@
 <?php
 include_once '../config.php';
 
+$questionJson = file_get_contents('./question.json');
 $responseId = "custom-clock-$sessionId";
 
 $request = '{
@@ -8,26 +9,12 @@ $request = '{
     "session_id": "' . $sessionId . '",
     "showCorrectAnswers": true,
     "questions": [
-        {
-          "response_id": "' . $responseId . '",
-          "type": "custom",
-          "stimulus": "Oh no! The hands on the clock have gotten all messed up! Help fix the clock by moving the hands to show what time it is! <br><strong>Drag the hands to show 4:30 on the clock.</strong>",
-          "js": {
-            "question": "/dist/question.js",
-            "scorer": "/dist/scorer.js"
-          },
-          "css": "/dist/question.css",
-          "instant_feedback": true,
-          "score" : 1,
-          "valid_response" : {
-            "hourHandAngle": 45, 
-            "minHandAngle": 90
-          }
-     }
-   
+        '.$questionJson.'
     ]
 }';
 $requestData = json_decode($request, true);
+// add the response id to the request data after it has been transformed to a php array.
+$requestData['questions'][0]['response_id'] = $responseId;
 
 $signedRequest = signAssessmentRequest($requestData);
 

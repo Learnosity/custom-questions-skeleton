@@ -1,0 +1,15 @@
+{
+    "type": "custom",
+    "stimulus": "Oh no! The hands on the clock have gotten all messed up! Help fix the clock by moving the hands to show what time it is! <br><strong>Drag the hands to show 4:30 on the clock.</strong>",
+    "js": {
+      "question": "/dist/question.js",
+      "scorer": "/dist/scorer.js"
+    },
+    "css": "/dist/question.css",
+    "instant_feedback": true,
+    "score" : 1,
+    "valid_response" : {
+      "hourHandAngle": 45, 
+      "minHandAngle": 90
+    }
+}
