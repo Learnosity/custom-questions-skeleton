@@ -1,0 +1,38 @@
+{
+    "custom_feature_types": [
+       {
+          "custom_type": "globe",
+          "name": "Custom 3D Globe Feature",
+          "js": "/dist/feature.js",
+          "css": "/dist/feature.css",
+          "version": "v0.0.1",
+          "editor_layout": "/dist/authoring_custom_layout.html",
+          "editor_schema": {
+             "hidden_question": false,
+             "properties": {
+                "land_texture": {
+                   "name": "Use natural land texture",
+                   "description": "Whether to use a natural land texture for the globe or not",
+                   "type": "boolean",
+                   "required": true,
+                   "default": true
+                },
+                "show_countries": {
+                  "name": "Show countries and country names",
+                  "description": "If enabled, will show countries and their names with a hover tooltip on the globe for the learner",
+                  "type": "boolean",
+                  "required": true,
+                  "default": true
+               },
+               "show_lines": {
+                  "name": "Show latitude and longitude lines",
+                  "description": "If enabled, will show latitude and longitude lines on the globe for the learner",
+                  "type": "boolean",
+                  "required": true,
+                  "default": false
+               }
+             }
+          }
+       }
+    ]
+ }
