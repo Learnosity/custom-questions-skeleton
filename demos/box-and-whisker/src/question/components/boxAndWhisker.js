@@ -309,7 +309,7 @@ export default class BoxAndWhisker {
 
                 d3.select(this).attr('cx', originalX);
                 line.attr('x1', originalX).attr('x2', originalX);
-                text.attr('x', originalX).text(round(self.pxToUnit(originalX)));
+                text.attr('x', originalX).text(self.roundToNearestStep(self.pxToUnit(originalX)));
 
                 onDrag({
                     event,
@@ -349,14 +349,21 @@ export default class BoxAndWhisker {
         };
 
         this.response.value = {
-            min: round(pxToUnit(getHandlerX(minHandler))),
-            max: round(pxToUnit(getHandlerX(maxHandler))),
-            quartile_1: round(pxToUnit(getHandlerX(q1Handler))),
-            median: round(pxToUnit(getHandlerX(medianHandler))),
-            quartile_3: round(pxToUnit(getHandlerX(q3Handler)))
+            min: this.roundToNearestStep(pxToUnit(getHandlerX(minHandler))),
+            max: this.roundToNearestStep(pxToUnit(getHandlerX(maxHandler))),
+            quartile_1: this.roundToNearestStep(pxToUnit(getHandlerX(q1Handler))),
+            median: this.roundToNearestStep(pxToUnit(getHandlerX(medianHandler))),
+            quartile_3: this.roundToNearestStep(pxToUnit(getHandlerX(q3Handler)))
         };
 
         this.triggerEvent('onChange', this.response);
+    }
+
+    roundToNearestStep(num) {
+        const step = this.get('step') || 1;
+        const stepFactor = 1 / step;
+        
+        return Math.round(num * stepFactor) / stepFactor;
     }
 
     get(key) {
