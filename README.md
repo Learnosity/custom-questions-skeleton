@@ -188,7 +188,7 @@ If you are new to Learnosity Custom Questions we highly recommend starting [here
 ## Contributing to this project
 
 ### Adding new features or fixing bugs
-Contribution in the form of [Issues] and [PRs] are welcome.
+Contribution in the form of [PRs] are welcome.
 
 [(Back to top)](#table-of-contents)
 
