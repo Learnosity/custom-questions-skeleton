@@ -9,7 +9,7 @@
          "editor_layout": "/dist/authoring_custom_layout.html",
          "editor_schema": {
             "hidden_question": false,
-            "properties": {
+            "attributes": {
                "example_custom_property": {
                   "name": "Text to be displayed:",
                   "description": "The text to appear on the custom feature",
