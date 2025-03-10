@@ -45,7 +45,7 @@ $request = '
               "version": "v1.0.0",
               "editor_schema": {
                 "hidden_question": false,
-                "properties": {
+                "attributes": {
                   "max_length": {
                     "default": 20,
                     "description": "Maximum number of characters that can be entered in the field. Maximum value is 250. For longer questions use longtext type.",
@@ -57,7 +57,10 @@ $request = '
                       "description": "Maximum number of characters that can be entered in the text entry area. Maximum 250 characters."
                     }
                   },
-                  "valid_response": {
+                  "valid_response": {,
+                    "name": "Set correct answer(s)",
+                    "description": "In this section, configure the correct answer(s) for the question.",
+                    "type": "object"
                     "attributes": {
                       "value": {
                         "name": "Correct Answer",
@@ -79,10 +82,7 @@ $request = '
                         "required": true,
                         "default": 1
                       }
-                    },
-                    "name": "Set correct answer(s)",
-                    "description": "In this section, configure the correct answer(s) for the question.",
-                    "type": "object"
+                    }
                   },
                   "instant_feedback": {
                     "name": "Check answer button",

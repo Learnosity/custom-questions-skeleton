@@ -59,7 +59,7 @@ $request = '
               "version": "v1.0.0",
               "editor_schema": {
                 "hidden_question": false,
-                "properties": {
+                "attributes": {
                   "line_min": {
                     "type": "number",
                     "name": "Minimum range",
