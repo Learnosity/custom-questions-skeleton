@@ -65,6 +65,16 @@ export default class Question {
         const { el, init, lrnUtils } = this;
         const { question, response } = init;
 
+        /* NOTE: Your custom question type will be likely hydrated with multiple instances and other question types.
+           This means you must make certian kinds of things unique across a space larger than one instance. Some 
+           examples are:
+             * class names (PREFIX is here to help you resolve this)
+             * html element id's
+             * radio group names
+           For id's and radio group names, a potential resoultion is to use the question.response_id as a suffix (a
+           prefix may not always result in a valid id). 
+           If you fail to make things unique, you may struggle with styling and difficult to resolve bugs.
+        */
         // TODO: Requires implementation
         el.innerHTML = `
             <div class="${PREFIX} lrn-response-validation-wrapper">
