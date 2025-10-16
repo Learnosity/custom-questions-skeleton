@@ -61,7 +61,7 @@ $request = '
                       "type" : "question",
                       "name" : "Set correct answer(s)",
                       "description" : "Correct answer for the question",
-                      "whitelist_attributes" : ["valid_response", "value"]
+                      "white_list" : ["valid_response", "value"]
                     },
                     "score" : {
                       "type" : "number",
