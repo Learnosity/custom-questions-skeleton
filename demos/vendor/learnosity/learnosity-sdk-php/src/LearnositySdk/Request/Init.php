@@ -82,7 +82,7 @@ class Init
     /**
      * An optional value used to define what type of request is being
      * made. This is only required for certain requests made to the
-     * Data API (http://docs.learnosity.com/dataapi/)
+     * Data API (https://help.learnosity.com/hc/en-us/articles/16458089700381-data-api-Data-API/)
      * @var string
      */
     private $action;
