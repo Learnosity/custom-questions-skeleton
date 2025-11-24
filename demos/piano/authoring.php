@@ -1,80 +1,14 @@
 <?php
 include_once '../config.php';
 
+$init_options = file_get_contents('./question_editor_init_options.json');
+
 $request = '
 {
   "config": {
     "dependencies": {
       "question_editor_api": {
-        "init_options": {
-          "question_type_groups": [
-            {
-                "name": "Custom Question Types",
-                "reference": "custom_q_types"
-            }
-          ],
-          "question_type_templates" : {
-            "custom_piano_question" : {
-              "name" : "Custom Question - Piano",
-              "description" : "A custom question type - Piano",
-              "group_reference" : "custom_q_types",
-              "defaults" : {
-                "stimulus" : "<span>Your question here. Example: </span><br><strong>Identify the notes of a C major chord on the piano. Any inversion is permissible. Click a key to hear the note.</strong>",
-                "type" : "custom",
-                "js": {
-                  "question": "/dist/question.js",
-                  "scorer": "/dist/scorer.js"
-                },
-                "css": "/dist/question.css",
-                "valid_response": {
-                  "notes" : ["C", "E", "G"],
-                  "indecies" : [0,4,7]
-                },
-                "instant_feedback" : true,
-                "score": 1
-              }
-            }
-          },
-          "custom_question_types": [
-            {
-              "custom_type": "custom_piano_question",
-              "type": "custom",
-              "name": "Custom Piano Question",
-              "editor_layout": "/dist/piano_question_authoring.html",
-              "js": {
-                "question": "/dist/question.js",
-                "scorer": "/dist/scorer.js"
-              },
-              "css": "/dist/question.css",
-              "version": "v1.0.0",
-              "editor_schema": {
-                "hidden_question": false,
-                "attributes": {
-                    "instant_feedback": {
-                      "name": "Check answer button",
-                      "description": "Enables the Check Answer button underneath the question, which will provide the student with instant feedback on their response(s).",
-                      "type": "boolean",
-                      "required": false,
-                      "default": false
-                    },
-                    "valid_response" : {
-                      "type" : "question",
-                      "name" : "Set correct answer(s)",
-                      "description" : "Correct answer for the question",
-                      "white_list" : ["valid_response", "value"]
-                    },
-                    "score" : {
-                      "type" : "number",
-                      "name": "Score",
-                      "description": "Score for a correct answer.",
-                      "required": true,
-                      "default": 1
-                    }
-                }
-              }
-            }
-          ]
-        }
+        "init_options": '.$init_options.'
       }
     }
   }

@@ -1,31 +1,19 @@
 <?php
 include_once '../config.php';
 
+$questionJson = file_get_contents('./question.json');
 $responseId = "custom-piano-$sessionId";
 $request = '{
     "state": "' . $state . '",
     "session_id": "' . $sessionId . '",
     "showCorrectAnswers": true,
     "questions": [
-        {
-          "response_id": "' . $responseId . '",
-          "type": "custom",
-          "stimulus": "<strong>Identify the notes of a C major chord on the piano. Any inversion is permissible. Click a key to hear the note.</strong>",
-          "js": {
-            "question": "/dist/question.js",
-            "scorer": "/dist/scorer.js"
-          },
-          "css": "/dist/question.css",
-          "instant_feedback": true,
-          "valid_response": {
-            "notes": ["C", "E", "G"],
-            "indecies": [0, 4, 7]
-        },
-          "score":1
-        }
+         '.$questionJson.'
     ]
 }';
 $requestData = json_decode($request, true);
+// add the response id to the request data after it has been transformed to a php array.
+$requestData['questions'][0]['response_id'] = $responseId;
 
 $signedRequest = signAssessmentRequest($requestData);
 
