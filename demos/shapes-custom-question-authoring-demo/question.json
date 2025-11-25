@@ -1,0 +1,31 @@
+{
+    "type": "custom",
+    "stimulus": "Which shape has <b>8 sides</b>?",
+    "shapes": [
+        {
+            "kind": "octagon",
+            "size": "medium",
+            "color": "#84994F"
+        },
+        {
+            "kind": "hexagon",
+            "size": "medium",
+            "color": "#989bed"
+        }
+    ],
+    "selected_shape_color": "#000000",
+    "display_shape_names": false,
+    "validation": {
+        "valid_response": {
+            "score": 1,
+            "value": "0"
+        },
+        "alt_responses": []
+    },
+    "js": {
+        "question": "/dist/question.js",
+        "scorer": "/dist/scorer.js"
+    },
+    "css": "/dist/question.css",
+    "instant_feedback": true
+}

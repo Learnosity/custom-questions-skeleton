@@ -1,0 +1,101 @@
+<div class="lrn-qe-edit-form">
+    <span data-lrn-qe-label="stimulus"></span>
+    <span data-lrn-qe-input="stimulus" class="lrn-qe-ckeditor-lg"></span>
+            <!-- Shapes  -->
+            <div class="lrn-qe-divider"></div>
+            <span data-lrn-qe-label="shapes" class="lrn-qe-text-bold"></span>
+            <div class="lrn-qe-divider"></div>
+            <div data-lrn-qe-loop="shapes[*]" class="lrn-qe-row-flex">
+                <div class="lrn-col-xs-6 lrn-qe-col-sm-6">
+                    <span data-lrn-qe-label="shapes[*]"></span>
+                </div>
+                <div class="lrn-col-xs-6 lrn-qe-col-sm-6">
+                    <span data-lrn-qe-action-remove="shapes[*]"></span>
+                </div>
+                <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6">
+                    <span data-lrn-qe-label="shapes[*].kind"></span>
+                    <span data-lrn-qe-input="shapes[*].kind"></span>
+                </div>
+                <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6">
+                    <span data-lrn-qe-label="shapes[*].size"></span>
+                    <span data-lrn-qe-input="shapes[*].size"></span>
+                </div>
+                <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6">
+                    <span data-lrn-qe-label="shapes[*].color" class="lrn-qe-margin-left-xs"></span>
+                    <span data-lrn-qe-input="shapes[*].color" class="lrn-qe-inline-block"></span>
+                </div>
+                
+            </div>
+            <span data-lrn-qe-action-add="shapes"></span>
+      
+            
+            <div class="lrn-qe-divider"></div> 
+            <div class="lrn-qe-row-flex">
+                <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6">
+                    <!-- Selected shape color -->
+                    <span data-lrn-qe-label="selected_shape_color" class="lrn-qe-text-bold"></span>
+                    <span data-lrn-qe-input="selected_shape_color"></span>
+                </div>
+                <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6">
+                <!-- Display shape names -->
+                    <span data-lrn-qe-input="display_shape_names" class="lrn-qe-inline-block lrn-qe-margin-right-sm"></span>
+                    <span data-lrn-qe-label="display_shape_names" class="lrn-qe-text-bold lrn-qe-inline-block"></span>
+                </div>
+            </div>
+            <div class="lrn-qe-divider"></div>
+        
+            <!-- Validation (Set Correct Answser(s) section including alt_responses responses > TABS layout -->
+            <span data-lrn-qe-label="validation" data-lrn-qe-heading="4"
+            data-lrn-qe-section="validation.heading"
+            class="lrn-qe-h4 lrn-qe-section-header lrn-qe-text-bold lrn-qe-border-none"
+            ></span>    
+            <div class="lrn-qe-tabs" data-lrn-qe-tabs data-lrn-qe-section="validation.content">
+                <ul class="lrn-qe-tab-header">
+                    <li class="lrn-qe-tab-trigger" data-lrn-qe-tab-trigger>
+                        <span data-lrn-qe-label="validation.valid_response"></span>
+                    </li>
+                    <li data-lrn-qe-loop="validation.alt_responses[*]" class="lrn-qe-tab-trigger"
+                        data-lrn-qe-tab-trigger data-lrn-qe-section="validation.alt_responses">
+                        <span data-lrn-qe-label="validation.alt_responses[*]"></span>
+                    </li>
+                    <li>
+                        <span data-lrn-qe-action-add="validation.alt_responses" class="lrn-qe-tabs-add" data-lrn-qe-section="validation.alt_responses"></span>
+                    </li>
+                </ul>
+
+                <div class="lrn-qe-tab-item" data-lrn-qe-tab-item>
+                    <div class="lrn-qe-tab-sub-content">
+                        <span data-lrn-qe-input="validation.valid_response.score" class="lrn-qe-inline-block lrn-qe-text-left lrn-qe-form-control-xs lrn-qe-margin-left-sm"></span>
+                        <span data-lrn-qe-label="validation.valid_response.score" class="lrn-qe-inline-block lrn-qe-margin-left-sm"></span>
+                    </div>            <span data-lrn-qe-input="validation.valid_response.value"></span>
+                </div>
+
+                <!-- Placeholder for alternate responses if the author uses them -->
+                <div data-lrn-qe-loop="validation.alt_responses[*]" class="lrn-qe-tab-item"
+                    data-lrn-qe-tab-item data-lrn-qe-layout-listeners="add,remove"  data-lrn-qe-section="validation.alt_responses">
+                    <div class="lrn-qe-tab-sub-content">
+                        <span data-lrn-qe-action-remove="validation.alt_responses[*]" class="lrn-qe-tab-remove"></span>
+                        <span data-lrn-qe-input="validation.alt_responses[*].score" class="lrn-qe-inline-block lrn-qe-text-left lrn-qe-form-control-xs lrn-qe-margin-left-sm"></span>
+                        <span data-lrn-qe-label="validation.alt_responses[*].score" class="lrn-qe-inline-block lrn-qe-margin-left-sm"></span>
+                    </div>            
+                    <span data-lrn-qe-input="validation.alt_responses[*].value"></span>
+                </div>
+            </div>
+            
+    <h4 class="lrn-qe-heading" data-lrn-qe-adv-toggle>
+        <button type="button" class="lrn-qe-form-label lrn-qe-margin-top-none lrn-qe-more-options" data-lrn-qe-section="more_options.heading">
+            <span class="lrn-qe-i-arrow lrn-qe-inline-block" data-lrn-qe-section="more_options.toggle"></span>
+            <span class="lrn-qe-inline-block lrn-qe-text-bold">
+                <label class="lrn-qe-label lrn-qe-form-label-name" data-lrn-qe-i18n-label="heading.moreOptions" value="More options"></label>
+            </span>
+        </button>
+    </h4>
+    <div data-lrn-qe-adv-content data-lrn-qe-section="more_options.content">
+        <div class="lrn-qe-row-flex">
+            <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6">
+                <span data-lrn-qe-input="instant_feedback" class="lrn-qe-inline-block lrn-qe-margin-right-sm"></span>
+                <span data-lrn-qe-label="instant_feedback" class="lrn-qe-inline-block"></span>
+            </div>
+        </div>
+    </div>
+</div>

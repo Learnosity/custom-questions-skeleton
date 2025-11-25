@@ -1,0 +1,214 @@
+{
+    "question_type_groups": [
+        {
+            "name": "My Custom Questions",
+            "reference": "company_xyz_custom_questions"
+        }
+    ],
+    "question_type_templates": {
+        "shapes_custom_question": [
+            {
+                "name": "Shapes Custom Question - Authoring Layout Demo",
+                "description": "An example of an authoring tile for a custom question",
+                "group_reference": "company_xyz_custom_questions",
+                "defaults": {
+                    "type": "custom",
+                    "stimulus": "Which shape has <b>8 sides</b>?",
+                    "shapes": [
+                        {
+                            "kind": "octagon",
+                            "size": "medium",
+                            "color": "#84994F"
+                        },
+                        {
+                            "kind": "hexagon",
+                            "size": "medium",
+                            "color": "#989bed"
+                        }
+                    ],
+                    "selected_shape_color": "#000000",
+                    "display_shape_names": false,
+                    "validation": {
+                        "valid_response": {
+                            "score": 1,
+                            "value": "0"
+                        },
+                        "alt_responses": []
+                    },
+                    "js": {
+                        "question": "/dist/question.js",
+                        "scorer": "/dist/scorer.js"
+                    },
+                    "css": "/dist/question.css",
+                    "instant_feedback": true
+                }
+            }
+        ]
+    },
+    "custom_question_types": [
+        {
+            "custom_type": "shapes_custom_question",
+            "type": "custom",
+            "name": "Shapes Custom Question - Authoring Layout Demo",
+            "editor_layout": "/dist/authoring_custom_layout.html",
+            "js": {
+                "question": "/dist/question.js",
+                "scorer": "/dist/scorer.js"
+            },
+            "css": "/dist/question.css",
+            "version": "v1.0.0",
+            "editor_schema": {
+                "hidden_question": false,
+                "attributes": {
+                    "shapes": {
+                        "type": "array",
+                        "name": "Shapes",
+                        "items": {
+                            "type": "object",
+                            "name": "Shape {{ index }}",
+                            "attributes": {
+                                "kind": {
+                                    "type": "string",
+                                    "name": "Kind",
+                                    "required": true,
+                                    "element": "select",
+                                    "options": [
+                                        {
+                                            "label": "Triangle",
+                                            "value": "triangle"
+                                        },
+                                        {
+                                            "label": "Square",
+                                            "value": "square"
+                                        },
+                                        {
+                                            "label": "Hexagon",
+                                            "value": "hexagon"
+                                        },
+                                        {
+                                            "label": "Octagon",
+                                            "value": "octagon"
+                                        },
+                                        {
+                                            "label": "Cirlce",
+                                            "value": "circle"
+                                        }
+                                    ],
+                                    "default": "triangle"
+                                },
+                                "size": {
+                                    "type": "string",
+                                    "name": "Size",
+                                    "required": true,
+                                    "element": "select",
+                                    "options": [
+                                        {
+                                            "label": "Small",
+                                            "value": "small"
+                                        },
+                                        {
+                                            "label": "Medium",
+                                            "value": "medium"
+                                        },
+                                        {
+                                            "label": "Large",
+                                            "value": "large"
+                                        },
+                                        {
+                                            "label": "Huge",
+                                            "value": "xlarge"
+                                        },
+                                        {
+                                            "label": "Extra Huge",
+                                            "value": "xxlarge"
+                                        }
+                                    ],
+                                    "default": "medium"
+                                },
+                                "color": {
+                                    "type": "string",
+                                    "name": "Color",
+                                    "required": true,
+                                    "element": "colorPicker",
+                                    "default": "#000000"
+                                }
+                            }
+                        }
+                    },
+                    "selected_shape_color": {
+                        "type": "string",
+                        "name": "Selected shape color",
+                        "required": true,
+                        "element": "colorPicker",
+                        "value": "#000000"
+                    },
+                    "display_shape_names": {
+                        "type": "boolean",
+                        "name": "Display shape names"
+                    },
+                    "validation": {
+                        "type": "object",
+                        "name": "Set Correct Answer(s)",
+                        "attributes": {
+                            "valid_response": {
+                                "type": "object",
+                                "name": "Correct",
+                                "attributes": {
+                                    "score": {
+                                        "type": "number",
+                                        "name": "Score"
+                                    },
+                                    "value": {
+                                        "type": "string",
+                                        "name": "Value",
+                                        "element": "question",
+                                        "white_list": [
+                                            "shapes",
+                                            "selected_shape_color",
+                                            "display_shape_names",
+                                            "validation"
+                                        ]
+                                    }
+                                }
+                            },
+                            "alt_responses": {
+                                "type": "array",
+                                "name": "Alt responses",
+                                "items": {
+                                    "type": "object",
+                                    "name": "Alternate {{ index }}",
+                                    "attributes": {
+                                        "score": {
+                                            "type": "number",
+                                            "name": "Score",
+                                            "required": true,
+                                            "default": 1
+                                        },
+                                        "value": {
+                                            "type": "string",
+                                            "name": "Value",
+                                            "element": "question",
+                                            "white_list": [
+                                                "shapes",
+                                                "selected_shape_color",
+                                                "display_shape_names",
+                                                "validation"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "instant_feedback": {
+                        "name": "Check answer button",
+                        "description": "Enables the Check Answer button underneath the question, which will provide the student with instant feedback on their response(s).",
+                        "type": "boolean",
+                        "required": false,
+                        "default": false
+                    }
+                }
+            }
+        }
+    ]
+}
