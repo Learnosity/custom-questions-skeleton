@@ -1,0 +1,64 @@
+/*********************************************************
+Write any CSS styling rules for your custom question HERE. 
+There is no need to create your own file called question.css 
+Based on the CSS you write here, the question.css file will be generated 
+automatically for you by webpack when you build the production version of your question by running yarn-prod. 
+************************************************************/
+
+.flex-row {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.octagon {
+    aspect-ratio: 1;
+    --o: calc(50%*tan(-22.5deg));
+    clip-path: polygon(var(--o) 50%,
+            50% var(--o),
+            calc(100% - var(--o)) 50%,
+            50% calc(100% - var(--o)));
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+/* HTML: <button class="triangle"></button> */
+.triangle {
+    aspect-ratio: 1/cos(30deg);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+/* HTML: <button class="hexagon"></button> */
+.hexagon {
+    aspect-ratio: 1/cos(30deg);
+    clip-path: polygon(50% -50%, 100% 50%, 50% 150%, 0 50%);
+}
+
+.circle {
+    clip-path: circle(50%);
+}
+
+.shape-wrapper {
+    padding: 0.25rem;
+    &:has(button.selected) {
+      outline: 3px solid;
+    }
+    &:has(button[disabled="true"]) {
+        cursor: not-allowed;
+        button {
+            cursor: not-allowed;
+        }
+    }
+}
