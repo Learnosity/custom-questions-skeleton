@@ -57,10 +57,10 @@ $request = '
                       "description": "Maximum number of characters that can be entered in the text entry area. Maximum 250 characters."
                     }
                   },
-                  "valid_response": {,
+                  "valid_response": {
                     "name": "Set correct answer(s)",
                     "description": "In this section, configure the correct answer(s) for the question.",
-                    "type": "object"
+                    "type": "object",
                     "attributes": {
                       "value": {
                         "name": "Correct Answer",
