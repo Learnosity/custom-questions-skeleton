@@ -10,7 +10,15 @@ $request = '{
         {
           "response_id": "' . $responseId . '",
           "type": "custom",
-          "stimulus": "Simple Input React Example: What is the capital of New South Wales",
+          "stimulus": "<p>Given an integer array <code>nums</code>, find the <strong>subarray</strong> with the largest sum, and return <em>its sum</em>.</p>",
+            "test_cases": [
+            {
+                "input": {
+                "nums": [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+                },
+                "output": 6
+            }
+            ],
           "max_length": 10,
           "valid_response": {
             "value": "Sydney",

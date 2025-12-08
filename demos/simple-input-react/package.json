@@ -29,6 +29,7 @@
     "unit-tests-watch": "jest --watch"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
     "classnames": "^2.3.1",
     "lodash": "^4.17.21",
     "react": "^18.1.0",
