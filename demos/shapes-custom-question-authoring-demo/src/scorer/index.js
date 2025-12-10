@@ -8,21 +8,18 @@ export default class Scorer {
     isValid() {
         const { question, response } = this;
 
-        let isValid = false;
-
-        const hasAltResponses = question.validation.alt_responses && Array.isArray(question.validation.alt_responses) && question.validation.alt_responses.length > 0;
-
-        if (!hasAltResponses) {
-            isValid = response === question.validation.valid_response.value;
-        } else {
-            if(response === question.validation.valid_response.value) {
-                isValid = true;
-            } else {
-               isValid =  question.validation.alt_responses.map(alt => alt.value).includes(response);
-            }
+        if (!question?.validation?.valid_response) {
+            return false;
         }
-
-        return isValid;
+        // Check primary valid response
+        if (response === question.validation.valid_response.value) {
+            return true;
+        }
+        // Check alternative responses
+        if (question.validation.alt_responses?.length > 0) {
+            return question.validation.alt_responses.some(alt => alt?.value === response);
+        }
+        return false;
     }
 
     validateIndividualResponses() {
@@ -32,19 +29,23 @@ export default class Scorer {
     score() {
         const { question, response } = this;
 
-        if(!this.isValid()) {
+        if (!this.isValid()) {
             return 0;
         } else {
-            const allValidResponses = [question.validation.valid_response].concat(question.validation.alt_responses);
-            return allValidResponses.find(correctResponse => correctResponse.value === response).score;
+            const validResponses = [
+                question?.validation?.valid_response || {},
+                ...(question?.validation?.alt_responses || [])
+            ];
+            const matchingResponse = validResponses.find(r => r?.value === response);
+            return matchingResponse?.score ?? 0;
         }
     }
 
     maxScore() {
-        return this.question.validation.valid_response.score || 0;
+        return this.question?.validation.valid_response?.score || 0;
     }
 
     canValidateResponse() {
-        return !!(this.question.validation.valid_response && this.question.validation.valid_response.value);
+        return !!this.question?.validation?.valid_response?.value;
     }
 }

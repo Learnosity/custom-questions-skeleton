@@ -25,7 +25,7 @@ $signedRequest = signAssessmentRequest($requestData);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Questions API - Skeleton</title>
+    <title>Questions API - Shapes Custom Question</title>
     <script src="//questions.learnosity.com"></script>
     <style>
         <?php echo(file_get_contents('../sharedStyle.css')); ?>
