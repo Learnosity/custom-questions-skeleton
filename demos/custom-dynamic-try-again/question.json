@@ -1,0 +1,36 @@
+{
+  "type": "custom",
+  "stimulus": "<p>Unit Conversion.</p><p><span id=\"cke_bm_1575S\" style=\"display: none;\">&nbsp;</span>Guidance video:&nbsp;<span class=\"learnosity-feature\" data-player_type=\"youtube\" data-simplefeature_id=\"6d917219-e02f-4188-b394-dc3c2039f724\" data-src=\"https://www.youtube.com/watch?v=OHSFhV3lX2c\" data-type=\"videoplayer\"></span></p><p>You will be given a value and two units. Convert the value from <b>{{var:fromUnit}}</b> to <b>{{var:toUnit}}</b>.</p><p>For example:&nbsp;\\(1km=1000m\\)</p>",
+  "fromValue": "{{var:value}}",
+  "fromUnit": "{{var:fromUnit}}",
+  "toUnit": "{{var:toUnit}}",
+  "js": {
+    "question": "/dist/question.js",
+    "scorer": "/dist/scorer.js"
+  },
+  "css": "/dist/question.css",
+  "instant_feedback": true,
+  "validation": {
+    "valid_response": {
+      "score": 1,
+      "value": "{{var:answer}}"
+    }
+  },
+  "dynamic": {
+    "cols": ["value", "fromUnit", "toUnit", "answer"],
+    "rows": [
+      { "id": "id_0", "values": ["100", "cm", "m", "1"] },
+      { "id": "id_1", "values": ["5", "km", "m", "5000"] },
+      { "id": "id_2", "values": ["0", "°C", "°F", "32"] },
+      { "id": "id_3", "values": ["3", "hours", "minutes", "180"] }
+    ]
+  },
+  "metadata": {
+    "dynamic_content": {
+      "try_again": {
+        "record_attempt_scores": true
+      }
+    }
+  },
+  "is_math": true
+}

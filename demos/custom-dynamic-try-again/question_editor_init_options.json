@@ -1,0 +1,124 @@
+{
+  "question_type_templates": {
+    "custom_dynamic_try_again": [
+      {
+        "name": "Custom Dynamic Try Again",
+        "description": "A custom question demonstrating dynamic content with try again functionality",
+        "group_reference": "other",
+        "defaults": {
+          "type": "custom",
+          "stimulus": "Unit Conversion. You will be given a value and two units. Convert the value from <b>{{var:fromUnit}}</b> to <b>{{var:toUnit}}</b>.",
+          "fromValue": "{{var:value}}",
+          "fromUnit": "{{var:fromUnit}}",
+          "toUnit": "{{var:toUnit}}",
+          "js": {
+            "question": "/dist/question.js",
+            "scorer": "/dist/scorer.js"
+          },
+          "css": "/dist/question.css",
+          "instant_feedback": true,
+          "validation": {
+            "valid_response": {
+              "score": 1,
+              "value": "{{var:answer}}"
+            }
+          },
+          "dynamic": {
+            "cols": ["value", "fromUnit", "toUnit", "answer"],
+            "rows": [
+              { "id": "id_0", "values": ["100", "cm", "m", "1"] },
+              { "id": "id_1", "values": ["5", "km", "m", "5000"] },
+              { "id": "id_2", "values": ["0", "°C", "°F", "32"] },
+              { "id": "id_3", "values": ["3", "hours", "minutes", "180"] }
+            ]
+          },
+          "metadata": {
+            "dynamic_content": {
+              "try_again": {
+                "record_attempt_scores": true
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "custom_question_types": [
+    {
+      "custom_type": "custom_dynamic_try_again",
+      "type": "custom",
+      "name": "Custom Dynamic Try Again",
+      "editor_layout": "/dist/authoring_custom_layout.html",
+      "js": {
+        "question": "/dist/question.js",
+        "scorer": "/dist/scorer.js"
+      },
+      "css": "/dist/question.css",
+      "version": "v1.0.0",
+      "editor_schema": {
+        "hidden_question": false,
+        "attributes": {
+          "stimulus": {
+            "name": "Stimulus",
+            "description": "The question stimulus",
+            "type": "string",
+            "required": true,
+            "default": "Unit Conversion. You will be given a value and two units. Convert the value from <b>{{var:fromUnit}}</b> to <b>{{var:toUnit}}</b>."
+          },
+          "fromValue": {
+            "name": "From Value",
+            "description": "The value to convert from",
+            "type": "string",
+            "required": false,
+            "default": "{{var:value}}",
+            "element": "editor"
+          },
+          "fromUnit": {
+            "name": "From Unit",
+            "description": "The unit to convert from",
+            "type": "string",
+            "required": false,
+            "element": "editor",
+            "default": "{{var:fromUnit}}"
+          },
+          "toUnit": {
+            "name": "To Unit",
+            "description": "The unit to convert to",
+            "type": "string",
+            "required": false,
+            "element": "editor",
+            "default": "{{var:toUnit}}"
+          },
+          "validation": {
+            "type": "object",
+            "name": "Set Correct Answer(s)",
+            "attributes": {
+              "valid_response": {
+                "type": "object",
+                "name": "Correct",
+                "attributes": {
+                  "score": {
+                    "type": "number",
+                    "name": "Score"
+                  },
+                  "value": {
+                    "type": "string",
+                    "name": "Value",
+                    "element": "editor"
+                  }
+                }
+              }
+            }
+          },
+          "instant_feedback": {
+            "name": "Check answer button",
+            "description": "Enables the Check Answer button underneath the question, which will provide the student with instant feedback on their response(s).",
+            "type": "boolean",
+            "required": false,
+            "default": true
+          }
+        }
+      }
+    }
+  ]
+}
