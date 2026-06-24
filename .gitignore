@@ -5,4 +5,5 @@
 *.sublime-workspace
 *.sublime-project
 .idea
+.turbo
 node_modules
