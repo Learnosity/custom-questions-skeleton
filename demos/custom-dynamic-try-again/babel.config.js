@@ -1,4 +1,4 @@
-// This file is for the Jest test suite only
+// ⚠️  ONLY FOR JEST TESTS - Webpack uses esbuild-loader, not Babel
 module.exports = {
     presets: ['@babel/preset-env']
 };
