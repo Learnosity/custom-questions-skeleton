@@ -9,62 +9,74 @@
 
 ## Table of Contents
 
-* [Overview: what's in the guideline?](#overview-what-does-it-contain)
-* [Available Demo Scripts](#available-demo-scripts)
-* [Test your Custom Question](#test-your-custom-question)
-* [Publish your custom question](#publish-your-custom-question)
-* [Development Recommendations](#development-recommendations)
-* [Next steps: additional documentation](#next-steps-additional-documentation)
-* [Contributing to this project](#contributing-to-this-project)
-* [License](#license)
+- [Overview: what's in the guideline?](#overview-what-does-it-contain)
+- [Available Demo Scripts](#available-demo-scripts)
+- [Build All Demos (for GitHub Pages)](#build-all-demos-for-github-pages)
+- [Test your Custom Question](#test-your-custom-question)
+- [Publish your custom question](#publish-your-custom-question)
+- [Development Recommendations](#development-recommendations)
+- [Next steps: additional documentation](#next-steps-additional-documentation)
+- [Contributing to this project](#contributing-to-this-project)
+- [License](#license)
 
 ## Overview: what's in the guideline?
+
 The Learnosity Custom Question/Feature Guideline provides the complete demos of some custom questions/features
 built by Learnosity engineers which you can use as a base of your custom question/feature project.
 
 The following demos have been included in this repository:
-* Box and whisker
-* Custom question skeleton
+
+- Box and whisker
+- Custom question skeleton
 
 Each demo has the following structure:
-* `package.json`: contains the information about your custom question/feature project.
-  This file also contains some handy `scripts` that you can execute to quickly develop your custom question/feature.
-* `webpack.config.js`: is used to transpile and bundle your custom question/feature code.
-* `assessment.php`: a local Assessment demo page to help you to develop your custom question/feature quickly.
-* `authoring.php`: a local Assessment demo page to help you to develop the Schemas and Authoring layout for your custom question/feature.
-* `authoring_custom_layout.html`: the Authoring HTML layout of your custom question/feature. 
-* `debugServerScorer.js`: a local Assessment server side demo page to help you to test the behavior of your custom question's scorer in the server side locally.
-* `src`: the source code folder
-  * `src/question.js`: the frontend entry point of your custom question/feature.
-    This file is responsible to generate the UI in the browser of you custom question/feature. 
-  * `src/scorer.js`: the server side entry point of your custom question/feature.
-    This file is responsible to score the stored response of your custom question/feature and should not contain any UI related or any DOM manipulation libraries.
-* `scss`: the SASS source code folder
 
-*Note*: Note: for any files hosted outside Learnosity, you may need to set CORS privileges for such files. See more information in this article: <a href="https://help.learnosity.com/hc/en-us/articles/360000757877" target="_new">Working with Firewalls & Domain Whitelisting</a>.
+- `package.json`: contains the information about your custom question/feature project.
+  This file also contains some handy `scripts` that you can execute to quickly develop your custom question/feature.
+- `webpack.config.js`: is used to transpile and bundle your custom question/feature code.
+- `assessment.php`: a local Assessment demo page to help you to develop your custom question/feature quickly.
+- `authoring.php`: a local Assessment demo page to help you to develop the Schemas and Authoring layout for your custom question/feature.
+- `authoring_custom_layout.html`: the Authoring HTML layout of your custom question/feature.
+- `debugServerScorer.js`: a local Assessment server side demo page to help you to test the behavior of your custom question's scorer in the server side locally.
+- `src`: the source code folder
+  - `src/question.js`: the frontend entry point of your custom question/feature.
+    This file is responsible to generate the UI in the browser of you custom question/feature.
+  - `src/scorer.js`: the server side entry point of your custom question/feature.
+    This file is responsible to score the stored response of your custom question/feature and should not contain any UI related or any DOM manipulation libraries.
+- `scss`: the SASS source code folder
+
+_Note_: Note: for any files hosted outside Learnosity, you may need to set CORS privileges for such files. See more information in this article: <a href="https://help.learnosity.com/hc/en-us/articles/360000757877" target="_new">Working with Firewalls & Domain Whitelisting</a>.
 
 ## Available Demo Scripts
+
 **1. Box and Whisker Question Demo**
-* Project Location: `demos/box-and-whisker`
+
+- Project Location: `demos/box-and-whisker`
 
 **2. Custom Question Skeleton Demo**
-* A clean custom question skeleton you can leverage to start working on your custom question 
-* Project Location: `demos/custom-question-skeleton`
+
+- A clean custom question skeleton you can leverage to start working on your custom question
+- Project Location: `demos/custom-question-skeleton`
 
 **3. Custom Feature Skeleton Demo**
-* A clean custom feature skeleton you can leverage to start working on your custom feature 
-* Project Location: `demos/custom-feature-skeleton`
+
+- A clean custom feature skeleton you can leverage to start working on your custom feature
+- Project Location: `demos/custom-feature-skeleton`
 
 **4. Simple Text Input Question Demo**
-* Project Location: `demos/simple-input-react`
+
+- Project Location: `demos/simple-input-react`
 
 **5. Piano Question Demo**
-* Project Location: `demos/piano`
+
+- Project Location: `demos/piano`
 
 **6. Clock Question Demo**
-* Project Location: `demos/clock`
+
+- Project Location: `demos/clock`
 
 **Scripts**
+
 ```
 # Start the localhost server to start developing your custom question
 yarn dev
@@ -82,18 +94,40 @@ yarn unit-tests
 yarn unit-tests-watch
 ```
 
+## Build All Demos (for GitHub Pages)
+
+To build all custom question demos at once for GitHub Pages deployment, use the build script from the root directory:
+
+```bash
+# Build all demos in production mode
+npm run build:all
+
+# Or use the script directly
+./build-all-demos.sh
+```
+
+The script will:
+
+- Iterate through each demo folder in `demos/`
+- Skip non-package directories (like `vendor/`)
+- Run `npm run prod` for each demo
+- Provide a summary of successful and failed builds
+
 ## Test your custom question
-Assessment demo using Questions API: 
+
+Assessment demo using Questions API:
 http://localhost:12345/assessment.php
 
-Authoring demo using Author API: 
+Authoring demo using Author API:
 http://localhost:12345/authoring.php
 
 ## Publish your custom question
-* Once your custom question is ready, run `yarn prod` to generate the production ready build then
-copy the content of the `dist` folder and your `authoring_custom_layout.html` to your server and
-make sure those files are accessible on the web.
-* To test your production build, in your `assessment.php` file, point the `js` and `css` files to the location of your files
+
+- Once your custom question is ready, run `yarn prod` to generate the production ready build then
+  copy the content of the `dist` folder and your `authoring_custom_layout.html` to your server and
+  make sure those files are accessible on the web.
+- To test your production build, in your `assessment.php` file, point the `js` and `css` files to the location of your files
+
 ```
 "js": {
   "question": "YOUR-SERVER-URL/question.js",
@@ -103,57 +137,61 @@ make sure those files are accessible on the web.
 ```
 
 ## Development Recommendations
+
 **1. Leverage predefined Learnosity components**
 
-Avoid building the following default components to keep the consistent look-and-feel with Learnosity UI 
-* **Check Answer button**
-  * Syntax: `lrnUtils.renderComponent('CheckAnswerButton', wrapperElement)`
-  * ```
+Avoid building the following default components to keep the consistent look-and-feel with Learnosity UI
+
+- **Check Answer button**
+  - Syntax: `lrnUtils.renderComponent('CheckAnswerButton', wrapperElement)`
+  - ```
     // Example:
     export default class MyCustomQuestion {
         constructor(init, lrnUtils) {
           const checkAnswerWrapperElement = document.createElement('DIV');
-    
+
           init.el.appendChild(checkAnswerWrapperElement);
-    
+
           this.checkAnswerButton = lrnUtils.renderComponent('CheckAnswerButton', checkAnswerWrapperElement);
           ...
         }
     ```
-  * Public methods:
-    * `remove()`: Remove the component
-      * ```
+
+  - Public methods:
+    - `remove()`: Remove the component
+      - ```
         this.checkAnswerButton = lrnUtils.renderComponent('CheckAnswerButton', checkAnswerWrapperElement);
         this.checkAnswerButton.remove();
         ```
 
-* **Suggested Answers list**
-* Syntax: `lrnUtils.renderComponent('SuggestedAnswersList', wrapperElement)`
-  * ```
+- **Suggested Answers list**
+- Syntax: `lrnUtils.renderComponent('SuggestedAnswersList', wrapperElement)`
+  - ```
     // Example:
     export default class MyCustomQuestion {
         constructor(init, lrnUtils) {
           const checkAnswerWrapperElement = document.createElement('DIV');
-    
+
           init.el.appendChild(suggestedListWrapperElement);
-    
+
           this.suggestedAnswersList = lrnUtils.renderComponent('SuggestedAnswersList', suggestedListWrapperElement);
           ...
         }
     ```
-  * Public methods:
-    * `remove()`: Remove the component
-      * ```
+
+  - Public methods:
+    - `remove()`: Remove the component
+      - ```
         this.suggestedAnswersList = lrnUtils.renderComponent('SuggestedAnswersList', suggestedListWrapperElement);
         this.checkAnswerButton.remove();
         ```
-    * `reset()`: Reset the components to its default state. All rendered answers will be removed.
-      * ```
+    - `reset()`: Reset the components to its default state. All rendered answers will be removed.
+      - ```
         this.suggestedAnswersList = lrnUtils.renderComponent('SuggestedAnswersList', suggestedListWrapperElement);
         this.checkAnswerButton.reset();
         ```
-    * `setAnswers(Array<{ index: number, label: string }>)`: Render the answers based on provided array
-      * ```
+    - `setAnswers(Array<{ index: number, label: string }>)`: Render the answers based on provided array
+      - ```
         this.suggestedAnswersList = lrnUtils.renderComponent('SuggestedAnswersList', suggestedListWrapperElement);
         this.suggestedAnswersList.setAnswers([
             { index: 0, label: 'A'},
@@ -166,11 +204,12 @@ Avoid building the following default components to keep the consistent look-and-
 
 You can leverage the predefined validation UI style of Learnosity API by wrapping your custom question/feature content
 under the DOM structure below
+
 ```
 <div class="lrn-bnw lrn-response-validation-wrapper">
     <div class="lrn_response_input">
         RENDER YOUR CUSTOM QUESTION/FEATURE ELEMENT IN HERE
-    </div>            
+    </div>
 </div>
 ```
 
@@ -182,17 +221,20 @@ to `lrn_response_input` will render the proper validation UI state to your custo
 When creating a Learnosity Custom Question, it’s important to prefix the CSS class names being used inside your custom Question UI. You should avoid using a generic class name like `.btn`. Instead, you should add a prefix to it like `.company-name-my-custom-question-btn` to avoid CSS conflict with the host page and the CSS used by the Learnosity API.
 
 ## Next steps: additional documentation
+
 You can find more detailed documentation in the [Learnosity Help site](https://help.learnosity.com/hc/en-us/sections/4412969135761-Creating-Custom-Questions-and-Features).
 If you are new to Learnosity Custom Questions we highly recommend starting [here](https://help.learnosity.com/hc/en-us/articles/4414363148561-Getting-Started-with-Custom-Questions-and-Features).
 
 ## Contributing to this project
 
 ### Adding new features or fixing bugs
+
 Contribution in the form of [PRs] are welcome.
 
 [(Back to top)](#table-of-contents)
 
 ## License
+
 This project is licensed under MIT License. [Read more](LICENSE.md).
 
 [(Back to top)](#table-of-contents)
