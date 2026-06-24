@@ -1,0 +1,29 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "prod": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "unit-tests": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"]
+    },
+    "unit-tests-watch": {
+      "cache": false,
+      "persistent": true
+    },
+    "debug-server-scorer": {
+      "cache": false
+    }
+  }
+}

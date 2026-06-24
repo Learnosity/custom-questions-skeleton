@@ -1,0 +1,30 @@
+{
+  "name": "custom-questions-skeleton",
+  "version": "1.0.0",
+  "description": "Custom Questions Skeleton - Build all demos for GitHub Pages",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "demos/*"
+  ],
+  "scripts": {
+    "dev": "yarn install; turbo run dev",
+    "prod": "yarn install; turbo run prod",
+    "test": "turbo run unit-tests",
+    "test:watch": "turbo run unit-tests-watch",
+    "clean": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "clean:turbo": "rm -rf .turbo && find demos -name 'dist' -type d -exec rm -rf '{}' +",
+    "vendor:update": "npx -y npm-check-updates --deep -u && yarn install --force && npx -y yarn-deduplicate yarn.lock && yarn install"
+  },
+  "devDependencies": {
+    "turbo": "^2.9.18"
+  },
+  "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": "^22.18.0 || >=24.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Learnosity/custom-questions-skeleton"
+  }
+}
