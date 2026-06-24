@@ -1,0 +1,85 @@
+&__card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 40px 32px;
+    background: $card-bg;
+    border: 2px solid $border;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+&__from,
+&__to {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+&__from-value {
+    font-size: 3rem;
+    font-weight: 700;
+    color: $primary;
+    line-height: 1;
+    min-width: 100px;
+    text-align: center;
+}
+
+&__from-unit,
+&__to-unit {
+    font-size: 0.85rem;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+&__arrow {
+    font-size: 2rem;
+    color: $text-muted;
+    line-height: 1;
+    margin-bottom: 22px;
+}
+
+&__input {
+    font-size: 3rem;
+    font-weight: 700;
+    color: $text-dark;
+    text-align: center;
+    width: 160px;
+    border: 2px solid $input-border;
+    border-radius: 8px;
+    padding: 8px 12px;
+    outline: none;
+    background: #fff;
+    transition: border-color 0.15s, box-shadow 0.15s;
+
+    &:focus {
+        border-color: $primary;
+        box-shadow: 0 0 0 3px rgba($primary, 0.15);
+    }
+
+    // Hide number input spinners
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    -moz-appearance: textfield;
+}
+
+// Validation states applied to .lrn_response_input wrapper
+.lrn_response_input {
+    &.lrn-unit-converter--correct .lrn-unit-converter__input {
+        border-color: $correct-color;
+        background: lighten($correct-color, 52%);
+    }
+
+    &.lrn-unit-converter--incorrect .lrn-unit-converter__input {
+        border-color: $incorrect-color;
+        background: lighten($incorrect-color, 42%);
+    }
+}
