@@ -121,6 +121,10 @@ export default class UnitConverterQuestion {
 
         facade.on('dynamicContent:changed', ({ question, response }) => {
             this.renderCard(question, response);
+
+            if (this.init.state === 'review') {
+                this.renderValidationUI();
+            }
         });
     }
 
@@ -165,25 +169,34 @@ export default class UnitConverterQuestion {
 
         // 'validate' fires when Check Answer is clicked or facade.validate() is called.
         events.on('validate', options => {
-            const isValid = facade.isValid();
-            const responseInputEl = el.querySelector('.lrn_response_input');
-
-            responseInputEl.classList.remove(`${PREFIX}--correct`, `${PREFIX}--incorrect`);
-            responseInputEl.classList.add(isValid ? `${PREFIX}--correct` : `${PREFIX}--incorrect`);
-
-            if (!isValid && options.showCorrectAnswers && this.suggestedAnswersList) {
-                const validValue =
-                    this.currentQuestion.validation &&
-                    this.currentQuestion.validation.valid_response &&
-                    this.currentQuestion.validation.valid_response.value;
-
-                if (validValue !== undefined) {
-                    this.suggestedAnswersList.setAnswers(
-                        `${validValue} ${this.currentQuestion.toUnit}`
-                    );
-                }
-            }
+            // cache the showCorrectAnswers value for use in renderValidationUI()
+            this._showCorrectAnswers = options.showCorrectAnswers;
+            this.renderValidationUI();
         });
+    }
+
+    renderValidationUI() {
+        const { el, events, init } = this;
+        const facade = init.getFacade();
+        const isValid = facade.isValid();
+        const responseInputEl = el.querySelector('.lrn_response_input');
+        const shouldShowCorrectAnswers = this._showCorrectAnswers;
+
+        responseInputEl.classList.remove(`${PREFIX}--correct`, `${PREFIX}--incorrect`);
+        responseInputEl.classList.add(isValid ? `${PREFIX}--correct` : `${PREFIX}--incorrect`);
+
+        if (!isValid && shouldShowCorrectAnswers && this.suggestedAnswersList) {
+            const validValue =
+                this.currentQuestion.validation &&
+                this.currentQuestion.validation.valid_response &&
+                this.currentQuestion.validation.valid_response.value;
+
+            if (validValue !== undefined) {
+                this.suggestedAnswersList.setAnswers(
+                    `${validValue} ${this.currentQuestion.toUnit}`
+                );
+            }
+        }
     }
 
     clearValidationUI() {

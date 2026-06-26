@@ -23,7 +23,7 @@ $signedRequest = signAssessmentRequest($requestData);
 <head>
     <meta charset="UTF-8">
     <title>Custom Question — Dynamic Content Try Again</title>
-    <script src="//questions.learnosity.com"></script>
+    <script src="//questions.dev.learnosity.com"></script>
     <style>
         <?php echo(file_get_contents('../sharedStyle.css')); ?>
 
