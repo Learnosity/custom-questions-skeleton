@@ -2,6 +2,13 @@ export default class Scorer {
     constructor(question, response) {
         this.question = question;
         this.response = response;
+
+        // The correct answer and its score live inside the question's `validation` object:
+        //   question.validation.valid_response.value  -> the correct answer (any data type)
+        //   question.validation.valid_response.score  -> points awarded for a correct answer
+        this.validResponse = question
+            && question.validation
+            && question.validation.valid_response;
     }
 
     /**
@@ -11,6 +18,7 @@ export default class Scorer {
      */
     isValid() {
         // TODO: Requires implementation
+        // Compare this.response against this.validResponse.value
 
         return false;
     }
@@ -42,8 +50,8 @@ export default class Scorer {
      * @returns {number}
      */
     maxScore() {
-        // TODO: Requires implementation
-        return 0;
+        // The score is stored alongside the correct answer inside the validation object.
+        return (this.validResponse && this.validResponse.score) || 0;
     }
 
     /**
@@ -54,6 +62,7 @@ export default class Scorer {
      * @returns {boolean}
      */
     canValidateResponse() {
-        return true;
+        // Scorable only when a valid response value has been configured in the validation object.
+        return !!(this.validResponse && this.validResponse.value !== undefined);
     }
 }

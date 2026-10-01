@@ -286,7 +286,8 @@ export default class Question {
                 
             //     // EXAMPLE Implementation for a correct answer that is a string:
                 
-            //     // this.suggestedAnswersList.setAnswers(this.question.valid_response);
+            //     // The correct answer lives inside the validation object at validation.valid_response.value
+            //     // this.suggestedAnswersList.setAnswers(this.question.validation.valid_response.value);
             // }
 
         });
