@@ -18,6 +18,13 @@ const questionResponseJson = {
         css: '/dist/question.css',
         instant_feedback: true
         // TODO - requires implementation - add the rest of your question json
+        // The correct answer and its score live inside the validation object.
+        // validation: {
+        //     valid_response: {
+        //         score: 1,
+        //         value: 'the correct answer'
+        //     }
+        // }
     },
     response: {
         // TODO - Requires implementation - the shape of your question response
