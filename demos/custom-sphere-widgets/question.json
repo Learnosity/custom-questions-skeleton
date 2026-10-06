@@ -1,0 +1,16 @@
+{
+  "type": "custom",
+  "valid_response": "",
+  "js": {
+        "question": "/dist/question.js",
+        "scorer": "/dist/scorer.js"
+  },
+  "css": "/dist/question.css",
+  "customerId": "45d18eb8",
+  "widgetHash": "0VAfRT0VhG",
+  "theme": "light",
+  "instant_feedback": true,
+  "validation": {
+    "maxScore": 1
+  }
+}

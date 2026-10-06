@@ -1,0 +1,44 @@
+// question.scss — uses the shared $prefix from variables.scss so JS (constants.js)
+// and CSS class names can never drift apart.
+// Requires: @import 'variables'; (or however the skeleton's scss entry pulls it in)
+
+.#{$prefix}status {
+  padding: 8px 12px;
+  background: #f5f6f8;
+  border-bottom: 1px solid #d7dbe0;
+  font-size: 0.85rem;
+  color: #4a5568;
+}
+
+.#{$prefix}widget-host {
+  min-height: 480px; // the Sphere Engine widget renders inside an iframe it manages
+  border: 1px solid #d7dbe0;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  overflow: hidden;
+}
+
+.#{$prefix}review-source {
+  margin: 0;
+  padding: 12px;
+  background: #f8f9fa;
+  font-family: monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.#{$prefix}review-meta {
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  color: #4a5568;
+  border-top: 1px solid #e2e5e9;
+}
+
+// Learnosity validation states applied to .lrn_response_input by showValidationUI()/resetValidationUI()
+.lrn_response_input.lrn_correct .#{$prefix}status {
+  border-color: #2f855a;
+}
+
+.lrn_response_input.lrn_incorrect .#{$prefix}status {
+  border-color: #c53030;
+}

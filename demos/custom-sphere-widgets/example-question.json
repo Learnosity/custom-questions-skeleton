@@ -1,0 +1,18 @@
+{
+  "type": "custom",
+  "response_id": "sphere-hello-world-1",
+  "valid_response": "",
+  "js": {
+    "question": "http://localhost:12345/question.js",
+    "scorer": "http://localhost:12345/scorer.js"
+  },
+  "css": "http://localhost:12345/question.css",
+  "question": {
+    "customerId": "45d18eb8",
+    "widgetHash": "REPLACE_WITH_YOUR_WIDGET_UNIQUE_HASH",
+    "theme": "light"
+  },
+  "validation": {
+    "maxScore": 1
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "question_type_templates": {
+    "sphere_coding_question": [
+      {
+        "name": "Sphere Coding Question",
+        "description": "A coding problem judged by Sphere Engine.",
+        "group_reference": "other",
+        "image": "https://dyvl36kg0ghes.cloudfront.net/static/img/logo/logo.467ef7497e53.svg",
+        "defaults": {
+          "type": "custom",
+          "custom_type": "sphere_coding_question",
+          "stimulus": "Solve the following coding problem.",
+          "js": {
+            "question": "/dist/question.js",
+            "scorer": "/dist/scorer.js"
+          },
+          "css": "/dist/question.css",
+          "valid_response": "",
+          "instant_feedback": true,
+          "customerId": "45d18eb8"
+        }
+      }
+    ]
+  },
+  "custom_question_types": [
+    {
+      "custom_type": "sphere_coding_question",
+      "type": "custom",
+      "name": "Sphere Coding Question",
+      "editor_layout": "/dist/authoring_custom_layout.html",
+      "js": {
+        "question": "/dist/question.js",
+        "scorer": "/dist/scorer.js"
+      },
+      "css": "/dist/question.css",
+      "version": "v1.0.0",
+      "editor_schema": {
+        "hidden_question": false,
+        "attributes": {
+          "stimulus": {
+            "name": "Instructions",
+            "description": "Shown to the learner above the code editor.",
+            "type": "string",
+            "element": "editor",
+            "required": false,
+            "default": "Solve the following coding problem."
+          },
+          "widgetHash": {
+            "name": "Sphere Engine Problem ID (Widget Hash)",
+            "description": "From the Sphere Engine client panel: Problems > Widgets > [your widget] > Widget settings > Unique hash.",
+            "type": "string",
+            "required": true
+          },
+          "theme": {
+            "name": "Editor theme",
+            "description": "Visual theme of the Sphere Engine code editor.",
+            "type": "string",
+            "element": "select",
+            "options": [
+              { "label": "Light", "value": "light" },
+              { "label": "Dark", "value": "dark" }
+            ],
+            "default": "light",
+            "required": false
+          },
+          "validation": {
+            "name": "Scoring",
+            "type": "object",
+            "attributes": {
+              "maxScore": {
+                "name": "Max score",
+                "description": "Score awarded for a fully accepted submission.",
+                "type": "number",
+                "default": 1,
+                "min": 0,
+                "required": true
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
