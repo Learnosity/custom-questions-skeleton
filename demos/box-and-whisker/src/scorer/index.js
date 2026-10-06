@@ -4,7 +4,10 @@ export default class BoxAndWhiskerScorer {
     constructor(question, response) {
         this.question = question;
         this.response = response;
-        this.validResponse = get(question, 'valid_response');
+        // The correct answer and its score live inside the question's `validation` object:
+        //   validation.valid_response.value -> the correct answer { min, max, quartile_1, median, quartile_3 }
+        //   validation.valid_response.score -> points awarded for a correct answer
+        this.validResponse = get(question, 'validation.valid_response');
     }
 
     isValid() {
@@ -33,7 +36,7 @@ export default class BoxAndWhiskerScorer {
     }
 
     maxScore() {
-        return this.question.score || 0;
+        return (this.validResponse && this.validResponse.score) || 0;
     }
 
     canValidateResponse() {

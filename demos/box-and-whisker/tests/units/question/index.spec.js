@@ -20,14 +20,16 @@ const dataProvider = {
         quartile_1: 4,
         median: 6,
         quartile_3: 10,
-        score: 1,
-        valid_response: {
-            value: {
-                min: 4,
-                max: 8,
-                quartile_1: 5,
-                median: 6,
-                quartile_3: 7
+        validation: {
+            valid_response: {
+                score: 1,
+                value: {
+                    min: 4,
+                    max: 8,
+                    quartile_1: 5,
+                    median: 6,
+                    quartile_3: 7
+                }
             }
         },
         instant_feedback: true
