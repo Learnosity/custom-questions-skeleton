@@ -32,13 +32,11 @@ const dataProvider = {
         instant_feedback: true
     },
     response: {
-        value: {
-            min: 4,
-            max: 8,
-            quartile_1: 5,
-            median: 6,
-            quartile_3: 7
-        }
+        min: 4,
+        max: 8,
+        quartile_1: 5,
+        median: 6,
+        quartile_3: 7
     }
 };
 let scorer;
@@ -64,9 +62,7 @@ describe('BoxAndWhiskerScorer', () => {
                         }
                     }
                 },
-                response: {
-                    value: mockValidResponseValue
-                }
+                response: mockValidResponseValue
             });
 
             expect(scorer.isValid()).toEqual(true);
@@ -85,7 +81,8 @@ describe('BoxAndWhiskerScorer', () => {
                     }
                 },
                 response: {
-                    value: null
+                    min: 99,
+                    max: 99
                 }
             });
 

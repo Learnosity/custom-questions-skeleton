@@ -15,13 +15,13 @@ export default class BoxAndWhiskerScorer {
 
         return response
             && validResponse
-            && isEqual(response.value, validResponse.value);
+            && isEqual(response, validResponse.value);
     }
 
     validateIndividualResponses() {
         const { response, validResponse } = this;
         const validResponseValue = validResponse.value || {};
-        const responseValue = (response && response.value) || {};
+        const responseValue = response || {};
         const partial = {};
 
         ['min', 'max', 'quartile_1', 'median', 'quartile_3'].forEach((key) => {

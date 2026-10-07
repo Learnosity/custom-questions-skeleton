@@ -40,14 +40,11 @@ const questionResponseJson = {
         instant_feedback: true
     },
     response: {
-        type: 'object',
-        value: {
-            min: 4,
-            max: 8,
-            quartile_1: 5,
-            median: 6,
-            quartile_3: 7
-        }
+        min: 4,
+        max: 8,
+        quartile_1: 5,
+        median: 6,
+        quartile_3: 7
     }
 };
 
