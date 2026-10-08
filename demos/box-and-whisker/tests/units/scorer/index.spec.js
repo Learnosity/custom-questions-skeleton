@@ -17,26 +17,26 @@ const dataProvider = {
         quartile_1: 4,
         median: 6,
         quartile_3: 10,
-        score: 1,
-        valid_response: {
-            value: {
-                min: 4,
-                max: 8,
-                quartile_1: 5,
-                median: 6,
-                quartile_3: 7
+        validation: {
+            valid_response: {
+                score: 1,
+                value: {
+                    min: 4,
+                    max: 8,
+                    quartile_1: 5,
+                    median: 6,
+                    quartile_3: 7
+                }
             }
         },
         instant_feedback: true
     },
     response: {
-        value: {
-            min: 4,
-            max: 8,
-            quartile_1: 5,
-            median: 6,
-            quartile_3: 7
-        }
+        min: 4,
+        max: 8,
+        quartile_1: 5,
+        median: 6,
+        quartile_3: 7
     }
 };
 let scorer;
@@ -45,7 +45,7 @@ describe('BoxAndWhiskerScorer', () => {
     afterEach(teardown);
 
     describe('has isValid method', () => {
-        it('should return true if provided response.value is the same as provided question.valid_response.value', () => {
+        it('should return true if provided response.value is the same as provided question.validation.valid_response.value', () => {
             const mockValidResponseValue = {
                 min: 4,
                 max: 8,
@@ -56,30 +56,33 @@ describe('BoxAndWhiskerScorer', () => {
 
             setup({
                 question: {
-                    valid_response: {
-                        value: mockValidResponseValue
+                    validation: {
+                        valid_response: {
+                            value: mockValidResponseValue
+                        }
                     }
                 },
-                response: {
-                    value: mockValidResponseValue
-                }
+                response: mockValidResponseValue
             });
 
             expect(scorer.isValid()).toEqual(true);
         });
 
-        it('should return false if provided response.value is different than the provided question.valid_response.value', () => {
+        it('should return false if provided response.value is different than the provided question.validation.valid_response.value', () => {
             setup({
                 question: {
-                    valid_response: {
-                        value: {
-                            min: 4,
-                            max: 8
+                    validation: {
+                        valid_response: {
+                            value: {
+                                min: 4,
+                                max: 8
+                            }
                         }
                     }
                 },
                 response: {
-                    value: null
+                    min: 99,
+                    max: 99
                 }
             });
 

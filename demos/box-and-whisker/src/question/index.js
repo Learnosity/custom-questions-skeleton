@@ -108,7 +108,7 @@ export default class BoxAndWhiskerQuestion {
             } else {
                 responseInputElement.classList.add(CLASS_NAMES.INCORRECT);
 
-                const validationValue = get(init.question, 'valid_response.value') || {};
+                const validationValue = get(init.question, 'validation.valid_response.value') || {};
 
                 if (options.showCorrectAnswers && suggestedAnswersList) {
                     suggestedAnswersList.reset();

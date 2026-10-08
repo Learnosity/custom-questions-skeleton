@@ -343,12 +343,7 @@ export default class BoxAndWhisker {
             medianHandler
         } = components.handlers;
 
-        this.response = this.response || {
-            type: 'object',
-            value: {}
-        };
-
-        this.response.value = {
+        this.response = {
             min: this.roundToNearestStep(pxToUnit(getHandlerX(minHandler))),
             max: this.roundToNearestStep(pxToUnit(getHandlerX(maxHandler))),
             quartile_1: this.roundToNearestStep(pxToUnit(getHandlerX(q1Handler))),
@@ -368,7 +363,7 @@ export default class BoxAndWhisker {
 
     get(key) {
         const { question, response } = this;
-        const responseValue = (response && response.value) || {};
+        const responseValue = response || {};
 
         return responseValue[key] || question[key];
     }
