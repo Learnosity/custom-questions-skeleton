@@ -12,10 +12,14 @@ const dataProvider = {
         },
         css: "/dist/question.css",
         instant_feedback: true,
-        score: 1,
-        valid_response: {
-            hourHandAngle: 45,
-            minHandAngle: 90,
+        validation: {
+            valid_response: {
+                score: 1,
+                value: {
+                    hourHandAngle: 45,
+                    minHandAngle: 90,
+                },
+            },
         },
     },
 };
@@ -25,21 +29,25 @@ describe("ClockScorer", () => {
     afterEach(teardown);
 
     describe("has isValid method", () => {
-        it("should return true provided that response object is the same as provided question.valid_response object", () => {
+        it("should return true provided that response object is the same as provided question.validation.valid_response.value object", () => {
             const mockValidResponseValue = {
                 hourHandAngle: 45,
                 minHandAngle: 90,
             };
             setup({
                 question: {
-                    valid_response: mockValidResponseValue
+                    validation: {
+                        valid_response: {
+                            value: mockValidResponseValue
+                        }
+                    }
                 },
                 response: mockValidResponseValue
            });
 
             expect(scorer.isValid()).toEqual(true);
         });
-        it('should return false if provided response object is different than the provided question.valid_response object by plus or minus the TOLERANCE of 7 degrees', () => {
+        it('should return false if provided response object is different than the provided question.validation.valid_response.value object by plus or minus the TOLERANCE of 7 degrees', () => {
             const mockValidResponseValue = {
                 hourHandAngle: 45,
                 minHandAngle: 90,
@@ -50,7 +58,11 @@ describe("ClockScorer", () => {
             };
             setup({
                 question: {
-                    valid_response: mockValidResponseValue
+                    validation: {
+                        valid_response: {
+                            value: mockValidResponseValue
+                        }
+                    }
                 },
                 response: mockIncorrectResponseValue
            });
