@@ -12,9 +12,11 @@ $request = '{
           "type": "custom",
           "stimulus": "Simple Input React Example: What is the capital of New South Wales",
           "max_length": 10,
-          "valid_response": {
-            "value": "Sydney",
-            "score": 3
+          "validation": {
+            "valid_response": {
+              "value": "Sydney",
+              "score": 3
+            }
            },
           "js": {
             "question": "/dist/question.js",

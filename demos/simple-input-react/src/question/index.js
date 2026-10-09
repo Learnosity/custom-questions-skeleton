@@ -145,7 +145,7 @@ export default class Question {
             });
 
             if (showCorrectAnswers) {
-                const correctAnswer = get(init.question, 'valid_response.value');
+                const correctAnswer = get(init.question, 'validation.valid_response.value');
                 this.lrnComponents.suggestedAnswersList.setAnswers(correctAnswer);
             }
         });
