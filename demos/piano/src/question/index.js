@@ -193,7 +193,7 @@ export default class PianoQuestion {
             ]);
 
             if (!result && options.showCorrectAnswers && suggestedAnswersList) {
-                const validResponse = facade.getQuestion().valid_response;
+                const validResponse = facade.getQuestion().validation.valid_response.value;
                 let validResponseNoteCorrdinates =
                     updateNoteCoordinatesArrayFromResponseObject(
                         validResponse,

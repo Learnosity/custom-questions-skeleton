@@ -18,20 +18,24 @@
                     "scorer": "/dist/scorer.js"
                 },
                 "css": "/dist/question.css",
-                "valid_response": {
-                    "notes": [
-                        "C",
-                        "E",
-                        "G"
-                    ],
-                    "indecies": [
-                        0,
-                        4,
-                        7
-                    ]
+                "validation": {
+                    "valid_response": {
+                        "score": 1,
+                        "value": {
+                            "notes": [
+                                "C",
+                                "E",
+                                "G"
+                            ],
+                            "indecies": [
+                                0,
+                                4,
+                                7
+                            ]
+                        }
+                    }
                 },
-                "instant_feedback": true,
-                "score": 1
+                "instant_feedback": true
             }
         }
     },
@@ -57,21 +61,33 @@
                         "required": false,
                         "default": false
                     },
-                    "valid_response": {
-                        "type": "question",
+                    "validation": {
                         "name": "Set correct answer(s)",
                         "description": "Correct answer for the question",
-                        "white_list": [
-                            "valid_response",
-                            "value"
-                        ]
-                    },
-                    "score": {
-                        "type": "number",
-                        "name": "Score",
-                        "description": "Score for a correct answer.",
-                        "required": true,
-                        "default": 1
+                        "type": "object",
+                        "attributes": {
+                            "valid_response": {
+                                "name": "Correct",
+                                "type": "object",
+                                "attributes": {
+                                    "score": {
+                                        "name": "Score",
+                                        "description": "Score for a correct answer.",
+                                        "type": "number",
+                                        "required": true,
+                                        "default": 1
+                                    },
+                                    "value": {
+                                        "name": "Value",
+                                        "type": "object",
+                                        "element": "question",
+                                        "white_list": [
+                                            "validation"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

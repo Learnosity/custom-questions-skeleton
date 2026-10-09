@@ -2,6 +2,12 @@ export default class PianoScorer {
     constructor(question, response) {
         this.question = question;
         this.response = response;
+        // The correct answer and its score live inside the question's `validation` object:
+        //   validation.valid_response.value -> the correct answer { notes, indecies }
+        //   validation.valid_response.score -> points awarded for a correct answer
+        this.validResponse = question
+            && question.validation
+            && question.validation.valid_response;
     }
 
     /**
@@ -13,7 +19,7 @@ export default class PianoScorer {
         // TODO: Requires implementation
         if (this.response) {
             const response = this.response;
-            const correct = this.question.valid_response.notes;
+            const correct = this.validResponse.value.notes;
 
             if (
                 Array.isArray(response.notes) &&
@@ -57,7 +63,7 @@ export default class PianoScorer {
      * @returns {number}
      */
     maxScore() {
-        return this.question.score || 0;
+        return (this.validResponse && this.validResponse.score) || 0;
     }
 
     /**
