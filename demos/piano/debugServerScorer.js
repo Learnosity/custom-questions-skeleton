@@ -18,14 +18,19 @@ const questionResponseJson = {
         },
         css: "/dist/question.css",
         instant_feedback: true,
-        // TODO - requires implementation - add the rest of your question json
-        valid_response: {
-            value: ["C", "E", "G"],
+        // The correct answer and its score live inside the validation object.
+        validation: {
+            valid_response: {
+                score: 1,
+                value: {
+                    notes: ["C", "E", "G"],
+                },
+            },
         },
     },
     response: {
-        // TODO - Requires implementation - the shape of your question response
-        value: ["C", "E", "G"],
+        // The scorer only compares notes.
+        notes: ["C", "E", "G"],
     },
 };
 

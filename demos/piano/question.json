@@ -7,17 +7,21 @@
     },
     "css": "/dist/question.css",
     "instant_feedback": true,
-    "valid_response": {
-        "notes": [
-            "C",
-            "E",
-            "G"
-        ],
-        "indecies": [
-            0,
-            4,
-            7
-        ]
-    },
-    "score": 1
+    "validation": {
+        "valid_response": {
+            "score": 1,
+            "value": {
+                "notes": [
+                    "C",
+                    "E",
+                    "G"
+                ],
+                "indecies": [
+                    0,
+                    4,
+                    7
+                ]
+            }
+        }
+    }
 }

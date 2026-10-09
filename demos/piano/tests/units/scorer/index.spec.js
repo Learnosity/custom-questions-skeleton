@@ -12,11 +12,15 @@ const dataProvider = {
         },
         css: "/dist/question.css",
         instant_feedback: true,
-        valid_response: {
-            notes: ["C", "E", "G"],
-            indecies: [0, 4, 7],
+        validation: {
+            valid_response: {
+                score: 1,
+                value: {
+                    notes: ["C", "E", "G"],
+                    indecies: [0, 4, 7],
+                },
+            },
         },
-        max_score: 1,
     },
 };
 let scorer;
