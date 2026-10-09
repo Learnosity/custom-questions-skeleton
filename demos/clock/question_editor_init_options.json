@@ -19,11 +19,15 @@
               "scorer": "/dist/scorer.js"
             },
             "css": "/dist/question.css",
-            "score" : 1,
-          "valid_response" : {
-            "hourHandAngle": 45, 
-            "minHandAngle": 90
-          },
+            "validation": {
+              "valid_response": {
+                "score": 1,
+                "value": {
+                  "hourHandAngle": 45,
+                  "minHandAngle": 90
+                }
+              }
+            },
           "instant_feedback": true
           }
         }
@@ -51,18 +55,31 @@
                 "required": false,
                 "default": false
               },
-              "valid_response": {
+              "validation": {
                 "name": "Set correct answer(s)",
                 "description": "In this section, configure the correct answer(s) for the question.",
-                "type": "question",
-                "white_list": ["minHandAngle", "hourHandAngle", "value"]
-              },
-              "score" : {
-                "type" : "number",
-                "name": "Score",
-                "description": "Score for a correct answer.",
-                "required": true,
-                "default": 1
+                "type": "object",
+                "attributes": {
+                  "valid_response": {
+                    "name": "Correct",
+                    "type": "object",
+                    "attributes": {
+                      "score": {
+                        "name": "Score",
+                        "description": "Score for a correct answer.",
+                        "type": "number",
+                        "required": true,
+                        "default": 1
+                      },
+                      "value": {
+                        "name": "Value",
+                        "type": "object",
+                        "element": "question",
+                        "white_list": ["validation"]
+                      }
+                    }
+                  }
+                }
               }
           }
         }

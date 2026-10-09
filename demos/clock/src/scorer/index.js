@@ -3,6 +3,12 @@ export default class ClockScorer {
     constructor(question, response) {
         this.question = question;
         this.response = response;
+        // The correct answer and its score live inside the question's `validation` object:
+        //   validation.valid_response.value -> the correct answer { hourHandAngle, minHandAngle }
+        //   validation.valid_response.score -> points awarded for a correct answer
+        this.validResponse = question
+            && question.validation
+            && question.validation.valid_response;
     }
 
     /**
@@ -12,14 +18,12 @@ export default class ClockScorer {
      */
     isValid() {
         if (this.response) {
-            const { response, question } = this;
-            const { valid_response } = question;
+            const { response, validResponse } = this;
+            const validResponseValue = (validResponse && validResponse.value) || {};
             const { hourHandAngle, minHandAngle } = response;
-            // console.log("question.VALID_RESPONSE AT SCORER", valid_response);
-            // console.log("RESPONSE AT SCORER", response);
 
-            const correctHour = valid_response.hourHandAngle;
-            const correctMin = valid_response.minHandAngle;
+            const correctHour = validResponseValue.hourHandAngle;
+            const correctMin = validResponseValue.minHandAngle;
             // the acceptable range for the hand angles will be plus or minus 5 degrees, inclusive.
             // can adjust in constants.js later
             // might make the hour hand range a bit wider
@@ -87,8 +91,7 @@ export default class ClockScorer {
      * @returns {number}
      */
     maxScore() {
-        // TODO: Requires implementation
-        return this.question.score || 0;
+        return (this.validResponse && this.validResponse.score) || 0;
     }
 
     /**
