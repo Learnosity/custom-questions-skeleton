@@ -49,6 +49,9 @@ export default class Question {
             };
 
             const reactDomContainer = el.querySelector('.lrn_response_input');
+            // Cache the response-input wrapper so validation state can be reflected on it with
+            // Learnosity's standard lrn_correct / lrn_incorrect classes.
+            this.responseInputEl = reactDomContainer;
 
             this.reactRoot = ReactDOM.createRoot(reactDomContainer);
             this.renderComponent();
@@ -88,6 +91,10 @@ export default class Question {
 
     resetValidationUIState = () => {
         this.lrnComponents.suggestedAnswersList.reset();
+        // Clear Learnosity's validation styling from the response-input wrapper.
+        if (this.responseInputEl) {
+            this.responseInputEl.classList.remove('lrn_correct', 'lrn_incorrect');
+        }
         this.renderComponent({
             validationUIState: ''
         });
@@ -139,6 +146,13 @@ export default class Question {
         events.on('validate', options => {
             const { showCorrectAnswers } = options || {};
             const isValid = facade.isValid(); // true is correct, false incorrect
+
+            // Apply Learnosity's standard validation styling to the response-input wrapper,
+            // matching the other custom-question demos.
+            if (this.responseInputEl) {
+                this.responseInputEl.classList.remove('lrn_correct', 'lrn_incorrect');
+                this.responseInputEl.classList.add(isValid ? 'lrn_correct' : 'lrn_incorrect');
+            }
 
             this.renderComponent({
                 validationUIState: isValid ? 'correct' : 'incorrect'
