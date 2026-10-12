@@ -19,7 +19,7 @@ export default class PianoScorer {
         // TODO: Requires implementation
         if (this.response) {
             const response = this.response;
-            const correct = this.validResponse.value.notes;
+            const correct = this.validResponse?.value?.notes;
 
             if (
                 Array.isArray(response.notes) &&
