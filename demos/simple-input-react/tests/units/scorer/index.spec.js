@@ -25,7 +25,7 @@ describe('CustomQuestionScorer', () => {
     afterEach(teardown);
 
     describe('has isValid method', () => {
-        it('should return false when there is no response', () => {
+        it("should return false when there is no response", () => {
             setup();
 
             expect(scorer.isValid()).toEqual(false);
