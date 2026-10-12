@@ -47,7 +47,7 @@ describe("ClockScorer", () => {
 
             expect(scorer.isValid()).toEqual(true);
         });
-        it('should return false if provided response object is different than the provided question.validation.valid_response.value object by plus or minus the TOLERANCE of 7 degrees', () => {
+        it("should return false if provided response object is different than the provided question.validation.valid_response.value object by plus or minus the TOLERANCE of 7 degrees", () => {
             const mockValidResponseValue = {
                 hourHandAngle: 45,
                 minHandAngle: 90,
