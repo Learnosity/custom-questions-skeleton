@@ -78,9 +78,7 @@ function setup(options = {}) {
         ...dataProvider.question,
         ...options.question
     };
-    const responseValue = 'responseValue' in options
-        ? options.responseValue
-        : dataProvider.responseValue;
+    const responseValue = options.responseValue ?? dataProvider.responseValue;
 
     scorer = new CustomQuestionScorer(question, responseValue);
 
