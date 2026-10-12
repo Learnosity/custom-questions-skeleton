@@ -22,9 +22,11 @@ $request = '
                   },
                   "css": "/dist/question.css",
                   "max_length": 25,
-                  "valid_response": {
-                    "value": "",
-                    "score": 1
+                  "validation": {
+                    "valid_response": {
+                      "value": "",
+                      "score": 1
+                    }
                   },
                   "instant_feedback":true
                 }
@@ -57,30 +59,36 @@ $request = '
                       "description": "Maximum number of characters that can be entered in the text entry area. Maximum 250 characters."
                     }
                   },
-                  "valid_response": {
+                  "validation": {
                     "name": "Set correct answer(s)",
                     "description": "In this section, configure the correct answer(s) for the question.",
                     "type": "object",
                     "attributes": {
-                      "value": {
-                        "name": "Correct Answer",
-                        "required": true,
-                        "type": "string",
-                        "default": "",
-                        "editorV3": {
-                          "element": "question",
-                          "white_list": [
-                            "max_length"
-                          ],
-                          "description": ""
+                      "valid_response": {
+                        "name": "Correct",
+                        "type": "object",
+                        "attributes": {
+                          "value": {
+                            "name": "Correct Answer",
+                            "required": true,
+                            "type": "string",
+                            "default": "",
+                            "editorV3": {
+                              "element": "question",
+                              "white_list": [
+                                "max_length"
+                              ],
+                              "description": ""
+                            }
+                          },
+                          "score": {
+                            "name": "Point(s)",
+                            "description": "Score awarded for the correct response(s).",
+                            "type": "number",
+                            "required": true,
+                            "default": 1
+                          }
                         }
-                      },
-                      "score": {
-                        "name": "Point(s)",
-                        "description": "Score awarded for the correct response(s).",
-                        "type": "number",
-                        "required": true,
-                        "default": 1
                       }
                     }
                   },

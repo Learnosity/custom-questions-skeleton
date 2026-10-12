@@ -17,9 +17,11 @@ const questionResponseJson = {
         },
         css: '/dist/question.css',
         instant_feedback: true,
-        valid_response: {
-            value: 'Sydney',
-            score: 3
+        validation: {
+            valid_response: {
+                value: 'Sydney',
+                score: 3
+            }
         },
     },
     response: {

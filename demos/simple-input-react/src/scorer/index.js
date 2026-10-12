@@ -4,7 +4,10 @@ export default class Scorer {
   constructor(question, responseValue) {
     this.question = question;
     this.responseValue = responseValue;
-    this.validResponse = get(question, "valid_response");
+    // The correct answer and its score live inside the question's `validation` object:
+    //   validation.valid_response.value -> the correct answer
+    //   validation.valid_response.score -> points awarded for a correct answer
+    this.validResponse = get(question, "validation.valid_response");
   }
 
   /**
