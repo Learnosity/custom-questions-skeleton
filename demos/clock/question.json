@@ -7,9 +7,13 @@
     },
     "css": "/dist/question.css",
     "instant_feedback": true,
-    "score" : 1,
-    "valid_response" : {
-      "hourHandAngle": 45, 
-      "minHandAngle": 90
+    "validation": {
+      "valid_response": {
+        "score": 1,
+        "value": {
+          "hourHandAngle": 45,
+          "minHandAngle": 90
+        }
+      }
     }
 }

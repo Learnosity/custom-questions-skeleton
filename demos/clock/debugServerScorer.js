@@ -17,11 +17,21 @@ const questionResponseJson = {
         },
         css: "/dist/question.css",
         instant_feedback: true,
-        // TODO - requires implementation - add the rest of your question json
+        // The correct answer and its score live inside the validation object.
+        validation: {
+            valid_response: {
+                score: 1,
+                value: {
+                    hourHandAngle: 45,
+                    minHandAngle: 90,
+                },
+            },
+        },
     },
     response: {
-        // TODO - Requires implementation - the shape of your question response
-        // value:
+        // The clock question emits a bare response object of hand angles.
+        hourHandAngle: 45,
+        minHandAngle: 90,
     },
 };
 
