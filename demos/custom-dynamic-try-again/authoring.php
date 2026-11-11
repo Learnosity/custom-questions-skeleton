@@ -58,7 +58,15 @@ $signedRequest = signAuthoringRequest(json_decode($request, true));
              * when authoring the demo custom question
              */
             authorApp.once('render:item', () => {
-              const dataTableJson = {"cols":["value","fromUnit","toUnit","answer"],"rows":{"f60099f1-b5fa-4bf5-b1d9-b88cd10ab33c":{"values":["100","cm","m","1"],"index":0},"e791389f-b2bb-4fc6-894d-4e8ebc2ab071":{"values":["5","km","m","5000"],"index":1},"98fe2d62-3e87-470c-a689-1b98a7b2db84":{"values":["0","°C","°F","32"],"index":2},"b08d31c7-8ef3-4c8e-ab92-07881be58940":{"values":["3","hours","minutes","180"],"index":3}}}
+  const dataTableJson = {
+    cols: ['value', 'fromUnit', 'toUnit', 'answer'],
+    rows: {
+      'f60099f1-b5fa-4bf5-b1d9-b88cd10ab33c': { values: ['100', 'cm', 'm', '1'], index: 0 },
+      'e791389f-b2bb-4fc6-894d-4e8ebc2ab071': { values: ['5', 'km', 'm', '5000'], index: 1 },
+      '98fe2d62-3e87-470c-a689-1b98a7b2db84': { values: ['0', '°C', '°F', '32'], index: 2 },
+      'b08d31c7-8ef3-4c8e-ab92-07881be58940': { values: ['3', 'hours', 'minutes', '180'], index: 3 }
+    }
+  };
               let itemJson = authorApp.getItem();
               itemJson.item.dynamic_content_data = dataTableJson;
               authorApp.setItemJson(itemJson);
