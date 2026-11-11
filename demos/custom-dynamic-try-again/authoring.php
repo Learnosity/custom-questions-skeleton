@@ -67,7 +67,7 @@ $signedRequest = signAuthoringRequest(json_decode($request, true));
       'b08d31c7-8ef3-4c8e-ab92-07881be58940': { values: ['3', 'hours', 'minutes', '180'], index: 3 }
     }
   };
-              let itemJson = authorApp.getItem();
+              const itemJson = authorApp.getItem();
               itemJson.item.dynamic_content_data = dataTableJson;
               authorApp.setItemJson(itemJson);
             })
